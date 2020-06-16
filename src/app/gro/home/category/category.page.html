@@ -1,0 +1,16 @@
+<ion-slides pager="true" [options]="slideOpts">
+  <ion-slide *ngFor="let category of categories">
+    <ion-grid class="ion-no-padding">
+      <ion-row>
+        <ion-col>
+          <ion-img [src]="category.imgUrl"></ion-img>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <span>{{category.name}}</span>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-slide>
+</ion-slides>

@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Grocery",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  },
+  {
+    "name": "Vegetables",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  },
+  {
+    "name": "Fruits",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  },
+  {
+    "name": "Personal Care",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  },
+  {
+    "name": "Households",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  },
+  {
+    "name": "Snacks",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  },
+  {
+    "name": "Beverages",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  },
+  {
+    "name": "Dairy",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  },
+  {
+    "name": "Baby Care",
+    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+  }
+]

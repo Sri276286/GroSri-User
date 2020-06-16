@@ -1,8 +1,11 @@
 // Ionic Variables and Theming. For more info, please see:
 // http://ionicframework.com/docs/theming/
 
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;700&display=swap');
+
 /** Ionic CSS Variables **/
 :root {
+  --ion-font-family: 'Roboto', sans-serif;
   /** primary **/
   --ion-color-primary: #3880ff;
   --ion-color-primary-rgb: 56, 128, 255;
