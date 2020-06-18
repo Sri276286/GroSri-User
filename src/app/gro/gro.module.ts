@@ -7,19 +7,40 @@ import { RouterModule } from '@angular/router';
 import { StoreListPage } from './store-list/store-list.page';
 import { OfferSlidePage } from './home/offer-slides/offer-slide.page';
 import { ReferPage } from './refer/refer.page';
+import { StorePage } from './store/store.page';
+import { ProductListPage } from './store/product-list/product-list.page';
+import { ProductSearchPage } from './store/product-search/product-search.component';
+import { ItemWeightsPage } from './store/item-weights/item-weights.page';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { CartPage } from './cart/cart.page';
+import { CartBarPage } from './cart/cart-bar/cart-bar.page';
+import { CartCheckoutPage } from './cart/cart-checkout/cart-checkout.page';
+import { SignupPage } from './signup/signup.page';
+import { LoginPage } from './login/login.page';
 
 @NgModule({
     imports: [
         CommonModule,
         IonicModule,
-        RouterModule
+        RouterModule,
+        FormsModule,
+        ReactiveFormsModule
     ],
     declarations: [
         GroHomePage,
+        LoginPage,
+        SignupPage,
         CategoryPage,
         StoreListPage,
         OfferSlidePage,
-        ReferPage
+        ReferPage,
+        StorePage,
+        ProductListPage,
+        ProductSearchPage,
+        ItemWeightsPage,
+        CartPage,
+        CartBarPage,
+        CartCheckoutPage
     ]
 })
 export class GroModule {

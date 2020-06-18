@@ -1,0 +1,83 @@
+<ng-container
+  [ngTemplateOutlet]="menuList"
+  [ngTemplateOutletContext]="{items: products}"
+></ng-container>
+<ng-template #menuList let-items="items">
+  <ng-container *ngFor="let item of items">
+    <ng-container
+      [ngTemplateOutlet]="menuItem"
+      [ngTemplateOutletContext]="{item: item}"
+    ></ng-container>
+  </ng-container>
+</ng-template>
+
+<ng-template #menuItem let-item="item">
+  <ion-item>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="3" class="ion-padding-top">
+          <ion-img [src]="item.productImgUrl"></ion-img>
+        </ion-col>
+        <ion-col size="9">
+          <div style="display: flex; justify-content: space-between;">
+            <span class="span-title">{{item.productName}}</span>
+            <span class="span-title">{{item.brandName}}</span>
+          </div>
+          <ion-row>
+            <ion-col>
+              {{item.itemShortDescription}}
+            </ion-col>
+          </ion-row>
+          <ion-button
+            (click)="selectWeightsModal(item)"
+            *ngIf="item.storeInventoryProductUnit.length > 1"
+          >
+            <div style="padding-left: 1px;">
+              <span>
+                {{item.weight}}{{item.unit}}
+              </span>
+            </div>
+          </ion-button>
+          <ion-row *ngIf="item.storeInventoryProductUnit.length === 1">
+            <ion-col>
+              {{item.weight}} {{item.unit}}
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col size="6">
+              <span>
+                MRP:
+              </span>
+              <span class="span-mrp">
+                Rs.{{item.mrp}}
+              </span>
+              <span class="span-content">
+                Rs.{{item.price}}
+              </span>
+            </ion-col>
+            <ion-col size="6">
+              <ion-button *ngIf="!item.quantity" (click)="addItem(item)">Add</ion-button>
+              <ion-row *ngIf="item.quantity">
+                <ion-col size="5"
+                  ><ion-button color="danger" (click)="removeItem(item)"
+                    ><span class="span-general">-</span></ion-button
+                  ></ion-col
+                >
+                <ion-col size="2" class="ion-padding-top"
+                  ><span style="padding-top: 3px;"
+                    >{{item.quantity}}</span
+                  ></ion-col
+                >
+                <ion-col size="5"
+                  ><ion-button color="success" (click)="addItem(item)"
+                    ><span class="span-general">+</span></ion-button
+                  ></ion-col
+                >
+              </ion-row>
+            </ion-col>
+          </ion-row>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item>
+</ng-template>

@@ -14,6 +14,7 @@ export class StoreItemsService {
   subCategoriesWithCategory = {};
   storeProductsList;
   private productsList = [];
+  private storeProductsURL: string = 'assets/mocks/menu.json';
   constructor(private _http: HttpClient,
     private _commonService: CommonService,
     private _cartService: CartService) {
@@ -21,7 +22,8 @@ export class StoreItemsService {
 
   getItems(id) {
     return new Observable((observer) => {
-      this._http.get(`${ApiConfig.storeProductsURL}/${id}`)
+      // this._http.get(`${ApiConfig.storeProductsURL}/${id}`)
+      this._http.get(this.storeProductsURL)
         .subscribe((res: any) => {
           if (res && res.productsByCategory) {
             // map products with cart for quantity

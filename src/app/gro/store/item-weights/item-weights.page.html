@@ -1,0 +1,20 @@
+<ion-content>
+  <ion-list *ngFor="let item of weights">
+    <ion-item>
+        <div style="padding-left: 1px;">
+          <span>
+            {{item.weight}}{{item.unit}}
+          </span>
+          <span>
+            MRP:Rs.
+          </span>
+          <span class="span-mrp">
+            {{item.mrp}}
+          </span>
+          <span class="span-content">
+            {{item.price}}
+          </span>
+        </div>
+    </ion-item>
+  </ion-list>
+</ion-content>

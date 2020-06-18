@@ -3,7 +3,7 @@
 </span>
 <ion-list>
     <ion-grid *ngFor="let store of stores">
-<ion-row>
+<ion-row [routerLink]="['/store', store.id]">
     <ion-col size="3">
         <ion-img [src]="store.storeImgUrl"></ion-img>
     </ion-col>

@@ -45,18 +45,14 @@ export class LoginService {
   /**
    * Do Login and get user details
    * Also post if any items added in cart
-   * @param loginform
+   * @param user
    */
-  doLogin(loginform: any): Observable<any> {
+  login(user: any): Observable<any> {
     let httpHeaders = new HttpHeaders().set("Content-Type", "application/json");
     let options = {
       headers: httpHeaders
     };
-    return this._http.post(
-      ApiConfig.loginURL,
-      JSON.stringify(loginform.value),
-      options
-    ).pipe(map((res: any) => {
+    return this._http.post(ApiConfig.loginURL, user, options).pipe(map((res: any) => {
       if (res && res.accessToken) {
         localStorage.setItem('auth_token', res.accessToken);
         // post cart once login
@@ -70,6 +66,18 @@ export class LoginService {
         return throwError(`No access token received`);
       }
     }));
+  }
+
+  /**
+   * signup a new user
+   * @param user
+   */
+  public register(user: any): Observable<any> {
+    let httpHeaders = new HttpHeaders().set("Content-Type", "application/json");
+    let options = {
+      headers: httpHeaders
+    };
+    return this._http.post(ApiConfig.signupURL, user, options);
   }
 
   /**

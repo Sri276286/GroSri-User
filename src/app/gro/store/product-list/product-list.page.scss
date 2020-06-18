@@ -1,0 +1,16 @@
+.span-content {
+  font-weight: 600;
+  font-size: 18px;
+}
+.span-mrp {
+  @extend .span-general;
+  text-decoration: line-through;
+}
+.span-title {
+  font-weight: 500;
+  font-size: 18px;
+}
+.span-general {
+  font-weight: 400;
+  font-size: 16px;
+}

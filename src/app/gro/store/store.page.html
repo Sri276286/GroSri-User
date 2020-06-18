@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-col size="2">
+          <ion-back-button defaultHref="home"></ion-back-button>
+        </ion-col>
+        <ion-col size="9" style="padding-top: 6px;">
+          <span style="font-size: 18px;">Store Name</span>
+        </ion-col>
+        <ion-col size="1">
+          <ion-icon name="search" size="large"></ion-icon>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list *ngFor="let product of storeProductCatalog | keyvalue">
+    <ion-item>
+      <ion-label
+        ><span style="font-weight: 600; font-size: 20px;">{{product.key}}</span>
+      </ion-label>
+      <ion-icon
+        name="chevron-down-outline"
+        size="small"
+        (click)="product.expand = true"
+        *ngIf="!product.expand"
+      ></ion-icon>
+      <ion-icon
+        name="chevron-up-outline"
+        size="small"
+        (click)="product.expand = false"
+        *ngIf="product.expand"
+      ></ion-icon>
+    </ion-item>
+    <ng-container *ngIf="!product.value.length && !product.expand">
+      <ion-list *ngFor="let subprod of product.value | keyvalue">
+        <ion-item>
+          <ion-label>{{subprod.key}}</ion-label>
+          <ion-icon name="chevron-down-outline">
+            size="small" (click)="subprod.expand = true" *ngIf="!subprod.expand"
+            ></ion-icon
+          >
+          <ion-icon
+            name="chevron-up-outline"
+            size="small"
+            (click)="subprod.expand = false"
+            *ngIf="subprod.expand"
+          ></ion-icon>
+        </ion-item>
+        <ng-container *ngIf="!subprod.expand">
+          <product-list [products]="subprod.value"></product-list>
+        </ng-container>
+      </ion-list>
+    </ng-container>
+    <ng-container *ngIf="product.value.length && !product.expand">
+      <product-list [products]="product.value"></product-list>
+    </ng-container>
+  </ion-list>
+  <gro-cart-bar></gro-cart-bar>
+</ion-content>

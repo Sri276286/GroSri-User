@@ -1,0 +1,710 @@
+{
+  "status": "SUCCESS",
+  "code": 200,
+  "productsByCategory": {
+    "Foodgrains, Oil and Masala": {
+      "Rice Products": [
+        {
+          "id": 1,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Rice Products",
+          "productSub2Category": null,
+          "productName": "Steam Rice",
+          "productImgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/storeiamgesize.jpg",
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 110.0,
+          "price": 105.0,
+          "weight": 25.0,
+          "unit": "kg",
+          "quantity": 0,
+          "brandName": "GSM",
+          "itemShortDescription": "GSM - Steam Rice",
+          "itemLongDescription": "GSM - Steam Rice Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 1,
+              "storeInventoryProductId": 1,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 110.0,
+              "price": 105.0,
+              "weight": 25.0,
+              "unit": "kg"
+            },
+            {
+              "id": 2,
+              "storeInventoryProductId": 1,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 1100.0,
+              "price": 1050.0,
+              "weight": 50.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 1
+        },
+        {
+          "id": 2,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Rice Products",
+          "productSub2Category": null,
+          "productName": "Boiled Rice",
+          "productImgUrl": null,
+          "max_quantity": 3,
+          "available_quantity": 5,
+          "mrp": 100.0,
+          "price": 98.0,
+          "weight": 25.0,
+          "unit": "kg",
+          "quantity": 0,
+          "brandName": "GSM",
+          "itemShortDescription": "GSM - Boiled Rice",
+          "itemLongDescription": "GSM - Boiled Rice Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 3,
+              "storeInventoryProductId": 2,
+              "max_quantity": 3,
+              "available_quantity": 5,
+              "mrp": 100.0,
+              "price": 98.0,
+              "weight": 25.0,
+              "unit": "kg"
+            },
+            {
+              "id": 4,
+              "storeInventoryProductId": 2,
+              "max_quantity": 3,
+              "available_quantity": 5,
+              "mrp": 1000.0,
+              "price": 980.0,
+              "weight": 50.0,
+              "unit": "kg"
+            },
+            {
+              "id": 5,
+              "storeInventoryProductId": 2,
+              "max_quantity": 3,
+              "available_quantity": 5,
+              "mrp": 1500.0,
+              "price": 1480.0,
+              "weight": 100.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 3
+        },
+        {
+          "id": 3,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Rice Products",
+          "productSub2Category": null,
+          "productName": "Boiled Rice",
+          "productImgUrl": null,
+          "max_quantity": 3,
+          "available_quantity": 5,
+          "mrp": 100.0,
+          "price": 98.0,
+          "weight": 25.0,
+          "unit": "kg",
+          "quantity": 0,
+          "brandName": "GSM",
+          "itemShortDescription": "GSM - Boiled Rice",
+          "itemLongDescription": "GSM - Boiled Rice Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 6,
+              "storeInventoryProductId": 3,
+              "max_quantity": 3,
+              "available_quantity": 5,
+              "mrp": 100.0,
+              "price": 98.0,
+              "weight": 25.0,
+              "unit": "kg"
+            },
+            {
+              "id": 7,
+              "storeInventoryProductId": 3,
+              "max_quantity": 3,
+              "available_quantity": 5,
+              "mrp": 1000.0,
+              "price": 980.0,
+              "weight": 50.0,
+              "unit": "kg"
+            },
+            {
+              "id": 8,
+              "storeInventoryProductId": 3,
+              "max_quantity": 3,
+              "available_quantity": 5,
+              "mrp": 1500.0,
+              "price": 1480.0,
+              "weight": 100.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 6
+        },
+        {
+          "id": 4,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Rice Products",
+          "productSub2Category": null,
+          "productName": "Steam Rice",
+          "productImgUrl": null,
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 110.0,
+          "price": 105.0,
+          "weight": 25.0,
+          "unit": "kg",
+          "quantity": 0,
+          "brandName": "GSM",
+          "itemShortDescription": "GSM - Steam Rice",
+          "itemLongDescription": "GSM - Steam Rice Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 9,
+              "storeInventoryProductId": 4,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 110.0,
+              "price": 105.0,
+              "weight": 25.0,
+              "unit": "kg"
+            },
+            {
+              "id": 10,
+              "storeInventoryProductId": 4,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 1100.0,
+              "price": 1050.0,
+              "weight": 50.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 9
+        },
+        {
+          "id": 5,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Rice Products",
+          "productSub2Category": null,
+          "productName": "Steam Rice",
+          "productImgUrl": null,
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 130.0,
+          "price": 125.0,
+          "weight": 25.0,
+          "unit": "kg",
+          "quantity": 0,
+          "brandName": "KHG",
+          "itemShortDescription": "KHG - Steam Rice",
+          "itemLongDescription": "KHG - Steam Rice Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 11,
+              "storeInventoryProductId": 5,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 130.0,
+              "price": 125.0,
+              "weight": 25.0,
+              "unit": "kg"
+            },
+            {
+              "id": 12,
+              "storeInventoryProductId": 5,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 1300.0,
+              "price": 1250.0,
+              "weight": 50.0,
+              "unit": "kg"
+            },
+            {
+              "id": 13,
+              "storeInventoryProductId": 5,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 1320.0,
+              "price": 1225.0,
+              "weight": 75.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 11
+        }
+      ],
+      "Dal & Pulses": [
+        {
+          "id": 6,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Dal & Pulses",
+          "productSub2Category": null,
+          "productName": "Toor Dhall",
+          "productImgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/pulses/udhayam_toor.jpg",
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 130.0,
+          "price": 125.0,
+          "weight": 500.0,
+          "unit": "g",
+          "quantity": 0,
+          "brandName": "Udhayam",
+          "itemShortDescription": "Udhayam - Toor Dhall",
+          "itemLongDescription": "Udhayam - Toor Dhall in Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 14,
+              "storeInventoryProductId": 6,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 130.0,
+              "price": 125.0,
+              "weight": 500.0,
+              "unit": "g"
+            }
+          ],
+          "storeInventoryProductUnitId": 14
+        },
+        {
+          "id": 7,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Dal & Pulses",
+          "productSub2Category": null,
+          "productName": "Toor Dhall",
+          "productImgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/pulses/tata_urad.jpg",
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 130.0,
+          "price": 125.0,
+          "weight": 500.0,
+          "unit": "g",
+          "quantity": 0,
+          "brandName": "Tata",
+          "itemShortDescription": "Tata - Toor Dhall",
+          "itemLongDescription": "Tata - Toor Dhall in Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 15,
+              "storeInventoryProductId": 7,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 130.0,
+              "price": 125.0,
+              "weight": 500.0,
+              "unit": "g"
+            }
+          ],
+          "storeInventoryProductUnitId": 15
+        },
+        {
+          "id": 8,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Dal & Pulses",
+          "productSub2Category": null,
+          "productName": "Toor Dhall",
+          "productImgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/pulses/toor.jpg",
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 130.0,
+          "price": 125.0,
+          "weight": 500.0,
+          "unit": "g",
+          "quantity": 0,
+          "brandName": null,
+          "itemShortDescription": "Toor Dhall",
+          "itemLongDescription": "Toor Dhall in Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 16,
+              "storeInventoryProductId": 8,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 130.0,
+              "price": 125.0,
+              "weight": 500.0,
+              "unit": "g"
+            }
+          ],
+          "storeInventoryProductUnitId": 16
+        },
+        {
+          "id": 9,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Dal & Pulses",
+          "productSub2Category": null,
+          "productName": "Moong Dhall",
+          "productImgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/pulses/udhayam_moong.jpg",
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 90.0,
+          "price": 85.0,
+          "weight": 500.0,
+          "unit": "g",
+          "quantity": 0,
+          "brandName": "Udhayam",
+          "itemShortDescription": "Udhayam - Moong Dhall",
+          "itemLongDescription": "Udhayam - Moong Dhall in Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 17,
+              "storeInventoryProductId": 9,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 90.0,
+              "price": 85.0,
+              "weight": 500.0,
+              "unit": "g"
+            },
+            {
+              "id": 18,
+              "storeInventoryProductId": 9,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 190.0,
+              "price": 185.0,
+              "weight": 1.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 17
+        },
+        {
+          "id": 10,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Dal & Pulses",
+          "productSub2Category": null,
+          "productName": "Urad Dhall",
+          "productImgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/pulses/udhayam_urad.jpg",
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 190.0,
+          "price": 185.0,
+          "weight": 1.0,
+          "unit": "kg",
+          "quantity": 0,
+          "brandName": "Udhayam",
+          "itemShortDescription": "Udhayam - Urad Dhall",
+          "itemLongDescription": "Udhayam - Urad Dhall in Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 19,
+              "storeInventoryProductId": 10,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 190.0,
+              "price": 185.0,
+              "weight": 1.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 19
+        },
+        {
+          "id": 11,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Foodgrains, Oil and Masala",
+          "productSubCategory": "Dal & Pulses",
+          "productSub2Category": null,
+          "productName": "Urad Dhall",
+          "productImgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/pulses/tata_urad.jpg",
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 130.0,
+          "price": 125.0,
+          "weight": 500.0,
+          "unit": "g",
+          "quantity": 0,
+          "brandName": "Tata",
+          "itemShortDescription": "Tata - Urad Dhall",
+          "itemLongDescription": "Tata - Urad Dhall in Chennai",
+          "storeInventoryProductUnit": [
+            {
+              "id": 20,
+              "storeInventoryProductId": 11,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 130.0,
+              "price": 125.0,
+              "weight": 500.0,
+              "unit": "g"
+            }
+          ],
+          "storeInventoryProductUnitId": 20
+        }
+      ]
+    },
+    "Vegetables and Fruits": {
+      "Vegetables": [
+        {
+          "id": 12,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Vegetables and Fruits",
+          "productSubCategory": "Vegetables",
+          "productSub2Category": null,
+          "productName": "Tomato",
+          "productImgUrl": null,
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 25.0,
+          "price": 25.0,
+          "weight": 500.0,
+          "unit": "g",
+          "quantity": 0,
+          "brandName": null,
+          "itemShortDescription": "Tomato",
+          "itemLongDescription": "Tomato",
+          "storeInventoryProductUnit": [
+            {
+              "id": 21,
+              "storeInventoryProductId": 12,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 25.0,
+              "price": 25.0,
+              "weight": 500.0,
+              "unit": "g"
+            },
+            {
+              "id": 22,
+              "storeInventoryProductId": 12,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 45.0,
+              "price": 45.0,
+              "weight": 1.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 21
+        },
+        {
+          "id": 13,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Vegetables and Fruits",
+          "productSubCategory": "Vegetables",
+          "productSub2Category": null,
+          "productName": "Onions",
+          "productImgUrl": null,
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 30.0,
+          "price": 25.0,
+          "weight": 500.0,
+          "unit": "g",
+          "quantity": 0,
+          "brandName": null,
+          "itemShortDescription": "Onions",
+          "itemLongDescription": "Onions",
+          "storeInventoryProductUnit": [
+            {
+              "id": 23,
+              "storeInventoryProductId": 13,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 30.0,
+              "price": 25.0,
+              "weight": 500.0,
+              "unit": "g"
+            },
+            {
+              "id": 24,
+              "storeInventoryProductId": 13,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 60.0,
+              "price": 50.0,
+              "weight": 1.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 23
+        }
+      ],
+      "Fruits": [
+        {
+          "id": 14,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Vegetables and Fruits",
+          "productSubCategory": "Fruits",
+          "productSub2Category": null,
+          "productName": "Apple",
+          "productImgUrl": null,
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 130.0,
+          "price": 125.0,
+          "weight": 500.0,
+          "unit": "g",
+          "quantity": 0,
+          "brandName": null,
+          "itemShortDescription": "Adani - Apple",
+          "itemLongDescription": "Adani - Apple",
+          "storeInventoryProductUnit": [
+            {
+              "id": 25,
+              "storeInventoryProductId": 14,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 130.0,
+              "price": 125.0,
+              "weight": 500.0,
+              "unit": "g",
+              "quantity": 0
+            },
+            {
+              "id": 26,
+              "storeInventoryProductId": 14,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 160.0,
+              "price": 150.0,
+              "weight": 1.0,
+              "unit": "kg",
+              "quantity": 0
+            }
+          ],
+          "storeInventoryProductUnitId": 25
+        },
+        {
+          "id": 15,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Vegetables and Fruits",
+          "productSubCategory": "Fruits",
+          "productSub2Category": null,
+          "productName": "Apple",
+          "productImgUrl": null,
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 180.0,
+          "price": 180.0,
+          "weight": 1.0,
+          "unit": "kg",
+          "quantity": 0,
+          "brandName": null,
+          "itemShortDescription": "Apple",
+          "itemLongDescription": "Apple",
+          "storeInventoryProductUnit": [
+            {
+              "id": 27,
+              "storeInventoryProductId": 15,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 180.0,
+              "price": 180.0,
+              "weight": 1.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 27
+        },
+        {
+          "id": 16,
+          "storeId": 1,
+          "storeStoreName": "thirumalai store",
+          "productCategory": "Vegetables and Fruits",
+          "productSubCategory": "Fruits",
+          "productSub2Category": null,
+          "productName": "Orange",
+          "productImgUrl": null,
+          "max_quantity": 5,
+          "available_quantity": 15,
+          "mrp": 100.0,
+          "price": 80.0,
+          "weight": 1.0,
+          "unit": "kg",
+          "quantity": 0,
+          "brandName": null,
+          "itemShortDescription": "Orange",
+          "itemLongDescription": "Orange",
+          "storeInventoryProductUnit": [
+            {
+              "id": 28,
+              "storeInventoryProductId": 16,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 100.0,
+              "price": 80.0,
+              "weight": 1.0,
+              "unit": "kg"
+            },
+            {
+              "id": 29,
+              "storeInventoryProductId": 16,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 50.0,
+              "price": 40.0,
+              "weight": 500.0,
+              "unit": "g"
+            },
+            {
+              "id": 30,
+              "storeInventoryProductId": 16,
+              "max_quantity": 5,
+              "available_quantity": 15,
+              "mrp": 200.0,
+              "price": 180.0,
+              "weight": 2.0,
+              "unit": "kg"
+            }
+          ],
+          "storeInventoryProductUnitId": 28
+        }
+      ]
+    }
+  },
+  "storeProduct": null,
+  "storeProductLst": null,
+  "store": {
+    "id": 1,
+    "storeName": "thirumalai store",
+    "storeCategory": "Grocery",
+    "supplyItems": "Rice, Dal, Pulses and Others",
+    "storeAdminId": "1",
+    "storeImgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/tirumalai_store.jpg",
+    "rating": 4,
+    "flatNo": "26",
+    "street": "5th Cross Street",
+    "area": "Lakshmi Nagar, Porur",
+    "city": "chennai",
+    "state": "tamilnadu",
+    "country": "India",
+    "pincode": "600116",
+    "geolocation": null,
+    "landmark": null,
+    "deliveryMethod": "PARTNER_DELIVERY",
+    "status": "ACTIVE"
+  }
+}
