@@ -11,6 +11,11 @@ import { CartService } from 'src/app/common/services/cart.service';
 export class ProductListPage {
     @Input('products') products;
 
+    weightAlertOptions: any = {
+        header: 'Choose Weight',
+        translucent: true,
+      };
+
     constructor(private modalCtrl: ModalController,
         private _cartService: CartService) { }
 

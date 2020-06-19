@@ -3,11 +3,14 @@ import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CommonService } from './common.service';
 import { ApiConfig } from '../config/api.config';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class StoreService {
+
+  categorySelected$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(private _http: HttpClient,
     private _commonService: CommonService) {

@@ -12,6 +12,7 @@ export class StorePage implements OnInit {
   items = [];
   categories = [];
   storeProductCatalog;
+  storeCatalog;
   toggle = {
     last_step: 0,
     current_step: 0,
@@ -32,6 +33,15 @@ export class StorePage implements OnInit {
   }
 
   ngOnInit() {
+    this._storeService.categorySelected$.subscribe((category) => {
+      console.log('categ name ', category);
+      for(let categ in this.storeCatalog) {
+        console.log('categ ', categ);
+        // if (categ === category) {
+        //   cate
+        // }
+      }
+    });
     this.isLoggedIn = this._loginService.isLogin();
     this._route.paramMap.subscribe((paramMap) => {
       const id = paramMap.get('id');
@@ -44,6 +54,7 @@ export class StorePage implements OnInit {
               this.isFavoriteStore = store.store.mark_favorite ? true : false;
             }
             if (store.productsByCategory) {
+              this.storeCatalog = store.productsByCategory;
               this.categories = this._storeItemsService.categories;
               this.categories = this.categories.map((t, index) => {
                 return {

@@ -14,6 +14,7 @@ export class StoreItemsService {
   subCategoriesWithCategory = {};
   storeProductsList;
   private productsList = [];
+  // private storeProductsURL: string = 'assets/mocks/menu.json';
   private storeProductsURL: string = 'assets/mocks/menu.json';
   constructor(private _http: HttpClient,
     private _commonService: CommonService,
@@ -40,6 +41,12 @@ export class StoreItemsService {
         });
     });
   }
+
+//   private formStoreMenu(result) {
+// for () {
+
+// }
+//   }
 
   private mapProducts(itemsRes: any) {
     this.productsList = [];

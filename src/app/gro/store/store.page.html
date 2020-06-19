@@ -16,7 +16,7 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list *ngFor="let product of storeProductCatalog | keyvalue">
+  <ion-list *ngFor="let product of storeCatalog | keyvalue">
     <ion-item>
       <ion-label
         ><span style="font-weight: 600; font-size: 20px;">{{product.key}}</span>
@@ -58,5 +58,6 @@
       <product-list [products]="product.value"></product-list>
     </ng-container>
   </ion-list>
+  <gro-menu-button [categories]="categories"></gro-menu-button>
   <gro-cart-bar></gro-cart-bar>
 </ion-content>

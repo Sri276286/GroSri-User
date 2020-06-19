@@ -17,6 +17,11 @@ import { CartBarPage } from './cart/cart-bar/cart-bar.page';
 import { CartCheckoutPage } from './cart/cart-checkout/cart-checkout.page';
 import { SignupPage } from './signup/signup.page';
 import { LoginPage } from './login/login.page';
+import { OrderListPage } from './order-list/order-list.page';
+import { ProfilePage } from './profile/profile.page';
+import { OrderDetailsPage } from './order-list/order-details/order-details.page';
+import { MenuButtonPage } from './store/menu-button/menu-button.page';
+import { MenuPopoverPage } from './store/menu-button/menu-popover/menu-popover.page';
 
 @NgModule({
     imports: [
@@ -40,7 +45,12 @@ import { LoginPage } from './login/login.page';
         ItemWeightsPage,
         CartPage,
         CartBarPage,
-        CartCheckoutPage
+        CartCheckoutPage,
+        ProfilePage,
+        OrderListPage,
+        OrderDetailsPage,
+        MenuButtonPage,
+        MenuPopoverPage
     ]
 })
 export class GroModule {

@@ -6,11 +6,15 @@ import { CartPage } from './gro/cart/cart.page';
 import { ProfilePage } from './gro/profile/profile.page';
 import { LoginPage } from './gro/login/login.page';
 import { SignupPage } from './gro/signup/signup.page';
+import { OrderListPage } from './gro/order-list/order-list.page';
+import { OrderDetailsPage } from './gro/order-list/order-details/order-details.page';
 
 const routes: Routes = [
   { path: 'home', component: GroHomePage },
   { path: 'store/:id', component: StorePage },
   { path: 'cart', component: CartPage },
+  { path: 'orders', component: OrderListPage },
+  { path: 'order/:id', component: OrderDetailsPage },
   { path: 'profile', component: ProfilePage },
   { path: 'login', component: LoginPage },
   { path: 'register', component: SignupPage },
