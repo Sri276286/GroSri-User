@@ -1,0 +1,18 @@
+<ion-header>
+  <ion-toolbar color="success" [routerLink]="['/home']" (click)="modalCtrl.dismiss()">
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-list>
+    <ion-item (click)="loadCategories()"
+      ><ion-icon name="grid-outline" slot="start"></ion-icon
+      ><ion-label>Categories</ion-label></ion-item
+    >
+    <ion-item><ion-label>My Orders</ion-label></ion-item>
+    <ion-item><ion-label>Address Book</ion-label></ion-item>
+    <ion-item><ion-label>My Cart</ion-label></ion-item>
+    <ion-item><ion-label>My Favorites</ion-label></ion-item>
+    <ion-item><ion-label>My Account</ion-label></ion-item>
+  </ion-list>
+</ion-content>

@@ -21,21 +21,72 @@
   </ion-toolbar>
 </ion-header>
 <ion-menu side="start" menuId="mainMenu" contentId="mainMenu">
-    <ion-header>
-      <ion-toolbar color="primary">
-        <ion-title>Start Menu</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content id="mainMenu">
-      <ion-list>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-        <ion-item>Menu Item</ion-item>
-      </ion-list>
-    </ion-content>
-  </ion-menu>
+  <ion-header>
+    <ion-toolbar
+      color="success"
+      [routerLink]="['/home']"
+      (click)="modalCtrl.dismiss()"
+    >
+      <ion-title>Home</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  <ion-content id="mainMenu">
+    <ion-list>
+      <ion-menu-toggle>
+        <ion-button expand="full" color="light" (click)="loadCategories()"
+          ><ion-icon name="grid-outline" slot="start"></ion-icon
+          ><ion-label>Categories </ion-label></ion-button
+        >
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button expand="full" color="light" (click)="loadOrders()"
+          ><ion-icon name="timer-outline" slot="start"></ion-icon
+          ><ion-label>My Orders </ion-label></ion-button
+        >
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button expand="full" color="light" [routerLink]="['/cart']"
+          ><ion-icon name="basket-outline" slot="start"></ion-icon
+          ><ion-label>My Cart </ion-label></ion-button
+        >
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button expand="full" color="light" (click)="loadAddress()"
+          ><ion-icon name="book-outline" slot="start"></ion-icon
+          ><ion-label>Address Book </ion-label></ion-button
+        >
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button expand="full" color="light"
+          ><ion-icon name="megaphone-outline" slot="start"></ion-icon
+          ><ion-label>Refer a store </ion-label></ion-button
+        >
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button expand="full" color="light"
+          ><ion-icon name="megaphone-outline" slot="start"></ion-icon
+          ><ion-label>Refer a friend </ion-label></ion-button
+        >
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button expand="full" color="light"
+          ><ion-icon name="heart-outline" slot="start"></ion-icon
+          ><ion-label>My favorites </ion-label></ion-button
+        >
+      </ion-menu-toggle>
+      <ion-menu-toggle>
+        <ion-button
+          expand="full"
+          color="light"
+          [routerLink]="['/profile']"
+          (click)="modalCtrl.dismiss()"
+          ><ion-icon name="person-outline" slot="start"></ion-icon
+          ><ion-label>My Account </ion-label></ion-button
+        >
+      </ion-menu-toggle>
+    </ion-list>
+  </ion-content>
+</ion-menu>
 <ion-content>
   <gro-category></gro-category>
   <gro-refer></gro-refer>

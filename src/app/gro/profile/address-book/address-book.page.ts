@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/common/services/user.service';
 import { ModalController } from '@ionic/angular';
 import { AddressPage } from './address/address.page';
+import { LocationModalPage } from '../../home/location/location.page';
 
 @Component({
     templateUrl: 'address-book.page.html',
@@ -24,15 +25,17 @@ export class AddressBookPage implements OnInit {
     }
 
     addAddress() {
-        this.presentAddressModal();
+        this.presentModal(AddressPage, { isNew: true });
     }
 
-    async presentAddressModal() {
+    loadLocation() {
+        this.presentModal(LocationModalPage);
+    }
+
+    async presentModal(component, properties?: any) {
         const modal = await this.modalCtrl.create({
-            component: AddressPage,
-            componentProps: {
-                isNew: true
-            }
+            component: component,
+            componentProps: properties
         });
         return await modal.present();
     }

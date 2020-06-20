@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderConstants } from 'src/app/common/constants/order.constants';
 import { OrderService } from 'src/app/common/services/order.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
     templateUrl: 'order-list.page.html',
@@ -10,13 +11,15 @@ export class OrderListPage implements OnInit {
     currentOrders = [];
     pastOrders = [];
     currentRate = 0;
+    showCurrentOrders = true;
     canReview: boolean = false;
     placedStatus = OrderConstants.PLACED;
     deliveredStatus = OrderConstants.DELIVERED;
     cancelledStatus = OrderConstants.CUSTOMER_CANCELLED;
     storeCancelledStatus = OrderConstants.STORE_CANCELLED;
     isStoreRated: boolean = false;
-    constructor(private _service: OrderService) {
+    constructor(private _service: OrderService,
+        public modalCtrl: ModalController) {
     }
 
     ngOnInit() {
@@ -43,6 +46,15 @@ export class OrderListPage implements OnInit {
                 console.log('past orders ', this.pastOrders);
             }
         });
+    }
+
+    orderSegmentChange(value) {
+        console.log('value ', value);
+        if (value.detail.value === 'past_orders') {
+            this.showCurrentOrders = false;
+        } else {
+            this.showCurrentOrders = true;
+        }
     }
 
     trackOrder() {

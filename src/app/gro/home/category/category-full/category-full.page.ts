@@ -1,22 +1,15 @@
 import { Component, OnInit } from '@angular/core';
-import { CategoryService } from 'src/app/common/services/category.service';
-import { CategoryStorePage } from './category-stores/category-store.page';
 import { ModalController } from '@ionic/angular';
+import { CategoryService } from 'src/app/common/services/category.service';
+import { CategoryStorePage } from '../category-stores/category-store.page';
 
 @Component({
-    selector: 'gro-category',
-    templateUrl: 'category.page.html',
-    styleUrls: ['category.page.scss']
+    templateUrl: 'category-full.page.html'
 })
-export class CategoryPage implements OnInit {
-    slideOpts = {
-        slidesPerView: 5,
-        freeMode: true,
-        pagination: false
-    };
+export class CategoryFullPage implements OnInit {
     categories = [];
-    constructor(private _categoryService: CategoryService,
-        private modalCtrl: ModalController) { }
+    constructor(public modalCtrl: ModalController,
+        private _categoryService: CategoryService) { }
 
     ngOnInit() {
         this.getCategoryList();

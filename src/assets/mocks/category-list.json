@@ -1,37 +1,46 @@
 [
   {
+    "id": "grocery",
     "name": "Grocery",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   },
   {
+    "id": "vegetables",
     "name": "Vegetables",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   },
   {
+    "id": "fruits",
     "name": "Fruits",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   },
   {
+    "id": "personal_care",
     "name": "Personal Care",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   },
   {
+    "id": "households",
     "name": "Households",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   },
   {
+    "id": "snacks",
     "name": "Snacks",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   },
   {
+    "id": "beverages",
     "name": "Beverages",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   },
   {
+    "id": "dairy",
     "name": "Dairy",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   },
   {
+    "id": "baby_care",
     "name": "Baby Care",
     "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
   }

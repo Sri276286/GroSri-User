@@ -29,3 +29,8 @@
   --height: 50%;
   padding: 25px;
 }
+
+.modal-menu .modal-wrapper {
+  --height: 50% !important;
+  --width: 80% !important;
+}

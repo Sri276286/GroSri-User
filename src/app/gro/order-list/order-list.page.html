@@ -1,13 +1,25 @@
 <ion-header>
   <ion-toolbar>
     <div style="display: flex;">
-      <ion-back-button defaultHref="/home"></ion-back-button>
+      <ion-icon
+      name="chevron-back-outline"
+      size="large"
+      (click)="modalCtrl.dismiss()"
+    ></ion-icon>
       <ion-label class="ion-padding">My Orders</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-list>
+  <ion-segment
+  value="current_orders"
+  color="success"
+  (ionChange)="orderSegmentChange($event)"
+>
+  <ion-segment-button value="current_orders">Current Orders</ion-segment-button>
+  <ion-segment-button value="past_orders">Past Orders</ion-segment-button>
+</ion-segment>
+  <ion-list *ngIf="showCurrentOrders">
     <ion-item-divider>
       <ion-label>
         Current Orders
@@ -18,7 +30,7 @@
       [ngTemplateOutletContext]="{orders: currentOrders}"
     ></ng-container>
   </ion-list>
-  <ion-list>
+  <ion-list *ngIf="!showCurrentOrders">
     <ion-item-divider>
       <ion-label>
         Past Orders

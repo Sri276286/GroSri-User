@@ -25,6 +25,10 @@ import { LocationModalPage } from './home/location/location.page';
 import { UserModalPage } from './profile/user-modal/user-modal.page';
 import { AddressBookPage } from './profile/address-book/address-book.page';
 import { AddressPage } from './profile/address-book/address/address.page';
+import { LinePage } from './line/line.page';
+import { CategoryFullPage } from './home/category/category-full/category-full.page';
+import { MenuPage } from './home/menu/menu.page';
+import { CategoryStorePage } from './home/category/category-stores/category-store.page';
 
 @NgModule({
     imports: [
@@ -39,6 +43,8 @@ import { AddressPage } from './profile/address-book/address/address.page';
         LoginPage,
         SignupPage,
         CategoryPage,
+        CategoryFullPage,
+        CategoryStorePage,
         StoreListPage,
         OfferSlidePage,
         ReferPage,
@@ -51,12 +57,14 @@ import { AddressPage } from './profile/address-book/address/address.page';
         ProfilePage,
         OrderListPage,
         OrderDetailsPage,
+        MenuPage,
         MenuButtonPage,
         MenuPopoverPage,
         LocationModalPage,
         UserModalPage,
         AddressBookPage,
-        AddressPage
+        AddressPage,
+        LinePage
     ]
 })
 export class GroModule {
