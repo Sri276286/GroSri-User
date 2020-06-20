@@ -38,8 +38,8 @@
               [value]="val.weight"
               *ngFor="let val of item.storeInventoryProductUnit"
             >
-            <span>{{item.weight}}</span>
-              <span>
+            <span>{{val.weight}} {{val.unit}}</span>
+              <!-- <span>
                 MRP:
               </span>
               <span class="span-mrp">
@@ -47,7 +47,8 @@
               </span>
               <span class="span-content">
                 Rs.{{item.price}}
-              </span></ion-select-option
+              </span> -->
+              </ion-select-option
             >
           </ion-select>
           <ion-row *ngIf="item.storeInventoryProductUnit.length === 1">

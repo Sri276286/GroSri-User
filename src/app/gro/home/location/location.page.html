@@ -1,0 +1,36 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-icon
+          name="chevron-back-outline"
+          size="large"
+          (click)="modalCtrl.dismiss()"
+        ></ion-icon>
+        <ion-input
+          placeholder="Search by pincode"
+          [formControl]="queryField"
+        ></ion-input>
+        <ion-icon
+          name="close-outline"
+          size="large"
+          (click)="clearSearch()"
+          *ngIf="showClear"
+        ></ion-icon>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-item>
+    <ion-label>
+      We are serving in
+    </ion-label>
+  </ion-item>
+  <ion-list>
+    <ion-item *ngFor="let location of locations">
+      <ion-icon name="navigate-outline" slot="start"></ion-icon>
+      <ion-label>{{location.name}}, {{location.pincode}}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { StoreItemsService } from 'src/app/common/services/store-items.service';
@@ -6,22 +6,13 @@ import { StoreService } from 'src/app/common/services/store.service';
 import { LoginService } from 'src/app/common/services/login.service';
 
 @Component({
-  templateUrl: './store.page.html'
+  templateUrl: 'store.page.html',
+  styleUrls: ['./store.page.scss']
 })
 export class StorePage implements OnInit {
-  items = [];
   categories = [];
-  storeProductCatalog;
   storeCatalog;
-  toggle = {
-    last_step: 0,
-    current_step: 0,
-    expand: true,
-    collapse: false
-  };
-  toggleMap = new Map();
-  public categoryIndex: number = 0;
-  public storeName: string = '';
+  public storeEntity;
   public isFavoriteStore: boolean = false;
   public isLoggedIn: boolean = false;;
 
@@ -33,15 +24,7 @@ export class StorePage implements OnInit {
   }
 
   ngOnInit() {
-    this._storeService.categorySelected$.subscribe((category) => {
-      console.log('categ name ', category);
-      for(let categ in this.storeCatalog) {
-        console.log('categ ', categ);
-        // if (categ === category) {
-        //   cate
-        // }
-      }
-    });
+    this.scrollViewWithMenu();
     this.isLoggedIn = this._loginService.isLogin();
     this._route.paramMap.subscribe((paramMap) => {
       const id = paramMap.get('id');
@@ -50,41 +33,33 @@ export class StorePage implements OnInit {
           .subscribe((store: any) => {
             console.log('store ', store);
             if (store.store) {
-              this.storeName = store.store.storeName;
+              this.storeEntity = store.store;
               this.isFavoriteStore = store.store.mark_favorite ? true : false;
             }
             if (store.productsByCategory) {
               this.storeCatalog = store.productsByCategory;
               this.categories = this._storeItemsService.categories;
-              this.categories = this.categories.map((t, index) => {
-                return {
-                  id: index,
-                  name: t
-                }
-              })
-              const category = this.categories[0];
-              this.getProductsWithCategory(category);
             }
-          }, () => {
           })
       );
     })
   }
 
-  toggleCategory(step) {
-    const canToggle = this.toggleMap.get(step);
-    if (canToggle) {
-      this.toggleMap.set(step, false);
-    } else {
-      this.toggleMap.set(step, true);
-    }
-  }
-
-  getProductsWithCategory(category) {
-    this.categoryIndex = category.id;
-    this._storeItemsService.getProductsWithCategory(category.name).subscribe((entity) => {
-      this.storeProductCatalog = entity;
-      this.toggleMap.set(0, true);
+  /**
+   * Scrolls based on menu selection
+   */
+  scrollViewWithMenu() {
+    this._storeService.categorySelected$.subscribe((category) => {
+      const spanTags = document.querySelectorAll('#categ-span');
+      let matchingEl;
+      spanTags.forEach((tag: any) => {
+        console.log(tag.innerText);
+        if (tag.innerText === category)
+          matchingEl = tag;
+      });
+      if (matchingEl) {
+        matchingEl.scrollIntoView();
+      }
     });
   }
 

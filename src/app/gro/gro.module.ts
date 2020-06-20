@@ -10,7 +10,6 @@ import { ReferPage } from './refer/refer.page';
 import { StorePage } from './store/store.page';
 import { ProductListPage } from './store/product-list/product-list.page';
 import { ProductSearchPage } from './store/product-search/product-search.component';
-import { ItemWeightsPage } from './store/item-weights/item-weights.page';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CartPage } from './cart/cart.page';
 import { CartBarPage } from './cart/cart-bar/cart-bar.page';
@@ -22,6 +21,10 @@ import { ProfilePage } from './profile/profile.page';
 import { OrderDetailsPage } from './order-list/order-details/order-details.page';
 import { MenuButtonPage } from './store/menu-button/menu-button.page';
 import { MenuPopoverPage } from './store/menu-button/menu-popover/menu-popover.page';
+import { LocationModalPage } from './home/location/location.page';
+import { UserModalPage } from './profile/user-modal/user-modal.page';
+import { AddressBookPage } from './profile/address-book/address-book.page';
+import { AddressPage } from './profile/address-book/address/address.page';
 
 @NgModule({
     imports: [
@@ -42,7 +45,6 @@ import { MenuPopoverPage } from './store/menu-button/menu-popover/menu-popover.p
         StorePage,
         ProductListPage,
         ProductSearchPage,
-        ItemWeightsPage,
         CartPage,
         CartBarPage,
         CartCheckoutPage,
@@ -50,7 +52,11 @@ import { MenuPopoverPage } from './store/menu-button/menu-popover/menu-popover.p
         OrderListPage,
         OrderDetailsPage,
         MenuButtonPage,
-        MenuPopoverPage
+        MenuPopoverPage,
+        LocationModalPage,
+        UserModalPage,
+        AddressBookPage,
+        AddressPage
     ]
 })
 export class GroModule {

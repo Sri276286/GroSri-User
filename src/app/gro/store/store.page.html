@@ -1,14 +1,16 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar color="success">
     <ion-grid>
       <ion-row>
         <ion-col size="2">
           <ion-back-button defaultHref="home"></ion-back-button>
         </ion-col>
-        <ion-col size="9" style="padding-top: 6px;">
-          <span style="font-size: 18px;">Store Name</span>
+        <ion-col size="9" class="ion-padding-top">
+          <span class="span-store-name"
+            >{{storeEntity && storeEntity.storeName | titlecase}}</span
+          >
         </ion-col>
-        <ion-col size="1">
+        <ion-col size="1" class="ion-padding-top">
           <ion-icon name="search" size="large"></ion-icon>
         </ion-col>
       </ion-row>
@@ -16,10 +18,24 @@
   </ion-toolbar>
 </ion-header>
 <ion-content>
+  <ion-grid>
+    <ion-row>
+      <span class="span-store-name">
+        {{storeEntity && storeEntity.storeName | titlecase}}
+      </span>
+    </ion-row>
+    <ion-row>
+      <span>
+        {{storeEntity && storeEntity.area}}
+      </span>
+    </ion-row>
+  </ion-grid>
   <ion-list *ngFor="let product of storeCatalog | keyvalue">
     <ion-item>
       <ion-label
-        ><span style="font-weight: 600; font-size: 20px;">{{product.key}}</span>
+        ><span style="font-weight: 600; font-size: 20px;" id="categ-span" #categ
+          >{{product.key}}</span
+        >
       </ion-label>
       <ion-icon
         name="chevron-down-outline"
@@ -38,10 +54,12 @@
       <ion-list *ngFor="let subprod of product.value | keyvalue">
         <ion-item>
           <ion-label>{{subprod.key}}</ion-label>
-          <ion-icon name="chevron-down-outline">
-            size="small" (click)="subprod.expand = true" *ngIf="!subprod.expand"
-            ></ion-icon
-          >
+          <ion-icon
+            name="chevron-down-outline"
+            size="small"
+            (click)="subprod.expand = true"
+            *ngIf="!subprod.expand"
+          ></ion-icon>
           <ion-icon
             name="chevron-up-outline"
             size="small"

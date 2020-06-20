@@ -2,6 +2,9 @@ import { Component } from '@angular/core';
 import { LoginService } from 'src/app/common/services/login.service';
 import { Router } from '@angular/router';
 import { CommonService } from 'src/app/common/services/common.service';
+import { ModalController } from '@ionic/angular';
+import { UserModalPage } from './user-modal/user-modal.page';
+import { AddressBookPage } from './address-book/address-book.page';
 
 @Component({
     templateUrl: 'profile.page.html',
@@ -12,7 +15,8 @@ export class ProfilePage {
     isLoggedIn: boolean = false;
     constructor(private _loginService: LoginService,
         private _route: Router,
-        private _commonService: CommonService) {
+        private _commonService: CommonService,
+        private modalCtrl: ModalController) {
         this.isLoggedIn = this._loginService.isLogin();
         console.log('issss login ', this.isLoggedIn);
         if (!this.isLoggedIn) {
@@ -23,6 +27,31 @@ export class ProfilePage {
                 this.user = user;
             });
         }
+    }
+
+    editProfile() {
+        this.presentUserModal();
+    }
+
+    showAddress() {
+        this.presentAddressModal();
+    }
+
+    async presentUserModal() {
+        const modal = await this.modalCtrl.create({
+            component: UserModalPage,
+            componentProps: {
+                user: this.user
+            }
+        });
+        return await modal.present();
+    }
+
+    async presentAddressModal() {
+        const modal = await this.modalCtrl.create({
+            component: AddressBookPage
+        });
+        return await modal.present();
     }
 
     redirectToLogin() {

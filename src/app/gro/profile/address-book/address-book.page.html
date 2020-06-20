@@ -1,0 +1,62 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-icon
+          name="chevron-back-outline"
+          size="large"
+          (click)="modalCtrl.dismiss()"
+        ></ion-icon>
+        <ion-input placeholder="Search by pincode"></ion-input>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-grid class="ion-padding">
+    <ion-row><span class="span-content">Address Book</span></ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item (click)="addAddress()"
+          ><ion-icon name="add-outline" color="success"></ion-icon
+          ><span class="span-text">Add Address</span></ion-item
+        >
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <ion-item *ngFor="let userAddress of userAddressData">
+          <ion-grid>
+            <ion-row>
+              <ion-col>
+                {{userAddress.primary_address ? 'Default Address' :
+                userAddress.type ? userAddress.type : 'Other'}}
+              </ion-col>
+              <ion-col class="ion-text-end">
+                <ion-icon name="create-outline" color="medium"></ion-icon>
+                <span> | </span>
+                <ion-icon name="trash-outline" color="danger"></ion-icon>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <ion-list>
+                  <ion-label>{{ userAddress.name | titlecase }}</ion-label>
+                  <ion-label>{{ userAddress.flatNo }}</ion-label>
+                  <ion-label>{{ userAddress.street | titlecase }}</ion-label>
+                  <ion-label>{{ userAddress.landmark | titlecase }}</ion-label>
+                  <ion-label>{{ userAddress.area | titlecase }}</ion-label>
+                  <ion-label
+                    >{{ userAddress.city | titlecase }}-{{ userAddress.pincode
+                    }}</ion-label
+                  >
+                  <ion-label>Ph: {{ userAddress.phone_number }}</ion-label>
+                </ion-list>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

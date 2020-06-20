@@ -1,0 +1,175 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-grid>
+      <ion-row>
+        <ion-icon
+          name="chevron-back-outline"
+          size="large"
+          (click)="modalCtrl.dismiss()"
+        ></ion-icon>
+        <ion-label>{{isNew ? 'Add Address': 'Update Address'}}</ion-label>
+      </ion-row>
+    </ion-grid>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <form
+    [formGroup]="userAddress"
+    (ngSubmit)="userAddress.valid && onSubmit(userAddress.valid)"
+  >
+    <span style="color: red;" *ngIf="userAddress.invalid"
+      >* Please fill all mandatory fields</span
+    >
+    <ion-grid>
+      <ion-row
+        *ngIf="editMainDetails && (user || address)"
+        style="border: 1px solid; padding: 5px;"
+      >
+        <ion-col size="8" *ngIf="isNew">
+          <ion-row>
+            <ion-label>Name: {{user.name}}</ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>Mobile: {{user.mobileNumber}}</ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col size="8" *ngIf="!isNew">
+          <ion-row>
+            <ion-label>Name: {{address.name}}</ion-label>
+          </ion-row>
+          <ion-row>
+            <ion-label>Mobile: {{address.phone_number}}</ion-label>
+          </ion-row>
+        </ion-col>
+        <ion-col size="4" class="ion-text-end">
+          <ion-icon
+            name="create-outline"
+            color="medium"
+            (click)="editMainDetails = false"
+          ></ion-icon>
+        </ion-col>
+      </ion-row>
+      <ion-row *ngIf="!editMainDetails">
+        <ion-col size="6">
+          <ion-label>
+            Name*
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="name"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>
+            Mobile Number*
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="phone_number"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row style="padding:3px;">
+        <ion-col>
+          <span style="font-weight: 400; font-size: 18px;">
+            Address Info.
+          </span>
+        </ion-col></ion-row
+      >
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>
+            Pincode*
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="pincode"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>
+            City*
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="city"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="6">
+          <ion-label>
+            Flat/House No*
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="flatNo"></ion-input>
+          </ion-item>
+        </ion-col>
+        <ion-col size="6">
+          <ion-label>
+            Apartment
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="apartment"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>
+            Street*
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="street"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>
+            Landmark
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="landmark"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-label>
+            Area*
+          </ion-label>
+          <ion-item>
+            <ion-input formControlName="area"></ion-input>
+          </ion-item>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="4">
+          <ion-label>
+            Address Type*
+          </ion-label>
+        </ion-col>
+        <ion-col size="8">
+          <ion-radio value="home" formControlName="type"></ion-radio>
+          <ion-label>&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+
+          <ion-radio value="office" formControlName="type"></ion-radio>
+          <ion-label>&nbsp;&nbsp;Office</ion-label>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <ion-checkbox
+            color="secondary"
+            formControlName="primary_address"
+          ></ion-checkbox>
+          <ion-label>
+            Set this as my default delivery address
+          </ion-label>
+        </ion-col>
+      </ion-row>
+      <div>
+        <ion-button type="submit" expand="full" color="medium"
+          >{{isNew ? 'Add': 'Update'}}</ion-button
+        >
+      </div>
+    </ion-grid>
+  </form>
+</ion-content>

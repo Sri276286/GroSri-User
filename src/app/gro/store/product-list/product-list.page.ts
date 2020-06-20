@@ -1,6 +1,5 @@
 import { Component, Input } from '@angular/core';
 import { ModalController } from '@ionic/angular';
-import { ItemWeightsPage } from '../item-weights/item-weights.page';
 import { CartService } from 'src/app/common/services/cart.service';
 
 @Component({
@@ -56,20 +55,5 @@ export class ProductListPage {
             });
         }
         return item;
-    }
-
-    selectWeightsModal(item) {
-        this.presentWeightsModal(item);
-    }
-
-    async presentWeightsModal(item?: any) {
-        const modal = await this.modalCtrl.create({
-            component: ItemWeightsPage,
-            cssClass: 'modal-grosri',
-            componentProps: {
-                'item': item
-            }
-        });
-        return await modal.present();
     }
 }
