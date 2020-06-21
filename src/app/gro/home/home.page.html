@@ -11,7 +11,7 @@
         </ion-col>
         <ion-col size="9" style="padding-top: 6px;" (click)="loadLocation()">
           <ion-icon name="location-outline" style="font-size: 24px;"></ion-icon>
-          <span style="font-size: 18px;">Perungudi, 600096</span>
+          <span style="font-size: 18px;">{{location}}</span>
         </ion-col>
         <ion-col size="1">
           <ion-icon name="help-outline" size="large"></ion-icon>
@@ -88,8 +88,6 @@
   </ion-content>
 </ion-menu>
 <ion-content>
-  <gro-category></gro-category>
-  <gro-refer></gro-refer>
-  <gro-offer-slide></gro-offer-slide>
-  <gro-store-list [heading]="'Stores near you'"></gro-store-list>
+<gro-home-content *ngIf="!storeListError"></gro-home-content>
+<gro-error [type]="'storeList'" *ngIf="storeListError"></gro-error>
 </ion-content>

@@ -12,21 +12,14 @@ import { AddressBookPage } from './address-book/address-book.page';
 })
 export class ProfilePage {
     user;
-    isLoggedIn: boolean = false;
     constructor(private _loginService: LoginService,
         private _route: Router,
         private _commonService: CommonService,
         private modalCtrl: ModalController) {
-        this.isLoggedIn = this._loginService.isLogin();
-        console.log('issss login ', this.isLoggedIn);
-        if (!this.isLoggedIn) {
-            this.redirectToLogin();
-        } else {
             this._loginService.getCurrentUser().subscribe((user) => {
                 console.log('current user ', user);
                 this.user = user;
             });
-        }
     }
 
     editProfile() {
@@ -52,11 +45,6 @@ export class ProfilePage {
             component: AddressBookPage
         });
         return await modal.present();
-    }
-
-    redirectToLogin() {
-        // show a message and redirect
-        this._route.navigate(['/login']);
     }
 
     logout() {

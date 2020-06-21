@@ -6,6 +6,7 @@ import { Observable, Subject } from 'rxjs';
 })
 export class CommonService {
   userLocation: string = '';
+  defaultLocation: string = '600116';
   canProceedUpdatingCart: boolean = false;
   proceedUpdatingCart$: Subject<boolean> = new Subject<boolean>();
   ordersPlaced = [];
@@ -22,8 +23,11 @@ export class CommonService {
     const userLocation = localStorage.getItem('userLocation');
     if (userLocation) {
       return userLocation;
+    } else {
+      return this.defaultLocation;
     }
   }
+
 
   public isLogin() {
     const auth_token = localStorage.getItem('auth_token');

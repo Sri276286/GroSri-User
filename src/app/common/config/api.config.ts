@@ -16,6 +16,7 @@ export class ApiConfig {
   static loginURL: string = `${ApiConfig.apiHostUrl}/auth/login`; // POST
   static signupURL: string = `${ApiConfig.apiHostUrl}/auth/signup`; // POST
   static logoutURL: string = `${ApiConfig.apiHostUrl}/auth/logout`; // GET
+  static tokenURL: string = `${ApiConfig.apiHostUrl}/auth/sso/login`; // GET
   // List stores by pincode and category
   static storeListURL: string = `${ApiConfig.apiHostUrl}/stores/findStoresByPincode`; // GET
   // static storeListURL: string = `/api/store`; // GET

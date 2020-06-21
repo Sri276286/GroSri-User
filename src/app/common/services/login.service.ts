@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, BehaviorSubject, throwError } from 'rxjs';
-import { HttpHeaders, HttpClient } from '@angular/common/http';
+import { HttpHeaders, HttpClient, HttpParams } from '@angular/common/http';
 import { User } from '../models/user';
 import { map, tap } from 'rxjs/operators';
 import { CommonService } from './common.service';
@@ -25,7 +25,19 @@ export class LoginService {
 
   public isLogin() {
     const auth_token = localStorage.getItem('auth_token');
-    return auth_token ? true : false;
+    const session_active = localStorage.getItem('session_active');
+    return auth_token && session_active ? true : false;
+  }
+
+  public isTokenValid(): Observable<any> {
+    const auth_token = localStorage.getItem('auth_token');
+    if (auth_token) {
+      let params = new HttpParams();
+      params = params.append('token', auth_token);
+      return this._http.get(ApiConfig.tokenURL, { params });
+    } else {
+      return throwError('Invalid Token');
+    }
   }
 
   public getCurrentUser(): Observable<any> {
@@ -47,7 +59,7 @@ export class LoginService {
    * Also post if any items added in cart
    * @param user
    */
-  login(user: any): Observable<any> {
+  public login(user: any): Observable<any> {
     let httpHeaders = new HttpHeaders().set("Content-Type", "application/json");
     let options = {
       headers: httpHeaders
@@ -55,6 +67,7 @@ export class LoginService {
     return this._http.post(ApiConfig.loginURL, user, options).pipe(map((res: any) => {
       if (res && res.accessToken) {
         localStorage.setItem('auth_token', res.accessToken);
+        localStorage.setItem('session_active', 'true');
         // post cart once login
         this._cartService.getFromLocalStorage();
         // get user details once login is successful
@@ -95,6 +108,13 @@ export class LoginService {
       }));
   }
 
+  /**
+   * Logout url
+   */
+  doLogout() {
+    return this._http.get(ApiConfig.logoutURL);
+  }
+
   private _mapUser(user) {
     // store user details and jwt token in local storage to keep user logged in between page refreshes
     localStorage.setItem('currentUser', JSON.stringify(user));
@@ -132,13 +152,6 @@ export class LoginService {
         storeInventoryProductUnitId: t.storeInventoryProductUnitId
       }
     });
-  }
-
-  /**
-   * Logout url
-   */
-  doLogout() {
-    return this._http.get(ApiConfig.logoutURL);
   }
 
 }

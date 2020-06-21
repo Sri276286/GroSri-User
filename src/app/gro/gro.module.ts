@@ -29,6 +29,8 @@ import { LinePage } from './line/line.page';
 import { CategoryFullPage } from './home/category/category-full/category-full.page';
 import { MenuPage } from './home/menu/menu.page';
 import { CategoryStorePage } from './home/category/category-stores/category-store.page';
+import { HomeContentPage } from './home/home-content/home-content.page';
+import { ErrorPage } from './error/error.page';
 
 @NgModule({
     imports: [
@@ -40,6 +42,7 @@ import { CategoryStorePage } from './home/category/category-stores/category-stor
     ],
     declarations: [
         GroHomePage,
+        HomeContentPage,
         LoginPage,
         SignupPage,
         CategoryPage,
@@ -64,7 +67,8 @@ import { CategoryStorePage } from './home/category/category-stores/category-stor
         UserModalPage,
         AddressBookPage,
         AddressPage,
-        LinePage
+        LinePage,
+        ErrorPage
     ]
 })
 export class GroModule {
