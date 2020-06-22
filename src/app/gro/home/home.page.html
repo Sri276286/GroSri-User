@@ -22,13 +22,11 @@
 </ion-header>
 <ion-menu side="start" menuId="mainMenu" contentId="mainMenu">
   <ion-header>
-    <ion-toolbar
-      color="success"
-      [routerLink]="['/home']"
-      (click)="modalCtrl.dismiss()"
-    >
-      <ion-title>Home</ion-title>
-    </ion-toolbar>
+    <ion-menu-toggle>
+      <ion-toolbar color="success">
+        <ion-title>Home</ion-title>
+      </ion-toolbar>
+    </ion-menu-toggle>
   </ion-header>
   <ion-content id="mainMenu">
     <ion-list>
@@ -88,6 +86,6 @@
   </ion-content>
 </ion-menu>
 <ion-content>
-<gro-home-content *ngIf="!storeListError"></gro-home-content>
-<gro-error [type]="'storeList'" *ngIf="storeListError"></gro-error>
+  <gro-home-content *ngIf="!storeListError"></gro-home-content>
+  <gro-error [type]="'storeList'" *ngIf="storeListError"></gro-error>
 </ion-content>

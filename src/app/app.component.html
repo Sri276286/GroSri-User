@@ -14,7 +14,7 @@
     </ion-tab-button>
 
     <ion-tab-button tab="cart">
-      <ion-badge color="success"><span class="cart-badge">4</span></ion-badge>
+      <ion-badge color="success" *ngIf="cartQuantity"><span class="cart-badge">{{cartQuantity}}</span></ion-badge>
       <ion-icon name="cart"></ion-icon>
       <ion-label>Cart</ion-label>
     </ion-tab-button>

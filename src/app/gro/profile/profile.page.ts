@@ -57,7 +57,6 @@ export class ProfilePage {
 
     logoutReset() {
         localStorage.clear();
-        this._commonService.userLocation = '';
         this._route.navigate(['/login']);
     }
 }

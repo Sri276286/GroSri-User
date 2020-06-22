@@ -15,6 +15,7 @@ import { ErrorService } from './common/services/error.service';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
+  public cartQuantity: number = 0;
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
@@ -27,9 +28,13 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  init() {
+  getCart() {
     // load cart when application is loaded
-    this._cartService.getCartItems().subscribe();
+    this._cartService.getCartItems().subscribe((res) => {
+      console.log('ressss ', res);
+      this.cartQuantity = res.totalNumOfProducts;
+      console.log('cartaa ', this.cartQuantity);
+    });
   }
 
   validateToken() {
@@ -52,7 +57,7 @@ export class AppComponent {
       this.validateToken();
       this.routehandler();
       this.handleAppErrors();
-      this.init();
+      this.getCart();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

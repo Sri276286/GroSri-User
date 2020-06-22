@@ -17,7 +17,12 @@ export class StoreListPage implements OnInit {
     }
 
     ngOnInit() {
-        const location = this._commonService.getUserLocation();
+        this._commonService.getUserLocation().subscribe((location) => {
+            this.getStores(location);
+        });
+    }
+
+    getStores(location) {
         this._storeService.getStores(location).subscribe((result) => {
             this.stores = result && result.storeLst ? result.storeLst : [];
         }, () => {

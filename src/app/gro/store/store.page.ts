@@ -1,9 +1,9 @@
-import { Component, OnInit, TemplateRef, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { StoreItemsService } from 'src/app/common/services/store-items.service';
 import { StoreService } from 'src/app/common/services/store.service';
-import { LoginService } from 'src/app/common/services/login.service';
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
   templateUrl: 'store.page.html',
@@ -20,12 +20,12 @@ export class StorePage implements OnInit {
   constructor(public _storeItemsService: StoreItemsService,
     private _route: ActivatedRoute,
     private _storeService: StoreService,
-    private _loginService: LoginService) {
+    private _commonService: CommonService) {
   }
 
   ngOnInit() {
     this.scrollViewWithMenu();
-    this.isLoggedIn = this._loginService.isLogin();
+    this.isLoggedIn = this._commonService.isLogin();
     this._route.paramMap.subscribe((paramMap) => {
       const id = paramMap.get('id');
       this._subscriptions.push(

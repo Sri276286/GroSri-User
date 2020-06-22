@@ -18,7 +18,10 @@ export class GroHomePage implements OnInit {
         public modalCtrl: ModalController,
         private _commonService: CommonService,
         private _homeService: HomeService) {
-        this.location = this._commonService.getUserLocation();
+        this._commonService.getUserLocation()
+            .subscribe((location) => {
+                this.location = location;
+            });
     }
 
     ngOnInit() {

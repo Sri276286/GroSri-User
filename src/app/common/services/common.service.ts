@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
+import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
+import { ModalController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
-  userLocation: string = '';
   defaultLocation: string = '600116';
   canProceedUpdatingCart: boolean = false;
   proceedUpdatingCart$: Subject<boolean> = new Subject<boolean>();
   ordersPlaced = [];
   storesListed = [];
-  loadStores$: Subject<any> = new Subject<any>();
+  setUserLocation$: BehaviorSubject<string> = new BehaviorSubject<string>('600116');
+
+  constructor(private modalCtrl: ModalController) {
+  }
 
   handleUserStorage(property: string, value: any) {
     const profile = JSON.parse(localStorage.getItem('currentUser'));
@@ -19,19 +22,33 @@ export class CommonService {
     localStorage.setItem('currentUser', JSON.stringify(profile));
   }
 
-  getUserLocation() {
-    const userLocation = localStorage.getItem('userLocation');
-    if (userLocation) {
-      return userLocation;
-    } else {
-      return this.defaultLocation;
-    }
+  public getUserLocation() {
+    return this.setUserLocation$.asObservable();
   }
 
 
   public isLogin() {
     const auth_token = localStorage.getItem('auth_token');
-    return auth_token ? true : false;
+    const session_active = localStorage.getItem('session_active');
+    return auth_token && session_active ? true : false;
+  }
+
+  async presentModal(component) {
+    const modal = await this.modalCtrl.create({
+      component: component
+    });
+    return await modal.present();
+  }
+
+  public dismissAllModals() {
+    this.modalCtrl.dismiss().then(() => {
+      this.modalCtrl.getTop()
+        .then((res) => {
+          this.dismissAllModals();
+        })
+        .catch((error) => {
+        });
+    });
   }
 
   checkForSession(): Observable<boolean> {

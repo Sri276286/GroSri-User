@@ -28,7 +28,7 @@
     </ion-label>
   </ion-item>
   <ion-list>
-    <ion-item *ngFor="let location of locations">
+    <ion-item *ngFor="let location of locations" (click)="handleLocation(location.pincode)">
       <ion-icon name="navigate-outline" slot="start"></ion-icon>
       <ion-label>{{location.name}}, {{location.pincode}}</ion-label>
     </ion-item>

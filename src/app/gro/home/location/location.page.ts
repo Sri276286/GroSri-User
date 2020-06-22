@@ -3,6 +3,8 @@ import { ModalController } from '@ionic/angular';
 import { FormControl } from '@angular/forms';
 import { debounceTime } from 'rxjs/operators';
 import { HomeService } from 'src/app/common/services/home.service';
+import { Router } from '@angular/router';
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
     templateUrl: 'location.page.html'
@@ -12,7 +14,8 @@ export class LocationModalPage implements OnInit {
     showClear = false;
     locations = [];
     constructor(public modalCtrl: ModalController,
-        private homeService: HomeService) {
+        private homeService: HomeService,
+        private _commonService: CommonService) {
     }
 
     ngOnInit() {
@@ -33,5 +36,16 @@ export class LocationModalPage implements OnInit {
 
     clearSearch() {
         this.queryField.setValue('');
+    }
+
+    handleLocation(pincode) {
+        this.homeService.updatePincode(pincode).subscribe(() => {
+            this._commonService.setUserLocation$.next(pincode);
+            this._commonService.dismissAllModals();
+        }, () => {
+            // To decide what to do.
+            this._commonService.setUserLocation$.next(pincode);
+            this._commonService.dismissAllModals();
+        });
     }
 }

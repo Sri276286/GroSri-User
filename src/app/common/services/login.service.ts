@@ -23,12 +23,6 @@ export class LoginService {
     this.currentUser$ = this.currentUserSubject.asObservable();
   }
 
-  public isLogin() {
-    const auth_token = localStorage.getItem('auth_token');
-    const session_active = localStorage.getItem('session_active');
-    return auth_token && session_active ? true : false;
-  }
-
   public isTokenValid(): Observable<any> {
     const auth_token = localStorage.getItem('auth_token');
     if (auth_token) {
@@ -119,8 +113,7 @@ export class LoginService {
     // store user details and jwt token in local storage to keep user logged in between page refreshes
     localStorage.setItem('currentUser', JSON.stringify(user));
     if (user && user.pincode) {
-      this._commonService.userLocation = user.pincode;
-      localStorage.setItem('userLocation', JSON.stringify(user.pincode));
+      this._commonService.setUserLocation$.next(user.pincode);
     }
     this.currentUserSubject.next(user);
   }
