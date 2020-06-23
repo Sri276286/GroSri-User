@@ -31,6 +31,7 @@ import { MenuPage } from './home/menu/menu.page';
 import { CategoryStorePage } from './home/category/category-stores/category-store.page';
 import { HomeContentPage } from './home/home-content/home-content.page';
 import { ErrorPage } from './error/error.page';
+import { DeliveryPage } from './cart/delivery/delivery.page';
 
 @NgModule({
     imports: [
@@ -67,6 +68,7 @@ import { ErrorPage } from './error/error.page';
         UserModalPage,
         AddressBookPage,
         AddressPage,
+        DeliveryPage,
         LinePage,
         ErrorPage
     ]

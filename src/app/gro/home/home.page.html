@@ -86,6 +86,6 @@
   </ion-content>
 </ion-menu>
 <ion-content>
-  <gro-home-content *ngIf="!storeListError"></gro-home-content>
-  <gro-error [type]="'storeList'" *ngIf="storeListError"></gro-error>
+  <gro-home-content></gro-home-content>
+  <gro-error [type]="'storeList'" *ngIf="!storeListError"></gro-error>
 </ion-content>

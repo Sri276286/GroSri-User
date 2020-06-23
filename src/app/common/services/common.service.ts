@@ -33,9 +33,10 @@ export class CommonService {
     return auth_token && session_active ? true : false;
   }
 
-  async presentModal(component) {
+  async presentModal(component, properties?: any) {
     const modal = await this.modalCtrl.create({
-      component: component
+      component: component,
+      componentProps: properties
     });
     return await modal.present();
   }

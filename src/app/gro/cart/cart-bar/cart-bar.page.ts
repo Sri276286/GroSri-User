@@ -11,12 +11,14 @@ export class CartBarPage implements OnInit {
   cartTotal = 0;
   cartQuantity = '';
   quantity = 0;
+  storeId: string = '';
   constructor(private _cartService: CartService) { }
 
   ngOnInit() {
     console.log('cart bar loading...');
     this._cartService.cartEntity$.subscribe((cart) => {
       console.log('cart ', cart);
+      this.storeId = cart && cart.store && cart.store.id;
       this.cartTotal = cart && (cart.billTotal || cart.total);
       this.quantity = cart && cart.orderProducts && cart.orderProducts.length;
       if (this.quantity === 1) {

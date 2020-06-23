@@ -39,6 +39,7 @@ export class StorePage implements OnInit {
             if (store.productsByCategory) {
               this.storeCatalog = store.productsByCategory;
               this.categories = this._storeItemsService.categories;
+              console.log('abbccc', this.categories);
             }
           })
       );

@@ -7,6 +7,7 @@ import { ApiConfig } from '../config/api.config';
   providedIn: 'root'
 })
 export class UserService {
+  primaryAddressURL: string = 'assets/mocks/primary-address.json';
   constructor(private _http: HttpClient) {
   }
 
@@ -18,6 +19,14 @@ export class UserService {
       .pipe(map((res: any) => {
         return this._mapAddressList(res && res.data);
       }));
+  }
+
+  /**
+   * Get Primary Address
+   */
+  getPrimaryAddress() {
+    // return this._http.get();
+    return this._http.get(this.primaryAddressURL);
   }
 
   /**

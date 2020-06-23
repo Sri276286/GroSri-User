@@ -5,4 +5,25 @@
     "description": "We are not serving in this location. Please try a different location",
     "actionTitle": "Change Address",
     "imgUrl": "https://media.images.yourquote.in/post/720/0/0/18/798/xOVW7530.webp"
+}, {
+    "id": 2,
+    "type": "emptyCart",
+    "heading": "Empty Cart!",
+    "description": "There are no items added in the cart",
+    "actionTitle": "Start Shopping",
+    "imgUrl": "https://www.pngfind.com/pngs/m/272-2727925_continue-shopping-empty-cart-png-transparent-png.png"
+}, {
+    "id": 3,
+    "type": "currentOrder",
+    "heading": "No Orders!",
+    "description": "There are no current orders placed.",
+    "actionTitle": "Start Shopping",
+    "imgUrl": "https://www.ebsco.com/files/post/assets/GOBI-vs-Amazon-Blog-MOBILE-Image.png"
+}, {
+    "id": 4,
+    "type": "pastOrder",
+    "heading": "First Time!",
+    "description": "Ready to be delighted? Place your first order.",
+    "actionTitle": "Start Shopping",
+    "imgUrl": "https://www.ebsco.com/files/post/assets/GOBI-vs-Amazon-Blog-MOBILE-Image.png"
 }]

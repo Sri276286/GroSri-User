@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/common/services/cart.service';
 import { CommonService } from 'src/app/common/services/common.service';
 
@@ -12,15 +12,22 @@ export class CartPage implements OnInit {
   items = [];
   cartTotal = 0;
   storeId = '';
+  pathToGo: string = '/home';
   isOrdered: boolean = false;
   isLoggedIn: boolean = false;
   constructor(public _cartService: CartService,
     private _router: Router,
-    public _commonService: CommonService) {
+    public _commonService: CommonService,
+    private _activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    const fromStore = this._activatedRoute.snapshot.paramMap.get('fromStore');
+    if (fromStore) {
+      this.pathToGo = '/store/' + fromStore;
+    }
     this.isLoggedIn = this._commonService.isLogin();
+    console.log('is logged in ', this.isLoggedIn);
     if (this.isLoggedIn) {
       this._cartService.getCartItems().subscribe((res: any) => {
         this.cartTotal = res && res.billTotal || 0;

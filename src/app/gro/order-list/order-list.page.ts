@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { OrderConstants } from 'src/app/common/constants/order.constants';
 import { OrderService } from 'src/app/common/services/order.service';
-import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'order-list.page.html',
@@ -19,7 +19,7 @@ export class OrderListPage implements OnInit {
     storeCancelledStatus = OrderConstants.STORE_CANCELLED;
     isStoreRated: boolean = false;
     constructor(private _service: OrderService,
-        public modalCtrl: ModalController) {
+        private _router: Router) {
     }
 
     ngOnInit() {
@@ -82,5 +82,9 @@ export class OrderListPage implements OnInit {
 
     onRateChange(rate) {
         this.canReview = true;
+    }
+
+    goBack() {
+        this._router.navigate(['/home']);
     }
 }

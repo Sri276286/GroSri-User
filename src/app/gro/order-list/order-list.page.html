@@ -4,7 +4,7 @@
       <ion-icon
       name="chevron-back-outline"
       size="large"
-      (click)="modalCtrl.dismiss()"
+      (click)="goBack()"
     ></ion-icon>
       <ion-label class="ion-padding">My Orders</ion-label>
     </div>
@@ -19,7 +19,7 @@
   <ion-segment-button value="current_orders">Current Orders</ion-segment-button>
   <ion-segment-button value="past_orders">Past Orders</ion-segment-button>
 </ion-segment>
-  <ion-list *ngIf="showCurrentOrders">
+  <ion-list *ngIf="showCurrentOrders && currentOrders.length">
     <ion-item-divider>
       <ion-label>
         Current Orders
@@ -30,7 +30,8 @@
       [ngTemplateOutletContext]="{orders: currentOrders}"
     ></ng-container>
   </ion-list>
-  <ion-list *ngIf="!showCurrentOrders">
+  <gro-error [type]="'currentOrder'" *ngIf="showCurrentOrders && !currentOrders.length"></gro-error>
+  <ion-list *ngIf="!showCurrentOrders && pastOrders.length">
     <ion-item-divider>
       <ion-label>
         Past Orders
@@ -41,6 +42,7 @@
       [ngTemplateOutletContext]="{orders: pastOrders}"
     ></ng-container>
   </ion-list>
+  <gro-error [type]="'pastOrder'" *ngIf="!showCurrentOrders && !pastOrders.length"></gro-error>
 </ion-content>
 
 <ng-template #ordersList let-orders="orders">

@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CartService } from 'src/app/common/services/cart.service';
+import { CommonService } from 'src/app/common/services/common.service';
+import { DeliveryPage } from '../delivery/delivery.page';
 
 @Component({
     selector: 'gro-cart-checkout',
@@ -11,7 +13,8 @@ export class CartCheckoutPage implements OnInit {
     cartTotal = 0;
     cartQuantity = '';
     quantity = 0;
-    constructor(private _cartService: CartService) { }
+    constructor(private _cartService: CartService,
+        private _commonService: CommonService) { }
 
     ngOnInit() {
         console.log('cart checkout loading...');
@@ -25,5 +28,9 @@ export class CartCheckoutPage implements OnInit {
                 this.cartQuantity = `${this.quantity} items`;
             }
         });
+    }
+
+    loadDeliveryPage() {
+        this._commonService.presentModal(DeliveryPage, { cartTotal: this.cartTotal });
     }
 }

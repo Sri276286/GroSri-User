@@ -1,8 +1,10 @@
 <div class="display-cart-grid" *ngIf="cartTotal && quantity">
   <div>{{ cartQuantity }} | Rs.{{ cartTotal }}</div>
-  <div [routerLink]="['/cart']">
+  <div [routerLink]="['/cart', {fromStore: storeId}]">
     <ion-label>View Cart</ion-label>
     <ion-icon name="basket-outline" size="large"></ion-icon>
-    <ion-badge color="success"><span class="cart-badge">{{quantity}}</span></ion-badge>
+    <ion-badge color="success"
+      ><span class="cart-badge">{{quantity}}</span></ion-badge
+    >
   </div>
 </div>

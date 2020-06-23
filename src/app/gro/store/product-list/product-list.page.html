@@ -32,13 +32,13 @@
             [interfaceOptions]="weightAlertOptions"
             [ngModel]="item.weight"
             (ngModelChange)="onWeightChange($event, item)"
-            *ngIf="item.storeInventoryProductUnit.length > 1"
+            *ngIf="item.storeInventoryProductUnit && item.storeInventoryProductUnit.length > 1"
           >
             <ion-select-option
               [value]="val.weight"
               *ngFor="let val of item.storeInventoryProductUnit"
             >
-            <span>{{val.weight}} {{val.unit}}</span>
+              <span>{{val.weight}} {{val.unit}}</span>
               <!-- <span>
                 MRP:
               </span>
@@ -48,10 +48,11 @@
               <span class="span-content">
                 Rs.{{item.price}}
               </span> -->
-              </ion-select-option
-            >
+            </ion-select-option>
           </ion-select>
-          <ion-row *ngIf="item.storeInventoryProductUnit.length === 1">
+          <ion-row
+            *ngIf="!item.storeInventoryProductUnit || (item.storeInventoryProductUnit && item.storeInventoryProductUnit.length === 1)"
+          >
             <ion-col>
               {{item.weight}} {{item.unit}}
             </ion-col>

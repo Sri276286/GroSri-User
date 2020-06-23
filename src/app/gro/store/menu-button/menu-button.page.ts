@@ -8,7 +8,6 @@ import { PopoverController } from '@ionic/angular';
     styleUrls: ['menu-button.page.scss']
 })
 export class MenuButtonPage {
-    toggleMenu = false;
     @Input() categories;
 
     constructor(private popoverCtrl: PopoverController) { }
@@ -18,6 +17,7 @@ export class MenuButtonPage {
     }
 
     async presentPopover() {
+        console.log('ss ', this.categories);
         const popover = await this.popoverCtrl.create({
             component: MenuPopoverPage,
             componentProps: {
