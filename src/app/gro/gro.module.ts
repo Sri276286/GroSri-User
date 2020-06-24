@@ -32,6 +32,7 @@ import { CategoryStorePage } from './home/category/category-stores/category-stor
 import { HomeContentPage } from './home/home-content/home-content.page';
 import { ErrorPage } from './error/error.page';
 import { DeliveryPage } from './cart/delivery/delivery.page';
+import { RecentOrderPage } from './home/recent-order/recent-order.page';
 
 @NgModule({
     imports: [
@@ -61,6 +62,7 @@ import { DeliveryPage } from './cart/delivery/delivery.page';
         ProfilePage,
         OrderListPage,
         OrderDetailsPage,
+        RecentOrderPage,
         MenuPage,
         MenuButtonPage,
         MenuPopoverPage,

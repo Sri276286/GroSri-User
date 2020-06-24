@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { CommonService } from './common.service';
 import { ApiConfig } from '../config/api.config';
@@ -23,6 +23,19 @@ export class OrderService {
         const orders = res && res.orders;
         this._commonService.ordersPlaced = orders;
         return res;
+      }));
+  }
+
+  /**
+   * Get the recent active order
+   */
+  getCurrentOrder() {
+    let params = new HttpParams();
+    params = params.append('inProgress', 'true');
+    return this._http.get(ApiConfig.ordersListURL, { params })
+      .pipe(map((res: any) => {
+        const order = res && res.orders && res.orders.length && res.orders[0];
+        return order;
       }));
   }
 

@@ -10,6 +10,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class StoreService {
 
+  storeListUrl: string = 'assets/mocks/stores.json';
   categorySelected$: BehaviorSubject<string> = new BehaviorSubject<string>('');
 
   constructor(private _http: HttpClient,
@@ -21,8 +22,8 @@ export class StoreService {
    * @param locationKey
    */
   getStores(locationKey: string) {
-    // return this._http.get('/api/stores');
-    return this._http.get(`${ApiConfig.storeListURL}/${locationKey}`)
+    // return this._http.get(`${ApiConfig.storeListURL}/${locationKey}`)
+    return this._http.get(this.storeListUrl)
       .pipe(map((res: any) => {
         const stores = res && res.storeDetails;
         this._commonService.storesListed = stores;

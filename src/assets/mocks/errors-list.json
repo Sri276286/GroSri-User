@@ -26,4 +26,18 @@
     "description": "Ready to be delighted? Place your first order.",
     "actionTitle": "Start Shopping",
     "imgUrl": "https://www.ebsco.com/files/post/assets/GOBI-vs-Amazon-Blog-MOBILE-Image.png"
+}, {
+    "id": 5,
+    "type": "orderPlaced",
+    "heading": "Order Success!",
+    "description": "Thank you for placing an order with us.",
+    "actionTitle": "View Order",
+    "imgUrl": "https://marketplace.magento.com/media/catalog/product/o/r/ordersuccesspage_1.jpg"
+}, {
+    "id": 4,
+    "type": "emptyStore",
+    "heading": "Closed!",
+    "description": "We are closed now. Please give us some time to get back.",
+    "actionTitle": "Home",
+    "imgUrl": "https://www.gannett-cdn.com/media/2020/03/17/USATODAY/usatsports/MotleyFool-TMOT-52d71000-737ac4e3.jpg?width=660&height=371&fit=crop&format=pjpg&auto=webp"
 }]

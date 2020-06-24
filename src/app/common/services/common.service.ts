@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
-import { ModalController } from '@ionic/angular';
+import { ModalController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -12,8 +12,10 @@ export class CommonService {
   ordersPlaced = [];
   storesListed = [];
   setUserLocation$: BehaviorSubject<string> = new BehaviorSubject<string>('600116');
+  orderPlaced$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
-  constructor(private modalCtrl: ModalController) {
+  constructor(private modalCtrl: ModalController,
+    private toastCtrl: ToastController) {
   }
 
   handleUserStorage(property: string, value: any) {
@@ -39,6 +41,15 @@ export class CommonService {
       componentProps: properties
     });
     return await modal.present();
+  }
+
+  async presentToast(message: string, position?: "top" | "bottom" | "middle") {
+    const toast = await this.toastCtrl.create({
+      message: message,
+      duration: 4000,
+      position: position
+    });
+    toast.present();
   }
 
   public dismissAllModals() {
@@ -69,3 +80,4 @@ export class CommonService {
   }
 
 }
+

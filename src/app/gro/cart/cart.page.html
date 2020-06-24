@@ -17,6 +17,7 @@
     <ion-button color="danger" (click)="emptyCart()">Empty Cart</ion-button>
   </div>
   <product-list [products]="items"></product-list>
-  <gro-error [type]="'emptyCart'" *ngIf="!items.length"></gro-error>
+  <gro-error [type]="'orderPlaced'" *ngIf="isOrdered"></gro-error>
+  <gro-error [type]="'emptyCart'" *ngIf="!items.length && !isOrdered"></gro-error>
   <gro-cart-checkout></gro-cart-checkout>
 </ion-content>

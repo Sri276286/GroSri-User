@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/common/services/cart.service';
 import { CommonService } from 'src/app/common/services/common.service';
 
@@ -16,12 +16,14 @@ export class CartPage implements OnInit {
   isOrdered: boolean = false;
   isLoggedIn: boolean = false;
   constructor(public _cartService: CartService,
-    private _router: Router,
     public _commonService: CommonService,
     private _activatedRoute: ActivatedRoute) {
   }
 
   ngOnInit() {
+    this._commonService.orderPlaced$.subscribe((ordered) => {
+      this.isOrdered = ordered;
+    });
     const fromStore = this._activatedRoute.snapshot.paramMap.get('fromStore');
     if (fromStore) {
       this.pathToGo = '/store/' + fromStore;
@@ -58,17 +60,6 @@ export class CartPage implements OnInit {
       });
     } else {
       this._cartService.resetCart();
-    }
-  }
-
-  placeOrder() {
-    if (this.isLoggedIn) {
-      this._cartService.placeOrder().subscribe(() => {
-        this._cartService.resetCart();
-        this.isOrdered = true;
-      });
-    } else {
-      this._router.navigate(['/login']);
     }
   }
 

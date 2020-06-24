@@ -207,19 +207,7 @@ export class CartService {
     };
   }
 
-  placeOrder() {
-    const obj = {
-      "orderAddress": {
-        "flatNo": 35,
-        "country": "India",
-        "state": "TN",
-        "pincode": "600091",
-        "street": "kamarajar street",
-        "city": "chennai",
-        "area": "porur"
-      },
-      "orderStatus": "PLACED"
-    };
+  placeOrder(obj) {
     return this._http.put(ApiConfig.placeOrderURL, obj);
   }
 

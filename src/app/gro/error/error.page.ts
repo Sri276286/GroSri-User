@@ -23,6 +23,8 @@ export class ErrorPage implements OnInit {
             case 'emptyCart':
             case 'currentOrder':
             case 'pastOrder':
+            case 'orderPlaced':
+            case 'emptyStore':
                 this.errorEntity = this._errorService.getErrorByType(this.type);
                 console.log('error ', this.errorEntity);
                 break;
@@ -39,8 +41,11 @@ export class ErrorPage implements OnInit {
             case 'emptyCart':
             case 'currentOrder':
             case 'pastOrder':
+            case 'emptyStore':
                 this._router.navigate(['/home']);
                 break;
+            case 'orderPlaced':
+                this._router.navigate(['/orders']);
             default:
         }
     }
