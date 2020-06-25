@@ -21,12 +21,16 @@ export class ErrorPage implements OnInit {
         switch (this.type) {
             case 'storeList':
             case 'emptyCart':
+            case 'orderPlaced':
+                this.errorEntity = this._errorService.getErrorByType(this.type);
+                console.log('error ', this.errorEntity);
+                break;
             case 'currentOrder':
             case 'pastOrder':
-            case 'orderPlaced':
             case 'emptyStore':
                 this.errorEntity = this._errorService.getErrorByType(this.type);
                 console.log('error ', this.errorEntity);
+
                 break;
             default:
         }

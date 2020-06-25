@@ -13,11 +13,12 @@ export class CartCheckoutPage implements OnInit {
     cartTotal = 0;
     cartQuantity = '';
     quantity = 0;
+    isLoggedIn: boolean = false;
     constructor(private _cartService: CartService,
         private _commonService: CommonService) { }
 
     ngOnInit() {
-        console.log('cart checkout loading...');
+        this.isLoggedIn = this._commonService.isLogin();
         this._cartService.cartEntity$.subscribe((cart) => {
             console.log('cart checkout ', cart);
             this.cartTotal = cart && (cart.billTotal || cart.total);

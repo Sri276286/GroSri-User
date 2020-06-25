@@ -22,8 +22,8 @@ export class StoreService {
    * @param locationKey
    */
   getStores(locationKey: string) {
-    // return this._http.get(`${ApiConfig.storeListURL}/${locationKey}`)
-    return this._http.get(this.storeListUrl)
+    return this._http.get(`${ApiConfig.storeListURL}/${locationKey}`)
+      // return this._http.get(this.storeListUrl)
       .pipe(map((res: any) => {
         const stores = res && res.storeDetails;
         this._commonService.storesListed = stores;

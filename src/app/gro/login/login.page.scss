@@ -2,34 +2,41 @@ $white-color: #fff;
 $height100: 100%;
 
 ion-grid {
-    width:100%;
-    height: $height100;
-    background: #dfdfdf;
+  width: 100%;
+  height: $height100;
+  background: #2dd36f !important;
 }
 
 ion-row {
-    height: $height100;
+  height: $height100;
 }
 
 ion-col {
-    border: 1px solid #488aff;
-    background: $white-color;
+  border: 1px solid #488aff;
+  background: $white-color;
 }
 
 ion-button {
-    font-weight: 300;
+  font-weight: 300;
 }
 
 @media (min-width: 240px) and (max-width: 768px) {
-    ion-grid {
-        background: $white-color;
-    }
-    ion-col {
-        border: none;
-    }
+  ion-grid {
+    background: $white-color;
+  }
+  ion-col {
+    border: none;
+  }
 }
 
 .register_text {
-    font-size: 600;
-    color: blue;
+  font-weight: bold;
+  color: #2dd36f;
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.login-main-icon {
+    font-size: 72px;
+    color: #2dd36f;
 }

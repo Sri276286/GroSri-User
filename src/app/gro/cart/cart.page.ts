@@ -18,6 +18,7 @@ export class CartPage implements OnInit {
   constructor(public _cartService: CartService,
     public _commonService: CommonService,
     private _activatedRoute: ActivatedRoute) {
+      console.log('aaaaa');
   }
 
   ngOnInit() {

@@ -9,6 +9,7 @@ import { SignupPage } from './gro/signup/signup.page';
 import { OrderListPage } from './gro/order-list/order-list.page';
 import { OrderDetailsPage } from './gro/order-list/order-details/order-details.page';
 import { AuthGuard } from './common/guards/auth.guard';
+import { AppResolver } from './common/resolvers/app.resolver';
 
 const routes: Routes = [
   { path: 'home', component: GroHomePage },

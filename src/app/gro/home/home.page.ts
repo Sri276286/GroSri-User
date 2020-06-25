@@ -14,10 +14,12 @@ export class GroHomePage implements OnInit {
 
     location: string = '';
     storeListError: boolean = false;
+    isLoggedIn: boolean = false;
     constructor(private menuCtrl: MenuController,
         public modalCtrl: ModalController,
         private _commonService: CommonService,
         private _homeService: HomeService) {
+        this.isLoggedIn = this._commonService.isLogin();
         this._commonService.getUserLocation()
             .subscribe((location) => {
                 this.location = location;

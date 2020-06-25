@@ -8,6 +8,7 @@ import { filter } from 'rxjs/operators';
 import { CartService } from './common/services/cart.service';
 import { LoginService } from './common/services/login.service';
 import { ErrorService } from './common/services/error.service';
+import { CommonService } from './common/services/common.service';
 
 @Component({
   selector: 'app-root',
@@ -23,7 +24,8 @@ export class AppComponent {
     private _router: Router,
     private _cartService: CartService,
     private _loginService: LoginService,
-    private _errorService: ErrorService
+    private _errorService: ErrorService,
+    private _commonService: CommonService
   ) {
     this.initializeApp();
   }
@@ -34,17 +36,20 @@ export class AppComponent {
       console.log('ressss ', res);
       this.cartQuantity = res.totalNumOfProducts;
       console.log('cartaa ', this.cartQuantity);
+    }, () => {
+      
     });
   }
 
   validateToken() {
-    this._loginService.isTokenValid().subscribe(() => {
-      localStorage.setItem('session_active', 'true');
-    }, (error) => {
-      console.log('error ', error);
-      if (error)
+    const isLoggedIn = this._commonService.isLogin();
+    if (isLoggedIn) {
+      this._loginService.isTokenValid().subscribe(() => {
+        localStorage.setItem('session_active', 'true');
+      }, () => {
         localStorage.clear();
-    });
+      });
+    }
   }
 
   handleAppErrors() {

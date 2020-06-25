@@ -1,5 +1,5 @@
 <ion-grid>
-  <ion-row class="ion-justify-content-center">
+  <ion-row>
     <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
       <form
         [formGroup]="loginForm"
@@ -14,9 +14,12 @@
             character and between 6-15 characters.</span
           >
         </div>
+        <div class="ion-text-center">
+          <ion-icon name="person-circle" class="login-main-icon"></ion-icon>
+        </div>
         <div class="ion-padding">
           <ion-item>
-            <ion-icon name="person-circle" slot="start"></ion-icon>
+            <ion-icon name="person-outline" slot="start"></ion-icon>
             <ion-input
               type="text"
               placeholder="* Email"
@@ -36,6 +39,7 @@
         <div class="ion-padding">
           <ion-button
             type="submit"
+            color="success"
             size="large"
             expand="block"
             [disabled]="loginForm.invalid"
@@ -44,7 +48,7 @@
         </div>
       </form>
       <div class="ion-padding ion-text-center">
-        <ion-label>Not Registered? </ion-label>
+        <ion-label>New User? </ion-label>
         <span class="register_text" [routerLink]="['/register']"
           >Create an account</span
         >

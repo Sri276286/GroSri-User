@@ -1,4 +1,4 @@
-<ion-card *ngIf="order">
+<ion-card *ngIf="recentOrder">
   <ion-card-content class="ion-no-padding">
     <ion-item class="ion-no-padding">
       <ion-grid>
@@ -6,11 +6,11 @@
           <ion-col size="8">
             <ion-row>
               <span class="span-store-name">
-                {{order.store.storeName | titlecase}}
+                {{recentOrder.store.storeName | titlecase}}
               </span>
             </ion-row>
             <ion-row>
-              {{order.store.area}}
+              {{recentOrder.store.area}}
             </ion-row>
           </ion-col>
           <ion-col size="4">
@@ -26,24 +26,24 @@
     </ion-item>
     <ion-row class="ion-padding-start">
       <ion-col
-        ><span class="span-order-data"
-          >{{order.totalNumOfProducts === 1 ? '1 item': order.totalNumOfProducts
+        ><span class="span-recentOrder-data"
+          >{{recentOrder.totalNumOfProducts === 1 ? '1 item': recentOrder.totalNumOfProducts
           + ' items'}}</span
         ></ion-col
       >
       <ion-col
-        ><span class="span-order-data">Rs.{{order.billTotal}}</span></ion-col
+        ><span class="span-recentOrder-data">Rs.{{recentOrder.billTotal}}</span></ion-col
       >
     </ion-row>
     <ion-row>
       <ion-col>
         <div style="display: flex; flex-direction: column; padding: 5px;">
           <span>Ordered on</span>
-          <span class="span-order-data">Fri20, 2019</span>
+          <span class="span-recentOrder-data">Fri20, 2019</span>
         </div>
       </ion-col>
       <ion-col>
-        <ion-button [routerLink]="['/order', order.id]"><span>View Order</span></ion-button>
+        <ion-button [routerLink]="['/recentOrder', recentOrder.id]"><span>View Order</span></ion-button>
       </ion-col>
     </ion-row>
   </ion-card-content>
