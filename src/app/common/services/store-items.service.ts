@@ -23,8 +23,8 @@ export class StoreItemsService {
 
   getItems(id) {
     return new Observable((observer) => {
-      // this._http.get(`${ApiConfig.storeProductsURL}/${id}`)
-      this._http.get(this.storeProductsURL)
+      this._http.get(`${ApiConfig.storeProductsURL}/${id}`)
+        // this._http.get(this.storeProductsURL)
         .subscribe((res: any) => {
           if (res && res.productsByCategory) {
             // map products with cart for quantity
@@ -42,11 +42,11 @@ export class StoreItemsService {
     });
   }
 
-//   private formStoreMenu(result) {
-// for () {
+  //   private formStoreMenu(result) {
+  // for () {
 
-// }
-//   }
+  // }
+  //   }
 
   private mapProducts(itemsRes: any) {
     this.productsList = [];
