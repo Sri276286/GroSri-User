@@ -1,137 +1,21 @@
 <ion-header>
   <ion-toolbar color="success">
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
     <ion-grid>
       <ion-row>
-        <ion-col size="2">
-          <ion-icon
-            name="menu-outline"
-            size="large"
-            (click)="openMenu()"
-          ></ion-icon>
-        </ion-col>
-        <ion-col size="9" style="padding-top: 6px;" (click)="loadLocation()">
+        <ion-col size="10" style="padding-top: 6px;" (click)="loadLocation()">
           <ion-icon name="location-outline" style="font-size: 24px;"></ion-icon>
           <span style="font-size: 18px;">{{location}}</span>
         </ion-col>
-        <ion-col size="1">
+        <ion-col size="2">
           <ion-icon name="help-outline" size="large"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-header>
-<ion-menu side="start" menuId="mainMenu" contentId="mainMenu">
-  <ion-header>
-    <ion-menu-toggle>
-      <ion-toolbar color="success">
-        <ion-title>Home</ion-title>
-      </ion-toolbar>
-    </ion-menu-toggle>
-  </ion-header>
-  <ion-content id="mainMenu">
-    <ion-list>
-      <ion-menu-toggle>
-        <ion-button expand="full" color="light" (click)="loadCategories()">
-          <span class="menu-button-content">
-            <ion-icon name="grid-outline" slot="start"></ion-icon
-            ><ion-label class="ion-padding-horizontal">Categories </ion-label>
-          </span>
-        </ion-button>
-      </ion-menu-toggle>
-      <ion-menu-toggle>
-        <ion-button expand="full" color="light" [routerLink]="['/cart']">
-          <span class="menu-button-content">
-            <ion-icon name="basket-outline" slot="start"></ion-icon
-            ><ion-label class="ion-padding-horizontal">My Cart </ion-label>
-          </span>
-        </ion-button>
-      </ion-menu-toggle>
-      <ng-container *ngIf="!isLoggedIn">
-        <ion-item-divider>
-          <ion-label>
-            Become a member
-          </ion-label>
-        </ion-item-divider>
-        <ion-menu-toggle>
-          <ion-grid>
-            <ion-row>
-              <ion-col>
-                <ion-button color="success" [routerLink]="['/login']">Login</ion-button
-                >
-              </ion-col>
-              <ion-col>
-                <ion-button color="warning"  [routerLink]="['/register']">Register</ion-button
-                >
-              </ion-col>
-            </ion-row>
-          </ion-grid>
-        </ion-menu-toggle>
-      </ng-container>
-      <ng-container *ngIf="isLoggedIn">
-        <ion-menu-toggle>
-          <ion-button expand="full" color="light" (click)="loadOrders()">
-            <span class="menu-button-content">
-              <ion-icon name="timer-outline" slot="start"></ion-icon
-              ><ion-label class="ion-padding-horizontal">My Orders </ion-label>
-            </span></ion-button
-          >
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-button expand="full" color="light" (click)="loadAddress()">
-            <span class="menu-button-content">
-              <ion-icon name="book-outline" slot="start"></ion-icon
-              ><ion-label class="ion-padding-horizontal"
-                >Address Book
-              </ion-label>
-            </span>
-          </ion-button>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-button expand="full" color="light">
-            <span class="menu-button-content">
-              <ion-icon name="megaphone-outline" slot="start"></ion-icon
-              ><ion-label class="ion-padding-horizontal"
-                >Refer a store
-              </ion-label>
-            </span></ion-button
-          >
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-button expand="full" color="light">
-            <span class="menu-button-content">
-              <ion-icon name="megaphone-outline" slot="start"></ion-icon
-              ><ion-label class="ion-padding-horizontal"
-                >Refer a friend
-              </ion-label>
-            </span></ion-button
-          >
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-button expand="full" color="light">
-            <span class="menu-button-content">
-              <ion-icon name="heart-outline" slot="start"></ion-icon
-              ><ion-label class="ion-padding-horizontal"
-                >My favorites
-              </ion-label>
-            </span>
-          </ion-button>
-        </ion-menu-toggle>
-        <ion-menu-toggle>
-          <ion-button
-            expand="full"
-            color="light"
-            [routerLink]="['/profile']"
-            (click)="modalCtrl.dismiss()"
-            ><span class="menu-button-content">
-              <ion-icon name="person-outline" slot="start"></ion-icon
-              ><ion-label class="ion-padding-horizontal">My Account </ion-label>
-            </span>
-          </ion-button>
-        </ion-menu-toggle>
-      </ng-container>
-    </ion-list>
-  </ion-content>
-</ion-menu>
 <ion-content>
   <gro-home-content *ngIf="!storeListError"></gro-home-content>
   <gro-error [type]="'storeList'" *ngIf="storeListError"></gro-error>

@@ -3,6 +3,7 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { LoginService } from 'src/app/common/services/login.service';
 import { ValidationConstants } from 'src/app/common/constants/validation.constants';
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
     selector: 'gro-store-login',
@@ -11,11 +12,11 @@ import { ValidationConstants } from 'src/app/common/constants/validation.constan
 })
 export class LoginPage {
     loginForm: FormGroup;
-    test = true;
 
     constructor(private fb: FormBuilder,
         private loginService: LoginService,
-        private _router: Router) {
+        private _router: Router,
+        private _commonService: CommonService) {
         this.loginForm = this.fb.group({
             email: ['', Validators.required],
             password: ['', [Validators.required,
@@ -31,7 +32,8 @@ export class LoginPage {
         console.log('forrr ', this.loginForm.value);
         if (isvalid) {
             this.loginService.login(this.loginForm.value).subscribe(() => {
-                this._router.navigate(['home']);
+                this._commonService.loginSuccess$.next(true);
+                this._router.navigate(['user']);
             });
         }
     }

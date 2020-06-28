@@ -1,28 +1,105 @@
 <ion-app>
-  <ion-router-outlet></ion-router-outlet>
-    <!--Load tabs-->
-<ion-tabs>
-  <ion-tab-bar slot="bottom" #myTabBar id="myTabBar">
-    <ion-tab-button tab="home">
-      <ion-icon name="home"></ion-icon>
-      <ion-label>Home</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="search">
-      <ion-icon name="search"></ion-icon>
-      <ion-label>Search</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="cart">
-      <ion-badge color="success" *ngIf="cartQuantity"><span class="cart-badge">{{cartQuantity}}</span></ion-badge>
-      <ion-icon name="cart"></ion-icon>
-      <ion-label>Cart</ion-label>
-    </ion-tab-button>
-
-    <ion-tab-button tab="profile">
-      <ion-icon name="person-outline"></ion-icon>
-      <ion-label>Profile</ion-label>
-    </ion-tab-button>
-  </ion-tab-bar>
-</ion-tabs>
+  <ion-split-pane contentId="mainMenu">
+    <ion-menu side="start" type="overlay" contentId="mainMenu">
+      <ion-header>
+        <ion-menu-toggle>
+          <ion-toolbar color="success">
+            <ion-title>Home</ion-title>
+          </ion-toolbar>
+        </ion-menu-toggle>
+      </ion-header>
+      <ion-content>
+        <ion-list>
+          <ion-menu-toggle>
+            <ion-item (click)="loadCategories()">
+              <ion-icon name="grid-outline" slot="start"></ion-icon
+              ><ion-label class="ion-padding-horizontal">Categories </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ion-menu-toggle>
+            <ion-item [routerLink]="['user', 'cart']">
+              <ion-icon name="basket-outline" slot="start"></ion-icon
+              ><ion-label class="ion-padding-horizontal">My Cart </ion-label>
+            </ion-item>
+          </ion-menu-toggle>
+          <ng-container *ngIf="!isLoggedIn">
+            <ion-item-divider>
+              <ion-label>
+                Become a member
+              </ion-label>
+            </ion-item-divider>
+            <ion-menu-toggle>
+              <ion-grid>
+                <ion-row>
+                  <ion-col>
+                    <ion-button color="success" [routerLink]="['/login']"
+                      >Login</ion-button
+                    >
+                  </ion-col>
+                  <ion-col>
+                    <ion-button color="warning" [routerLink]="['/register']"
+                      >Register</ion-button
+                    >
+                  </ion-col>
+                </ion-row>
+              </ion-grid>
+            </ion-menu-toggle>
+          </ng-container>
+          <ng-container *ngIf="isLoggedIn">
+            <ion-menu-toggle>
+              <ion-item [routerLink]="['/orders']">
+                <ion-icon name="timer-outline" slot="start"></ion-icon
+                ><ion-label class="ion-padding-horizontal"
+                  >My Orders
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+              <ion-item (click)="loadAddress()">
+                <ion-icon name="book-outline" slot="start"></ion-icon
+                ><ion-label class="ion-padding-horizontal"
+                  >Address Book
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+              <ion-item>
+                <ion-icon name="megaphone-outline" slot="start"></ion-icon
+                ><ion-label class="ion-padding-horizontal"
+                  >Refer a store
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+              <ion-item>
+                <ion-icon name="megaphone-outline" slot="start"></ion-icon
+                ><ion-label class="ion-padding-horizontal"
+                  >Refer a friend
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+              <ion-item>
+                <ion-icon name="heart-outline" slot="start"></ion-icon
+                ><ion-label class="ion-padding-horizontal"
+                  >My favorites
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+            <ion-menu-toggle>
+              <ion-item
+                [routerLink]="['user', 'profile']"
+              >
+                <ion-icon name="person-outline" slot="start"></ion-icon
+                ><ion-label class="ion-padding-horizontal"
+                  >My Account
+                </ion-label>
+              </ion-item>
+            </ion-menu-toggle>
+          </ng-container>
+        </ion-list>
+      </ion-content>
+    </ion-menu>
+    <ion-router-outlet id="mainMenu"></ion-router-outlet>
+  </ion-split-pane>
 </ion-app>

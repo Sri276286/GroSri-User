@@ -4,6 +4,7 @@ import { OrderConstants } from 'src/app/common/constants/order.constants';
 import { OrderService } from 'src/app/common/services/order.service';
 import { CartService } from 'src/app/common/services/cart.service';
 import { CommonService } from 'src/app/common/services/common.service';
+import { AlertController } from '@ionic/angular';
 
 @Component({
   templateUrl: 'order-details.page.html',
@@ -16,29 +17,48 @@ export class OrderDetailsPage implements OnInit {
   orderDetails;
   storeDetails;
   placedStatus = OrderConstants.PLACED;
+  acceptedStatus = OrderConstants.ACCEPTED;
+  prepareStatus = OrderConstants.PREPARE;
+  readyStatus = OrderConstants.READY;
+  deliveredStatus = OrderConstants.DELIVERED;
+  cancelledStatus = OrderConstants.CUSTOMER_CANCELLED;
+  storeCancelledStatus = OrderConstants.STORE_CANCELLED;
+  showSummary = true;
   constructor(public _service: OrderService,
     private _route: ActivatedRoute,
     private _cartService: CartService,
     private _router: Router,
-    private _commonService: CommonService) {
+    private _commonService: CommonService,
+    private _alertCtrl: AlertController) {
   }
 
   ngOnInit() {
     this._route.paramMap.subscribe((paramMap) => {
       const id = paramMap.get('id');
       this._service.getOrderById(id).subscribe((res: any) => {
+        console.log('dd ', res);
         this.orderEntity = res.orders.length && res.orders[0];
+        console.log('order entity ', this.orderEntity);
         this.storeDetails = this.orderEntity && this.orderEntity.store;
         this.items = this.orderEntity.orderProducts;
       });
     });
   }
 
+  orderSegmentChange(value) {
+    console.log('value ', value);
+    if (value.detail.value === 'order_summary') {
+      this.showSummary = true;
+    } else {
+      this.showSummary = false;
+    }
+  }
+
   reorder() {
     let cartEntity = {
       storeId: this.orderEntity.store && this.orderEntity.store.id,
       total: this.orderEntity.billTotal,
-      items: this.orderEntity.orderProductLstDTO
+      orderProducts: this.orderEntity.orderProductLstDTO
     };
     let cart = localStorage.getItem('cartEntity');
     if (cart) {
@@ -65,21 +85,41 @@ export class OrderDetailsPage implements OnInit {
     // this._modalService.open(trackTemplate, { centered: true });
   }
 
-  cancelOrder(cancelTemplate: TemplateRef<any>) {
-    // this._modalService.open(cancelTemplate, { centered: true });
+  /**
+   * Cancel Order
+   */
+  cancelOrderAlert(order) {
+    this.presentAlert(order);
   }
 
   cancel(id: string) {
     this._service.cancelOrder(id).subscribe(() => {
-    //   this._modalService.dismissAll();
-      // show success snackbar
-    //   this._toastService.show(`Order #${id} cancelled successfully`);
-      this._router.navigate(['/order']);
+      this._router.navigate(['/orders']);
     }, () => {
-    //   this._modalService.dismissAll();
-      // show failed snackbar
-    //   this._toastService.show(`Failed to cancel order #${id}`);
     });
+  }
+
+  async presentAlert(order) {
+    const alert = await this._alertCtrl.create({
+      header: `Cancel #${order.id}`,
+      message: `Do you want to cancel this order?`,
+      buttons: [
+        {
+          text: 'No',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.cancel(order.id);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

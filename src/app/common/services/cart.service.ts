@@ -132,8 +132,10 @@ export class CartService {
     // check if already items presnt in cart (same or different store)
     let cartEntityFromMap = this.checkCartByStoreId(item.storeId);
     const cloneCartMap = _.cloneDeep(cartEntityFromMap);
+    console.log('clone ', cloneCartMap);
     if (cartEntityFromMap) {
       this.cartEntity = cloneCartMap;
+      this.cartEntity.total = cloneCartMap.billTotal;
       this.handleCartEntity(item);
     } else {
       // check if any store are in cart
@@ -162,22 +164,24 @@ export class CartService {
     let isItemInCart = this.cartEntity && this.cartEntity.orderProducts.find(t => t.storeInventoryProductUnitId === item.storeInventoryProductUnitId);
     let itemIndex = isItemInCart && this.cartEntity && this.cartEntity.orderProducts.indexOf(isItemInCart);
     console.log('is item ', isItemInCart);
-    console.log('cart eee ', JSON.stringify(this.cartEntity));
+    console.log('cart eee ', this.cartEntity);
     if (!isItemInCart) {
       this.cartEntity.orderProducts = [...this.cartEntity.orderProducts, item];
       this.cartEntity.total += item.price;
       this.cartQuantity++;
     } else {
       if (item && item.quantity) {
+        console.log('here item ', this.cartEntity.total, item.price);
         this.cartEntity.orderProducts[itemIndex] = item;
         this.cartEntity.total += item.price;
+        console.log('here ', this.cartEntity.total);
       } else {
         this.cartEntity.orderProducts.splice(itemIndex, 1);
         this.cartEntity.total -= item.price;
         this.cartQuantity--;
       }
     }
-    console.log('cart ', this.cartEntity.total);
+    console.log('cart ', this.cartEntity);
     // Add store id
     this.cartEntity.storeId = item.storeId;
     let cloneCartEntity = _.cloneDeep(this.cartEntity);

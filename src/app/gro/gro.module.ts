@@ -33,6 +33,7 @@ import { HomeContentPage } from './home/home-content/home-content.page';
 import { ErrorPage } from './error/error.page';
 import { DeliveryPage } from './cart/delivery/delivery.page';
 import { RecentOrderPage } from './home/recent-order/recent-order.page';
+import { TabsPage } from './tabs/tabs.page';
 
 @NgModule({
     imports: [
@@ -43,6 +44,7 @@ import { RecentOrderPage } from './home/recent-order/recent-order.page';
         ReactiveFormsModule
     ],
     declarations: [
+        TabsPage,
         GroHomePage,
         HomeContentPage,
         LoginPage,

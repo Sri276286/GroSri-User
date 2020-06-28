@@ -15,6 +15,23 @@
   font-size: 16px;
 }
 .span-total {
-    @extend .span-content;
-    padding-left: 5px;
+  @extend .span-content;
+  padding-left: 5px;
+}
+
+.span-normal {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.span-weight {
+  @extend .span-normal;
+  padding: 2px 5px;
+}
+
+.span-quantity {
+  @extend .span-normal;
+  padding: 2px 5px;
+  background-color: rgb(159, 159, 161);
+  color: white;
 }

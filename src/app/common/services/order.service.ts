@@ -26,6 +26,26 @@ export class OrderService {
       }));
   }
 
+  getCurrentOrders() {
+    let params = new HttpParams();
+    params = params.append('inProgress', 'true');
+    return this._http.get(ApiConfig.ordersListURL, { params })
+      .pipe(map((res: any) => {
+        const orders = res && res.orders;
+        return this.mapOrdersWithStatus(orders);
+      }));
+  }
+
+  getPastOrders() {
+    let params = new HttpParams();
+    params = params.append('history', 'true');
+    return this._http.get(ApiConfig.ordersListURL, { params })
+      .pipe(map((res: any) => {
+        const orders = res && res.orders;
+        return this.mapOrdersWithStatus(orders);
+      }));
+  }
+
   /**
    * Get the recent active order
    */
@@ -34,7 +54,9 @@ export class OrderService {
     params = params.append('inProgress', 'true');
     return this._http.get(ApiConfig.ordersListURL, { params })
       .pipe(map((res: any) => {
-        const order = res && res.orders && res.orders.length && res.orders[0];
+        let orders = res && res.orders;
+        orders = this.mapOrdersWithStatus(orders)
+        const order = orders && orders.length && orders[0];
         return order;
       }));
   }
@@ -45,5 +67,36 @@ export class OrderService {
 
   cancelOrder(id: string) {
     return this._http.put(`${ApiConfig.orderURL}/${id}/orderStatus/CUSTOMER_CANCELLED`, null);
+  }
+
+  private mapOrdersWithStatus(orders: any) {
+    return orders.map((order) => {
+      switch (order.orderStatus) {
+        case 'PLACED':
+          order.statusMessage = 'Placed';
+          break;
+        case 'ACCEPTED':
+          order.statusMessage = 'Accepted';
+          break;
+        case 'CUSTOMER_CANCELLED':
+          order.statusMessage = 'Cancelled';
+          break;
+        case 'STORE_CANCELLED':
+          order.statusMessage = 'Rejected By Store';
+          break;
+        case 'PREPARE':
+          order.statusMessage = 'Preparing';
+          break;
+        case 'READY':
+          order.statusMessage = 'Ready';
+          break;
+        case 'DELIVERED':
+          order.statusMessage = 'Delivered';
+          break;
+        default:
+          order.statusMessage = 'Error';
+      }
+      return order;
+    });
   }
 }

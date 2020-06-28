@@ -1,6 +1,6 @@
 <div class="display-cart-grid" *ngIf="cartTotal && quantity">
   <div>{{ cartQuantity }} | Rs.{{ cartTotal }}</div>
-  <div [routerLink]="['/cart', {fromStore: storeId}]">
+  <div [routerLink]="['/user', 'cart', {fromStore: storeId}]">
     <ion-label>View Cart</ion-label>
     <ion-icon name="basket-outline" size="large"></ion-icon>
     <ion-badge color="success"

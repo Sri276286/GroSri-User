@@ -14,12 +14,17 @@ export class ProfilePage {
     user;
     constructor(private _loginService: LoginService,
         private _route: Router,
-        private _commonService: CommonService,
         private modalCtrl: ModalController) {
-            this._loginService.getCurrentUser().subscribe((user) => {
-                console.log('current user ', user);
+        this._loginService.getCurrentUser().subscribe((user) => {
+            console.log('current user ', user);
+            if (!user) {
+                this._loginService.getUser().subscribe((user) => {
+                    this.user = user;
+                })
+            } else {
                 this.user = user;
-            });
+            }
+        });
     }
 
     editProfile() {

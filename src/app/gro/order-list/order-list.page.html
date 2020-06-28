@@ -2,23 +2,25 @@
   <ion-toolbar>
     <div style="display: flex;">
       <ion-icon
-      name="chevron-back-outline"
-      size="large"
-      (click)="goBack()"
-    ></ion-icon>
+        name="chevron-back-outline"
+        size="large"
+        (click)="goBack()"
+      ></ion-icon>
       <ion-label class="ion-padding">My Orders</ion-label>
     </div>
   </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-segment
-  value="current_orders"
-  color="success"
-  (ionChange)="orderSegmentChange($event)"
->
-  <ion-segment-button value="current_orders">Current Orders</ion-segment-button>
-  <ion-segment-button value="past_orders">Past Orders</ion-segment-button>
-</ion-segment>
+    value="current_orders"
+    color="success"
+    (ionChange)="orderSegmentChange($event)"
+  >
+    <ion-segment-button value="current_orders"
+      >Current Orders</ion-segment-button
+    >
+    <ion-segment-button value="past_orders">Past Orders</ion-segment-button>
+  </ion-segment>
   <ion-list *ngIf="showCurrentOrders && currentOrders.length">
     <ion-item-divider>
       <ion-label>
@@ -30,7 +32,10 @@
       [ngTemplateOutletContext]="{orders: currentOrders}"
     ></ng-container>
   </ion-list>
-  <gro-error [type]="'currentOrder'" *ngIf="showCurrentOrders && !currentOrders.length"></gro-error>
+  <gro-error
+    [type]="'currentOrder'"
+    *ngIf="showCurrentOrders && !currentOrders.length"
+  ></gro-error>
   <ion-list *ngIf="!showCurrentOrders && pastOrders.length">
     <ion-item-divider>
       <ion-label>
@@ -42,12 +47,15 @@
       [ngTemplateOutletContext]="{orders: pastOrders}"
     ></ng-container>
   </ion-list>
-  <gro-error [type]="'pastOrder'" *ngIf="!showCurrentOrders && !pastOrders.length"></gro-error>
+  <gro-error
+    [type]="'pastOrder'"
+    *ngIf="!showCurrentOrders && !pastOrders.length"
+  ></gro-error>
 </ion-content>
 
 <ng-template #ordersList let-orders="orders">
   <ion-grid *ngFor="let order of orders" class="ion-no-padding">
-    <ion-card [routerLink]="['/order', order.id]">
+    <ion-card>
       <ion-card-content class="ion-no-padding">
         <ion-item class="ion-no-padding">
           <ion-grid>
@@ -59,37 +67,93 @@
                   </span>
                 </ion-row>
                 <ion-row>
-                    {{order.store.area}}
+                  {{order.store.area}}
                 </ion-row>
               </ion-col>
               <ion-col size="4">
                 <ion-row>
-                  <ion-col size="2"
-                    ><ion-icon
+                  <ion-col size="2">
+                    <ion-icon
                       name="checkmark-circle"
                       color="success"
-                    ></ion-icon
-                  ></ion-col>
-                  <ion-col size="10"><span>Delivered</span></ion-col>
+                      *ngIf="order.orderStatus === deliveredStatus"
+                    ></ion-icon>
+                    <ion-icon
+                      name="close-circle"
+                      color="danger"
+                      *ngIf="order.orderStatus === cancelledStatus || order.orderStatus === storeCancelledStatus"
+                    ></ion-icon>
+                    <ion-icon
+                      name="flag-outline"
+                      color="dark"
+                      *ngIf="order.orderStatus !== cancelledStatus
+                    && order.orderStatus !== storeCancelledStatus
+                    && order.orderStatus !== deliveredStatus"
+                    ></ion-icon>
+                  </ion-col>
+                  <ion-col size="10"
+                    ><span>{{order.statusMessage}}</span></ion-col
+                  >
                 </ion-row>
               </ion-col>
             </ion-row>
           </ion-grid>
         </ion-item>
         <ion-row class="ion-padding-start">
-          <ion-col><span class="span-order-data">{{order.totalNumOfProducts === 1 ? '1 item': order.totalNumOfProducts + ' items'}}</span></ion-col>
-          <ion-col><span class="span-order-data">Rs.{{order.billTotal}}</span></ion-col>
+          <ion-col
+            ><span class="span-order-data"
+              >{{order.totalNumOfProducts === 1 ? '1 item':
+              order.totalNumOfProducts + ' items'}}</span
+            ></ion-col
+          >
+          <ion-col
+            ><span class="span-order-data"
+              >Rs.{{order.billTotal}}</span
+            ></ion-col
+          >
         </ion-row>
         <ion-row>
           <ion-col>
             <div style="display: flex; flex-direction: column; padding: 5px;">
-              <span>Ordered on</span>
-              <span class="span-order-data">Fri20, 2019</span>
+              <span
+                >{{order.orderStatus === deliveredStatus || order.orderStatus
+                === storeCancelledStatus || order.orderStatus ===
+                cancelledStatus ? 'Delivered on' : 'Expected delivery'}}</span
+              >
+              <span class="span-order-data">{{order.estimatedDate}}</span>
             </div>
           </ion-col>
-          <ion-col>
-            <ion-button color="light" fill="clear"><ion-icon name="reload-outline" color="dark"></ion-icon><span style="color: black;">Repeat Order</span></ion-button
+          <ion-col [routerLink]="['/order', order.id]">
+            <ion-button color="medium" fill="outline">View Order</ion-button>
+          </ion-col>
+          <!-- <ion-col
+            *ngIf="order.orderStatus === deliveredStatus
+          || order.orderStatus === cancelledStatus
+          || order.orderStatus === storeCancelledStatus"
+          >
+            <ion-button color="light" fill="clear"
+              ><ion-icon name="reload-outline" color="dark"></ion-icon
+              ><span style="color: black;">Re-Order</span></ion-button
             >
+          </ion-col> -->
+        </ion-row>
+        <ion-row
+          *ngIf="order.orderStatus !== deliveredStatus
+          && order.orderStatus !== storeCancelledStatus
+          && order.orderStatus !== cancelledStatus"
+        >
+          <ion-col class="ion-text-center">
+            <ion-button color="success">
+              Track
+            </ion-button>
+          </ion-col>
+          <ion-col
+            class="ion-text-center"
+            *ngIf="order.orderStatus === placedStatus || order.orderStatus === acceptedStatus || order.orderStatus === prepareStatus"
+          >
+            <ion-button color="danger" (click)="cancelOrderAlert(order)">
+              Cancel
+            </ion-button>
           </ion-col>
         </ion-row>
       </ion-card-content>

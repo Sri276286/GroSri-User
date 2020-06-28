@@ -13,6 +13,7 @@ export class CommonService {
   storesListed = [];
   setUserLocation$: BehaviorSubject<string> = new BehaviorSubject<string>('600116');
   orderPlaced$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  loginSuccess$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private modalCtrl: ModalController,
     private toastCtrl: ToastController) {

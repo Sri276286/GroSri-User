@@ -6,4 +6,5 @@ export class OrderConstants {
   static STORE_CANCELLED = 'STORE_CANCELLED';
   static CUSTOMER_CANCELLED = 'CUSTOMER_CANCELLED';
   static IN_CART = 'IN_CART';
+  static PREPARE = 'PREPARE';
 }

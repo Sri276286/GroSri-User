@@ -15,10 +15,28 @@
           </ion-col>
           <ion-col size="4">
             <ion-row>
-              <ion-col size="2"
-                ><ion-icon name="checkmark-circle" color="success"></ion-icon
-              ></ion-col>
-              <ion-col size="10"><span>Delivered</span></ion-col>
+              <ion-col size="2">
+                <ion-icon
+                  name="checkmark-circle"
+                  color="success"
+                  *ngIf="recentOrder.orderStatus === deliveredStatus"
+                ></ion-icon>
+                <ion-icon
+                  name="close-circle"
+                  color="danger"
+                  *ngIf="recentOrder.orderStatus === cancelledStatus || recentOrder.orderStatus === storeCancelledStatus"
+                ></ion-icon>
+                <ion-icon
+                  name="flag-outline"
+                  color="dark"
+                  *ngIf="recentOrder.orderStatus !== cancelledStatus
+                && recentOrder.orderStatus !== storeCancelledStatus
+                && recentOrder.orderStatus !== deliveredStatus"
+                ></ion-icon>
+              </ion-col>
+              <ion-col size="10"
+                ><span>{{recentOrder.statusMessage}}</span></ion-col
+              >
             </ion-row>
           </ion-col>
         </ion-row>
@@ -38,12 +56,12 @@
     <ion-row>
       <ion-col>
         <div style="display: flex; flex-direction: column; padding: 5px;">
-          <span>Ordered on</span>
-          <span class="span-recentOrder-data">Fri20, 2019</span>
+          <span>Expected Delivery</span>
+          <span class="span-recentOrder-data">{{recentOrder.estimatedDate}}</span>
         </div>
       </ion-col>
       <ion-col>
-        <ion-button [routerLink]="['/recentOrder', recentOrder.id]"><span>View Order</span></ion-button>
+        <ion-button [routerLink]="['/order', recentOrder.id]"><span>View Order</span></ion-button>
       </ion-col>
     </ion-row>
   </ion-card-content>

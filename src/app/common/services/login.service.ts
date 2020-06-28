@@ -111,7 +111,6 @@ export class LoginService {
 
   private _mapUser(user) {
     // store user details and jwt token in local storage to keep user logged in between page refreshes
-    localStorage.setItem('currentUser', JSON.stringify(user));
     if (user && user.pincode) {
       this._commonService.setUserLocation$.next(user.pincode);
     }

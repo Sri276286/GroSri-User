@@ -41,17 +41,17 @@ export class GroHomePage implements OnInit {
         this.presentModal(AddressBookPage);
     }
 
-    loadCategories() {
-        this.presentModal(CategoryFullPage);
-    }
+    // loadCategories() {
+    //     this.presentModal(CategoryFullPage);
+    // }
 
-    loadOrders() {
-        this.presentModal(OrderListPage);
-    }
+    // loadOrders() {
+    //     this.presentModal(OrderListPage);
+    // }
 
-    loadAddress() {
-        this.presentModal(AddressBookPage);
-    }
+    // loadAddress() {
+    //     this.presentModal(AddressBookPage);
+    // }
 
     async openMenuItems() {
         await this.menuCtrl.enable(true, 'mainMenu');

@@ -70,21 +70,24 @@
               </span>
             </ion-col>
             <ion-col size="6">
-              <ion-button size="default" *ngIf="!item.quantity" (click)="addItem(item)"
-                >Add  +</ion-button
+              <ion-button
+                size="default"
+                *ngIf="!item.quantity"
+                (click)="addItem(item)"
+                >Add +</ion-button
               >
               <ion-row *ngIf="item.quantity">
-                <ion-col size="5"
+                <ion-col size="4" class="ion-no-padding"
                   ><ion-button color="danger" (click)="removeItem(item)"
                     ><span class="span-general">-</span></ion-button
                   ></ion-col
                 >
-                <ion-col size="2" class="ion-padding-top"
-                  ><span style="padding-top: 3px;"
-                    >{{item.quantity}}</span
+                <ion-col size="4" class="ion-no-padding"
+                  ><ion-button color="light"
+                    ><span style="color: black;font-weight: bold;">{{item.quantity}}</span></ion-button
                   ></ion-col
                 >
-                <ion-col size="5"
+                <ion-col size="4" class="ion-no-padding"
                   ><ion-button color="success" (click)="addItem(item)"
                     ><span class="span-general">+</span></ion-button
                   ></ion-col

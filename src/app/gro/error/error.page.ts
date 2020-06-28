@@ -3,6 +3,7 @@ import { ErrorService } from 'src/app/common/services/error.service';
 import { CommonService } from 'src/app/common/services/common.service';
 import { AddressBookPage } from '../profile/address-book/address-book.page';
 import { Router } from '@angular/router';
+import { ModalController } from '@ionic/angular';
 
 @Component({
     selector: 'gro-error',
@@ -14,7 +15,8 @@ export class ErrorPage implements OnInit {
     errorEntity;
     constructor(private _errorService: ErrorService,
         private _commonService: CommonService,
-        private _router: Router) {
+        private _router: Router,
+        private _modalCtrl: ModalController) {
     }
 
     ngOnInit() {
@@ -43,10 +45,12 @@ export class ErrorPage implements OnInit {
                 this._commonService.presentModal(AddressBookPage);
                 break;
             case 'emptyCart':
+            case 'emptyStore':
+                this._router.navigate(['/user']);
+                break;
             case 'currentOrder':
             case 'pastOrder':
-            case 'emptyStore':
-                this._router.navigate(['/home']);
+                this._modalCtrl.dismiss();
                 break;
             case 'orderPlaced':
                 this._router.navigate(['/orders']);

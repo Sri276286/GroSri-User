@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { OrderConstants } from 'src/app/common/constants/order.constants';
 import { OrderService } from 'src/app/common/services/order.service';
 import { Router } from '@angular/router';
+import { AlertController } from '@ionic/angular';
 
 @Component({
     templateUrl: 'order-list.page.html',
@@ -14,38 +15,41 @@ export class OrderListPage implements OnInit {
     showCurrentOrders = true;
     canReview: boolean = false;
     placedStatus = OrderConstants.PLACED;
+    acceptedStatus = OrderConstants.ACCEPTED;
+    prepareStatus = OrderConstants.PREPARE;
+    readyStatus = OrderConstants.READY;
     deliveredStatus = OrderConstants.DELIVERED;
     cancelledStatus = OrderConstants.CUSTOMER_CANCELLED;
     storeCancelledStatus = OrderConstants.STORE_CANCELLED;
     isStoreRated: boolean = false;
     constructor(private _service: OrderService,
-        private _router: Router) {
+        private _router: Router,
+        private _alertCtrl: AlertController) {
     }
 
     ngOnInit() {
-        this.getOrders();
+        this.getCurrentOrders();
+        this.getPastOrders();
     }
 
     /**
-     * Get All orders except in cart
+     * Get current orders
      */
-    getOrders() {
-        this._service.getOrders().subscribe((res: any) => {
-            if (res && res.orders) {
-                this.currentOrders = res.orders.filter((order) => {
-                    return order.orderStatus === OrderConstants.PLACED;
-                });
-                this.pastOrders = res.orders.filter((order) => {
-                    const status = (order.orderStatus === OrderConstants.DELIVERED)
-                        || (order.orderStatus === OrderConstants.CUSTOMER_CANCELLED)
-                        || (order.orderStatus === OrderConstants.STORE_CANCELLED);
-                    console.log('status ', status);
-                    return status;
-                });
-                console.log('placed orders ', this.currentOrders);
-                console.log('past orders ', this.pastOrders);
-            }
-        });
+    getCurrentOrders() {
+        this._service.getCurrentOrders().subscribe((res: any) => {
+            console.log('rrr ', res);
+            this.currentOrders = res;
+        }, () => { });
+    }
+
+    /**
+     * Get past orders
+     */
+    getPastOrders() {
+        this._service.getPastOrders().subscribe((res: any) => {
+            console.log('rrr past ', res);
+            this.pastOrders = res;
+        }, () => { });
     }
 
     orderSegmentChange(value) {
@@ -61,13 +65,16 @@ export class OrderListPage implements OnInit {
         // this._modalService.open(trackTemplate, { centered: true });
     }
 
-    cancelOrder() {
-        // this._modalService.open(cancelTemplate, { centered: true });
+    /**
+     * Cancel Order
+     */
+    cancelOrderAlert(order) {
+        this.presentAlert(order);
     }
 
     cancel(id: string) {
         this._service.cancelOrder(id).subscribe(() => {
-            this.getOrders();
+            this.getCurrentOrders();
         }, () => {
         });
     }
@@ -86,5 +93,28 @@ export class OrderListPage implements OnInit {
 
     goBack() {
         this._router.navigate(['/home']);
+    }
+
+    async presentAlert(order) {
+        const alert = await this._alertCtrl.create({
+            header: `Cancel #${order.id}`,
+            message: `Do you want to cancel this order?`,
+            buttons: [
+                {
+                    text: 'No',
+                    cssClass: 'secondary',
+                    handler: (blah) => {
+                        console.log('Confirm Cancel: blah');
+                    }
+                }, {
+                    text: 'Yes',
+                    handler: () => {
+                        this.cancel(order.id);
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
     }
 }
