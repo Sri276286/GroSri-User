@@ -6,7 +6,7 @@
     <ion-item>
         <ion-grid>
       <ion-row [routerLink]="['/store', store.id]">
-        <ion-col size="3">
+        <ion-col size="3" *ngIf="store.storeImgUrl">
           <ion-img [src]="store.storeImgUrl"></ion-img>
         </ion-col>
         <ion-col size="9">

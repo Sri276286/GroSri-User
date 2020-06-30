@@ -34,6 +34,7 @@ import { ErrorPage } from './error/error.page';
 import { DeliveryPage } from './cart/delivery/delivery.page';
 import { RecentOrderPage } from './home/recent-order/recent-order.page';
 import { TabsPage } from './tabs/tabs.page';
+import { PageNotFoundPage } from './page-not-found/page-not-found.page';
 
 @NgModule({
     imports: [
@@ -74,7 +75,8 @@ import { TabsPage } from './tabs/tabs.page';
         AddressPage,
         DeliveryPage,
         LinePage,
-        ErrorPage
+        ErrorPage,
+        PageNotFoundPage
     ]
 })
 export class GroModule {

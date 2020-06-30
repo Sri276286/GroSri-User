@@ -5,6 +5,7 @@ import { AddressBookPage } from '../../profile/address-book/address-book.page';
 import { NgForm } from '@angular/forms';
 import { CartService } from 'src/app/common/services/cart.service';
 import { ModalController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
     templateUrl: 'delivery.page.html',
@@ -18,7 +19,8 @@ export class DeliveryPage implements OnInit {
     constructor(private _userService: UserService,
         private _commonService: CommonService,
         private _cartService: CartService,
-        public modalCtrl: ModalController) {
+        public modalCtrl: ModalController,
+        private _router: Router) {
 
     }
 
@@ -45,8 +47,10 @@ export class DeliveryPage implements OnInit {
             this._cartService.resetCart();
             this.modalCtrl.dismiss();
             this._commonService.orderPlaced$.next(true);
-        }, () => {
+        }, (error) => {
             this._commonService.presentToast('Failed to place order. Please try again!');
+            if (error.status === 500)
+                this._router.navigate(['/login']);
         });
     }
 }

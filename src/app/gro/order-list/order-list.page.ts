@@ -92,7 +92,7 @@ export class OrderListPage implements OnInit {
     }
 
     goBack() {
-        this._router.navigate(['/home']);
+        this._router.navigate(['/user/home']);
     }
 
     async presentAlert(order) {

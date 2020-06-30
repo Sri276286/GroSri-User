@@ -29,6 +29,7 @@ export class ApiConfig {
   static userAddressUpdateURL: string = `${ApiConfig.apiHostUrl}/user/address/update`; // POST
   static cartUpdateURL: string = `${ApiConfig.apiHostUrl}/orderProducts/upsert`; // PUT
   static cartUpdateBulkURL: string = `${ApiConfig.apiHostUrl}/orderProducts/upsertbulk`; // PUT
+  static cartTotalURL: string = `${ApiConfig.apiHostUrl}/orders/total/products/IN_CART`; // GET
   // Get each order
   static orderURL: string = `${ApiConfig.apiHostUrl}/orders`; // GET, POST
   static ordersListURL: string = `${ApiConfig.apiHostUrl}/orders/customers`; // GET

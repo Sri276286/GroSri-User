@@ -22,8 +22,8 @@ export class CategoryFullPage implements OnInit {
         });
     }
 
-    onCategoryClick(categoryId: string) {
-        this.presentModal(CategoryStorePage, { categoryId });
+    onCategoryClick(category: string) {
+        this.presentModal(CategoryStorePage, { category });
     }
 
     async presentModal(component, properties) {

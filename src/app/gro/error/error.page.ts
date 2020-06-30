@@ -20,23 +20,26 @@ export class ErrorPage implements OnInit {
     }
 
     ngOnInit() {
-        switch (this.type) {
-            case 'storeList':
-            case 'emptyCart':
-            case 'orderPlaced':
-                this.errorEntity = this._errorService.getErrorByType(this.type);
-                console.log('error ', this.errorEntity);
-                break;
-            case 'currentOrder':
-            case 'pastOrder':
-            case 'emptyStore':
-                this.errorEntity = this._errorService.getErrorByType(this.type);
-                console.log('error ', this.errorEntity);
+        setTimeout(() => {
+            switch (this.type) {
+                case 'storeList':
+                case 'emptyCart':
+                case 'orderPlaced':
+                case 'pageNotFound':
+                    this.errorEntity = this._errorService.getErrorByType(this.type);
+                    console.log('error ', this.errorEntity);
+                    break;
+                case 'currentOrder':
+                case 'pastOrder':
+                case 'emptyStore':
+                    this.errorEntity = this._errorService.getErrorByType(this.type);
+                    console.log('error ', this.errorEntity);
 
-                break;
-            default:
-        }
-        console.log('error ', this.errorEntity);
+                    break;
+                default:
+            }
+            console.log('error ', this.errorEntity);
+        });
     }
 
     handleActions() {
@@ -46,6 +49,7 @@ export class ErrorPage implements OnInit {
                 break;
             case 'emptyCart':
             case 'emptyStore':
+            case 'pageNotFound':
                 this._router.navigate(['/user']);
                 break;
             case 'currentOrder':

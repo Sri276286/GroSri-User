@@ -37,17 +37,6 @@ export class AppComponent {
     this.initializeApp();
   }
 
-  getCart() {
-    // load cart when application is loaded
-    this._cartService.getCartItems().subscribe((res) => {
-      console.log('ressss ', res);
-      this.cartQuantity = res.totalNumOfProducts;
-      console.log('cartaa ', this.cartQuantity);
-    }, () => {
-
-    });
-  }
-
   validateToken() {
     const isLoggedIn = this._commonService.isLogin();
     if (isLoggedIn) {
@@ -67,12 +56,20 @@ export class AppComponent {
   initializeApp() {
     this.platform.ready().then(() => {
       this.validateToken();
-      // this.routehandler();
-      this.handleAppErrors();
       this.getCart();
+      this.handleAppErrors();
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });
+  }
+
+  getCart() {
+    this._cartService.getCartItems().subscribe(() => { },
+      (error) => {
+        if (error.status === 500) {
+          localStorage.clear();
+        }
+      });
   }
 
   loadCategories() {

@@ -63,13 +63,15 @@
       </ion-card-content>
     </ion-card>
     <ion-card>
-      <ion-card-title>
-        <div style="font-weight: 600; font-size: 20px;">
-          Delivery Option
-        </div>
-      </ion-card-title>
       <ion-card-content>
         <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div style="font-weight: 600; font-size: 20px;">
+                Delivery Option
+              </div>
+            </ion-col>
+          </ion-row>
           <ion-row>
             <ion-col>
               <div style="width: 100px; height: 100px;">
@@ -109,7 +111,7 @@
     </ion-card>
     <ion-grid>
       <ion-row>
-        <ion-col>Price: Rs.{{cartTotal}}</ion-col>
+        <ion-col>Price: <span style="font-weight: 600;">Rs.{{cartTotal}}</span></ion-col>
       </ion-row>
       <ion-row>
         <ion-col class="ion-text-center">

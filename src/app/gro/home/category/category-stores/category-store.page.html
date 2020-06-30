@@ -1,8 +1,17 @@
 <ion-header>
-    <ion-toolbar color="success" (click)="modalCtrl.dismiss()">
-      <ion-title>Category</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <gro-store-list [heading]="'Stores that offer category'"></gro-store-list>
-  </ion-content>
+  <ion-toolbar color="success">
+    <div style="display: flex;">
+      <ion-icon
+      name="chevron-back-outline"
+      size="large"
+      (click)="modalCtrl.dismiss()"
+    ></ion-icon>
+    <ion-title style="font-weight:500">{{category.name}}</ion-title>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <gro-store-list (click)="dismiss()"
+    [heading]="'Stores that offer '+ category.name"
+  ></gro-store-list>
+</ion-content>

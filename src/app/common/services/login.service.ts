@@ -62,8 +62,6 @@ export class LoginService {
       if (res && res.accessToken) {
         localStorage.setItem('auth_token', res.accessToken);
         localStorage.setItem('session_active', 'true');
-        // post cart once login
-        this._cartService.getFromLocalStorage();
         // get user details once login is successful
         this.getUser().subscribe();
         // post items to cart if in local storage and loggedin
@@ -123,9 +121,6 @@ export class LoginService {
       const cart = JSON.parse(cartEntity);
       let items = cart && cart.orderProducts ? cart.orderProducts : [];
       if (items.length) {
-        // items.forEach(element => {
-        //   this._cartService.postToCart(element);
-        // });
         console.log('items ', items);
         items = this._mapBulkItems(items);
         this._cartService.postBulkItems(items).subscribe(() => {

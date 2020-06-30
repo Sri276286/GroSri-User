@@ -12,37 +12,53 @@ export class CartPage implements OnInit {
   items = [];
   cartTotal = 0;
   storeId = '';
-  pathToGo: string = '/home';
+  pathToGo: string = '/user/home';
   isOrdered: boolean = false;
   isLoggedIn: boolean = false;
   constructor(public _cartService: CartService,
     public _commonService: CommonService,
     private _activatedRoute: ActivatedRoute) {
-      console.log('aaaaa');
+    console.log('aaaaa');
   }
 
   ngOnInit() {
     this._commonService.orderPlaced$.subscribe((ordered) => {
       this.isOrdered = ordered;
+      this.loadCartFromSaved();
     });
     const fromStore = this._activatedRoute.snapshot.paramMap.get('fromStore');
-    if (fromStore) {
+    if (fromStore && !this.isOrdered) {
       this.pathToGo = '/store/' + fromStore;
     }
+    const fromPastOrder = this._activatedRoute.snapshot.paramMap.get('fromPastOrder');
+    console.log('frr ', fromPastOrder);
     this.isLoggedIn = this._commonService.isLogin();
     console.log('is logged in ', this.isLoggedIn);
-    if (this.isLoggedIn) {
-      this._cartService.getCartItems().subscribe((res: any) => {
-        this.cartTotal = res && res.billTotal || 0;
-        this.items = res && res.orderProducts || [];
-        this.storeId = res && res.store && res.store.id;
-      });
+    if (this.isLoggedIn && !fromPastOrder) {
+      console.log('can load cart!!!');
+      this.loadCart();
+    } else {
+      this.loadCartFromSaved();
     }
-    this._cartService.cartEntity$.subscribe((res) => {
-      console.log('abc ', res);
-      this.cartTotal = res && res.billTotal || 0;
-      this.items = res && res.orderProducts || [];
+  }
+
+  loadCart() {
+    this._cartService.getCartItems().subscribe((res: any) => {
+      this.initialize(res);
     });
+  }
+
+  loadCartFromSaved() {
+    this._cartService.cartEntity$.subscribe((res) => {
+      this.initialize(res);
+    });
+  }
+
+  initialize(res) {
+    console.log('abc ', res);
+    this.cartTotal = res && res.billTotal || 0;
+    this.items = res && res.orderProducts || [];
+    this.storeId = res && res.store && res.store.id;
   }
 
   addItems(item) {

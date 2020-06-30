@@ -1,14 +1,12 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
-import { ModalController, ToastController } from '@ionic/angular';
+import { ModalController, ToastController, LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CommonService {
   defaultLocation: string = '600116';
-  canProceedUpdatingCart: boolean = false;
-  proceedUpdatingCart$: Subject<boolean> = new Subject<boolean>();
   ordersPlaced = [];
   storesListed = [];
   setUserLocation$: BehaviorSubject<string> = new BehaviorSubject<string>('600116');
@@ -16,7 +14,8 @@ export class CommonService {
   loginSuccess$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private modalCtrl: ModalController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController) {
   }
 
   handleUserStorage(property: string, value: any) {
@@ -51,6 +50,18 @@ export class CommonService {
       position: position
     });
     toast.present();
+  }
+
+  async presentLoading(message) {
+    const loading = await this.loadingCtrl.create({
+      message: message,
+      duration: 2500,
+      spinner: 'circles' // "bubbles" | "circles" | "circular" | "crescent" | "dots" | "lines" | "lines-small"
+    });
+    await loading.present();
+
+    const { role, data } = await loading.onDidDismiss();
+    console.log('Loading dismissed!', data, role);
   }
 
   public dismissAllModals() {

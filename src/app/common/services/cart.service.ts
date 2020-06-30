@@ -1,13 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { BehaviorSubject, of } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { map, tap } from 'rxjs/operators';
 import { throwError } from 'rxjs';
 // import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import { CartReplaceDialogComponent } from '../components/floating-modal/cart-replace-dialog/replace-dialog.component';
 import { CommonService } from './common.service';
 import * as _ from 'lodash';
 import { ApiConfig } from '../config/api.config';
+import { AlertController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
@@ -25,7 +26,8 @@ export class CartService {
   private storeCartDetails;
 
   constructor(private _http: HttpClient,
-    private _commonService: CommonService) {
+    private _commonService: CommonService,
+    private _alertCtrl: AlertController) {
   }
 
   /**
@@ -55,12 +57,29 @@ export class CartService {
     } else {
       let cart = this.getCart();
       if (cart) {
-        return of(cart).pipe(map(() => {
+        return of(cart).pipe(tap(() => {
           this.cartEntityMap.set(cart.storeId, cart);
           this.manageCart(cart.orderProducts.length, cart);
         }))
       } else {
         return throwError('Cannot fetch details');
+      }
+    }
+  }
+
+  /**
+   * Get cart items total count
+   */
+  getCartCount() {
+    const isLoggedIn = this._commonService.isLogin();
+    if (isLoggedIn) {
+      return this._http.get(ApiConfig.cartTotalURL);
+    } else {
+      let cart = this.getCart();
+      if (cart) {
+        return of(cart && cart.orderProducts && cart.orderProducts.length);
+      } else {
+        return throwError('Cannot get count');
       }
     }
   }
@@ -133,22 +152,17 @@ export class CartService {
     let cartEntityFromMap = this.checkCartByStoreId(item.storeId);
     const cloneCartMap = _.cloneDeep(cartEntityFromMap);
     console.log('clone ', cloneCartMap);
-    if (cartEntityFromMap) {
-      this.cartEntity = cloneCartMap;
-      this.cartEntity.total = cloneCartMap.billTotal;
+    if (cloneCartMap) {
+      this.cartEntity.storeId = cloneCartMap.storeId;
+      this.cartEntity.orderProducts = cloneCartMap.orderProducts;
+      this.cartEntity.total = cloneCartMap.total || cloneCartMap.billTotal;
       this.handleCartEntity(item);
     } else {
       // check if any store are in cart
       let cartMapLength = this.cartEntityMap.size;
       if (cartMapLength) {
-        this._commonService.canProceedUpdatingCart = false;
         // show an alert to proceed
-        this.showAlert();
-        this._commonService.proceedUpdatingCart$.subscribe((proceed) => {
-          if (proceed) {
-            this.handleCartEntity(item);
-          }
-        });
+        this.presentReplaceAlert(item);
       } else {
         // directly add items
         this.handleCartEntity(item);
@@ -195,32 +209,8 @@ export class CartService {
     this.manageCart(this.cartQuantity, cloneCartEntity);
   }
 
-  private getRequiredItem(item) {
-    return {
-      "storeInventoryProductId": item.storeInventoryProductId,
-      "quantity": item.quantity || 0,
-      "mrp": item.mrp,
-      "price": item.price,
-      "weight": item.weight,
-      "unit": item.unit,
-      "productImgUrl": item.productImgUrl,
-      "itemShortDescription": item.itemShortDescription,
-      "brandName": item.brandName,
-      "max_quantity": item.max_quantity,
-      "available_quantity": item.available_quantity
-    };
-  }
-
   placeOrder(obj) {
     return this._http.put(ApiConfig.placeOrderURL, obj);
-  }
-
-  getFromLocalStorage() {
-    let cart = this.getCart();
-    if (cart && cart.orderProducts && cart.orderProducts.length) {
-      cart.orderProducts = this.mapCart(cart.orderProducts);
-      this.postToCart(cart);
-    }
   }
 
   setInLocalStorage() {
@@ -233,18 +223,33 @@ export class CartService {
     return cart;
   }
 
-  private mapCart(cart) {
-    return cart.map(t => this.getRequiredItem(t));
-  }
-
   private manageCart(cartQuantity: number, cartEntity: any) {
     console.log('cart entity ', cartEntity);
     this.cartEntity$.next(cartEntity);
     this.cartQuantity$.next(cartQuantity);
   }
 
-  public showAlert() {
-    // this._modalService.open(CartReplaceDialogComponent);
+  async presentReplaceAlert(item) {
+    const alert = await this._alertCtrl.create({
+      header: `Replace Items`,
+      message: `Your cart is already having some items. Do you want to replace those items?`,
+      buttons: [
+        {
+          text: 'No',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this.handleCartEntity(item);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

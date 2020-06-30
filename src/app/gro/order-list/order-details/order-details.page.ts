@@ -58,27 +58,25 @@ export class OrderDetailsPage implements OnInit {
     let cartEntity = {
       storeId: this.orderEntity.store && this.orderEntity.store.id,
       total: this.orderEntity.billTotal,
-      orderProducts: this.orderEntity.orderProductLstDTO
+      orderProducts: this.orderEntity.orderProducts
     };
-    let cart = localStorage.getItem('cartEntity');
-    if (cart) {
-      this._cartService.showAlert();
-      this._commonService.proceedUpdatingCart$.subscribe((proceed) => {
-        if (proceed) {
-          this._handleCart(cartEntity);
-        }
-      });
-    } else {
-      this._handleCart(cartEntity);
-    }
+    console.log('cart eneee ', cartEntity);
+    this._cartService.getCartItems().subscribe((res) => {
+      console.log('xxxsss ', res);
+      if (res) {
+        this.presentReplaceAlert(cartEntity);
+      } else {
+        this._handleCart(cartEntity);
+      }
+    });
   }
 
   private _handleCart(cartEntity) {
-    // localStorage.setItem('cartEntity', JSON.stringify(cartEntity));
+    this._cartService.postBulkItems(cartEntity.orderProducts).subscribe();
     this._cartService.cartEntity$.next(cartEntity);
-    this._cartService.cartQuantity$.next(cartEntity.items.length);
+    this._cartService.cartQuantity$.next(cartEntity.orderProducts.length);
     this._cartService.cartEntityMap.set(this.orderEntity.store.id, cartEntity);
-    this._router.navigate(['/cart']);
+    this._router.navigate(['/user/cart', { 'fromPastOrder': true }]);
   }
 
   trackOrder(trackTemplate: TemplateRef<any>) {
@@ -114,6 +112,29 @@ export class OrderDetailsPage implements OnInit {
           text: 'Yes',
           handler: () => {
             this.cancel(order.id);
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+
+  async presentReplaceAlert(cartEntity) {
+    const alert = await this._alertCtrl.create({
+      header: `Replace Items`,
+      message: `Your cart is already having some items. Do you want to replace those items?`,
+      buttons: [
+        {
+          text: 'No',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            console.log('Confirm Cancel: blah');
+          }
+        }, {
+          text: 'Yes',
+          handler: () => {
+            this._handleCart(cartEntity);
           }
         }
       ]

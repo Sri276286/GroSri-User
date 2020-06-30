@@ -14,7 +14,7 @@ export class StorePage implements OnInit {
   storeCatalog;
   public storeEntity;
   public isFavoriteStore: boolean = false;
-  public isLoggedIn: boolean = false;;
+  public isLoggedIn: boolean = false;
 
   private _subscriptions: Subscription[] = [];
   constructor(public _storeItemsService: StoreItemsService,
@@ -25,6 +25,7 @@ export class StorePage implements OnInit {
 
   ngOnInit() {
     this.scrollViewWithMenu();
+    this._commonService.presentLoading('Store is loading. Please wait...');
     this.isLoggedIn = this._commonService.isLogin();
     this._route.paramMap.subscribe((paramMap) => {
       const id = paramMap.get('id');

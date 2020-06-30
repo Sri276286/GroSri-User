@@ -33,7 +33,7 @@ export class LoginPage {
         if (isvalid) {
             this.loginService.login(this.loginForm.value).subscribe(() => {
                 this._commonService.loginSuccess$.next(true);
-                this._router.navigate(['user']);
+                this._router.navigate(['/user']);
             });
         }
     }

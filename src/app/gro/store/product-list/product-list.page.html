@@ -15,10 +15,10 @@
   <ion-item>
     <ion-grid>
       <ion-row>
-        <ion-col size="3" class="ion-padding-top">
+        <ion-col size="3" class="ion-padding-top" *ngIf="item.productImgUrl">
           <ion-img [src]="item.productImgUrl"></ion-img>
         </ion-col>
-        <ion-col size="9">
+        <ion-col [size]="item.productImgUrl ? 9 : 12">
           <div style="display: flex; justify-content: space-between;">
             <span class="span-title">{{item.productName}}</span>
             <span class="span-title">{{item.brandName}}</span>
@@ -84,7 +84,9 @@
                 >
                 <ion-col size="4" class="ion-no-padding"
                   ><ion-button color="light"
-                    ><span style="color: black;font-weight: bold;">{{item.quantity}}</span></ion-button
+                    ><span style="color: black; font-weight: bold;"
+                      >{{item.quantity}}</span
+                    ></ion-button
                   ></ion-col
                 >
                 <ion-col size="4" class="ion-no-padding"

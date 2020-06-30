@@ -55,8 +55,10 @@ export class OrderService {
     return this._http.get(ApiConfig.ordersListURL, { params })
       .pipe(map((res: any) => {
         let orders = res && res.orders;
-        orders = this.mapOrdersWithStatus(orders)
-        const order = orders && orders.length && orders[0];
+        console.log('orders ', orders);
+        orders = this.mapOrdersWithStatus(orders);
+        // As last is the latest by id
+        const order = orders && orders.length && orders[orders.length - 1];
         return order;
       }));
   }
