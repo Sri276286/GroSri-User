@@ -1,0 +1,67 @@
+<ion-header>
+  <ion-toolbar color="success">
+    <div style="display: flex;">
+      <ion-icon
+        name="close-outline"
+        size="large"
+        style="padding-top: 10px;"
+        (click)="modalCtrl.dismiss()"
+      ></ion-icon>
+      <ion-label class="ion-padding">Track Order</ion-label>
+    </div>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-note style="font-size: 22px; padding:10px;"
+    >Call <span style="color: #488aff;">9876543210</span> for support</ion-note
+  >
+  <ion-list>
+    <ion-item class="ion-padding-top">
+      <ion-icon
+        name="checkbox"
+        slot="start"
+        size="large"
+        [color]="color1"
+      ></ion-icon>
+      <ion-label>
+        <h2>Order Placed</h2>
+        <h3>{{order.totalNumOfProducts}} item(s) | Rs.{{order.billTotal}}</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item class="ion-padding-top">
+      <ion-icon
+        name="checkbox"
+        slot="start"
+        size="large"
+        [color]="color2"
+      ></ion-icon>
+      <ion-label>
+        <h2>Order Accepted</h2>
+        <h3>Expected Delivery by Today, 6PM</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item class="ion-padding-top">
+      <ion-icon
+        name="checkbox"
+        slot="start"
+        size="large"
+        [color]="color3"
+      ></ion-icon>
+      <ion-label>
+        <h2>Order Preparing</h2>
+        <h3>Call Store</h3>
+      </ion-label>
+    </ion-item>
+    <ion-item class="ion-padding-top">
+      <ion-icon
+        name="checkbox"
+        slot="start"
+        size="large"
+        [color]="color4"
+      ></ion-icon>
+      <ion-label>
+        <h2>Order Ready</h2>
+      </ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

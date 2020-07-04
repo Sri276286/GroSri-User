@@ -3,6 +3,8 @@ import { OrderConstants } from 'src/app/common/constants/order.constants';
 import { OrderService } from 'src/app/common/services/order.service';
 import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
+import { CommonService } from 'src/app/common/services/common.service';
+import { TrackOrderPage } from './track-order/track-order.page';
 
 @Component({
     templateUrl: 'order-list.page.html',
@@ -24,7 +26,8 @@ export class OrderListPage implements OnInit {
     isStoreRated: boolean = false;
     constructor(private _service: OrderService,
         private _router: Router,
-        private _alertCtrl: AlertController) {
+        private _alertCtrl: AlertController,
+        private _commonService: CommonService) {
     }
 
     ngOnInit() {
@@ -93,6 +96,13 @@ export class OrderListPage implements OnInit {
 
     goBack() {
         this._router.navigate(['/user/home']);
+    }
+
+    /**
+     * Display a modal to track order
+     */
+    trackOrderModal(order) {
+        this._commonService.presentModal(TrackOrderPage, { order });
     }
 
     async presentAlert(order) {

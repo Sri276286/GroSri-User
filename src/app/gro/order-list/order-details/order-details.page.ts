@@ -5,6 +5,7 @@ import { OrderService } from 'src/app/common/services/order.service';
 import { CartService } from 'src/app/common/services/cart.service';
 import { CommonService } from 'src/app/common/services/common.service';
 import { AlertController } from '@ionic/angular';
+import { TrackOrderPage } from '../track-order/track-order.page';
 
 @Component({
   templateUrl: 'order-details.page.html',
@@ -79,8 +80,11 @@ export class OrderDetailsPage implements OnInit {
     this._router.navigate(['/user/cart', { 'fromPastOrder': true }]);
   }
 
-  trackOrder(trackTemplate: TemplateRef<any>) {
-    // this._modalService.open(trackTemplate, { centered: true });
+  /**
+   * Display a modal to track order
+   */
+  trackOrderModal(order) {
+    this._commonService.presentModal(TrackOrderPage, { order });
   }
 
   /**

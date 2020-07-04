@@ -35,6 +35,7 @@ import { DeliveryPage } from './cart/delivery/delivery.page';
 import { RecentOrderPage } from './home/recent-order/recent-order.page';
 import { TabsPage } from './tabs/tabs.page';
 import { PageNotFoundPage } from './page-not-found/page-not-found.page';
+import { TrackOrderPage } from './order-list/track-order/track-order.page';
 
 @NgModule({
     imports: [
@@ -75,6 +76,7 @@ import { PageNotFoundPage } from './page-not-found/page-not-found.page';
         AddressPage,
         DeliveryPage,
         LinePage,
+        TrackOrderPage,
         ErrorPage,
         PageNotFoundPage
     ]

@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar>
+  <ion-toolbar class="success">
     <div style="display: flex;">
       <ion-back-button defaultHref="/orders"></ion-back-button>
       <ion-label class="ion-padding">Order Summary</ion-label>
@@ -23,7 +23,7 @@
     && orderEntity.orderStatus !== cancelledStatus"
     >
       <ion-col class="ion-text-center"
-        ><ion-button color="success">Track</ion-button></ion-col
+        ><ion-button color="success" (click)="trackOrderModal(orderEntity)">Track</ion-button></ion-col
       >
       <ion-col class="ion-text-center"
         ><ion-button color="danger" (click)="cancelOrderAlert(orderEntity)">Cancel</ion-button></ion-col
@@ -50,7 +50,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col *ngIf="orderEntity">
+        <ion-col *ngIf="orderEntity" class="ion-text-center ion-padding-top">
           <ion-label>Total no. of items: </ion-label>
           <span class="span-quantity">
             {{orderEntity.totalNumOfProducts}}
@@ -58,7 +58,7 @@
         </ion-col>
       </ion-row>
       <ion-row>
-        <ion-col>
+        <ion-col *ngIf="orderEntity" class="ion-text-center ion-padding-top">
           <ion-label>Bill Total: </ion-label>
           <span *ngIf="orderEntity" class="span-total"
             >Rs.{{orderEntity.billTotal}}</span
