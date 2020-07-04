@@ -1,5 +1,7 @@
 {
   "name": "grosri-user",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }
