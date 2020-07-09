@@ -11,6 +11,7 @@ import { HomeService } from 'src/app/common/services/home.service';
 export class StoreListPage implements OnInit {
     @Input('heading') heading;
     stores = [];
+    defaultImage = '/assets/images/default.jpg';
     constructor(private _storeService: StoreService,
         private _commonService: CommonService,
         private _homeService: HomeService) {
@@ -31,5 +32,12 @@ export class StoreListPage implements OnInit {
                 isStoreList: true
             });
         });
+    }
+
+    handleBrokenImages(event) {
+        console.log('broken image ', event);
+        // Register the onerror event on the image in case of a 404
+        let img = event.srcElement.shadowRoot.children[0];
+        img.src = this.defaultImage;
     }
 }

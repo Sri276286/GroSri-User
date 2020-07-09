@@ -2,46 +2,51 @@
   {
     "id": "grocery",
     "name": "Grocery",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+    "imgUrl": "https://i.ibb.co/GW96wxj/rsz-packet-3-left-removebg-preview-1.jpg"
   },
   {
     "id": "vegetables",
     "name": "Vegetables",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+    "imgUrl": "https://i.ibb.co/Cs1NfJ2/rsz-b72d5bf4f6a84b6ca4af8f330f19b1ec7acb877e-3504x2336-removebg-preview.jpg"
   },
   {
     "id": "fruits",
     "name": "Fruits",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
-  },
-  {
-    "id": "personal_care",
-    "name": "Personal Care",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
-  },
-  {
-    "id": "households",
-    "name": "Households",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
-  },
-  {
-    "id": "snacks",
-    "name": "Snacks",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
-  },
-  {
-    "id": "beverages",
-    "name": "Beverages",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+    "imgUrl": "https://i.ibb.co/MS1mVzh/rsz-fruit-selection-155265101-web-removebg-preview.jpg"
   },
   {
     "id": "dairy",
     "name": "Dairy",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+    "imgUrl": "https://i.ibb.co/R0RNv8r/rsz-toned1-removebg-preview.jpg"
+  },
+  {
+    "id": "meat",
+    "name": "Meat",
+    "imgUrl": "https://i.ibb.co/tzM4hx9/rsz-chicken-whole-3-1-removebg-preview.jpg"
+  },
+  {
+    "id": "personal_care",
+    "name": "Personal Care",
+    "imgUrl": "https://i.ibb.co/5WF2rJH/rsz-images.jpg"
+  },
+  {
+    "id": "households",
+    "name": "Households",
+    "imgUrl": "https://i.ibb.co/C8knXMN/rsz-pjimage-1-1518888363-removebg-preview.jpg"
+  },
+  {
+    "id": "snacks",
+    "name": "Snacks",
+    "imgUrl": "https://i.ibb.co/zZt897G/rsz-lays-american-style-min-removebg-preview.jpg"
+  },
+  {
+    "id": "beverages",
+    "name": "Beverages",
+    "imgUrl": "https://i.ibb.co/ZzScX4J/rsz-maaza-mango-soft-drink-500x500-removebg-preview.jpg"
   },
   {
     "id": "baby_care",
     "name": "Baby Care",
-    "imgUrl": "https://elasticbeanstalk-us-east-2-467243731184.s3.us-east-2.amazonaws.com/yourstore-img/3perpagerow.jpg"
+    "imgUrl": "https://i.ibb.co/3WRBYMj/rsz-guest-9b55c13d-6887-4296-9140-5282647648b0-removebg-preview.jpg"
   }
 ]

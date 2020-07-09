@@ -1,32 +1,29 @@
 <span class="list-heading" *ngIf="stores.length">
   {{heading}}
 </span>
-<ion-list>
-  <ng-container *ngFor="let store of stores">
-    <ion-item>
-        <ion-grid>
-      <ion-row [routerLink]="['/store', store.id]">
-        <ion-col size="3" *ngIf="store.storeImgUrl">
-          <ion-img [src]="store.storeImgUrl"></ion-img>
-        </ion-col>
-        <ion-col size="9">
-          <ion-row>
-            <ion-col style="font-weight: 600; font-size: 18px;"
-              >{{ store.storeName | titlecase }}</ion-col
-            >
-            <!-- <ion-col size>{{ store.storeCategory | titlecase }}</ion-col> -->
-          </ion-row>
-          <ion-row>
-            <ion-col style="font-weight: 400; font-size: 16px;"
-              >{{ store.supplyItems | titlecase }}</ion-col
-            >
-          </ion-row>
-          <ion-row>
-            <ion-col>{{ store.area | titlecase }}</ion-col>
-          </ion-row>
-        </ion-col>
-      </ion-row>
-    </ion-grid>
-    </ion-item>
-</ng-container>
-</ion-list>
+<ion-grid>
+  <ion-row
+    [routerLink]="['/store', store.id]"
+    *ngFor="let store of stores"
+    class="ion-padding"
+  >
+    <ion-col size="3" *ngIf="store.storeImgUrl">
+      <ion-img
+        [src]="store.storeImgUrl || defaultImage"
+        [alt]="store.storeName"
+        (ionError)="handleBrokenImages($event)"
+      ></ion-img>
+    </ion-col>
+    <ion-col size="9" style="border: 10px;">
+      <div style="font-weight: 600; font-size: 18px;">
+        {{ store.storeName | titlecase }}
+      </div>
+      <div style="font-weight: 400; font-size: 16px; padding: 5px 0px;">
+        {{ store.supplyItems | titlecase }}
+      </div>
+      <div style="padding-bottom:5px;border-bottom: 1px solid lightgrey; opacity: 0.5;">
+        {{ store.area | titlecase }}
+      </div>
+    </ion-col>
+  </ion-row>
+</ion-grid>
