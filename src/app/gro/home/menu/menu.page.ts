@@ -10,7 +10,6 @@ export class MenuPage {
     constructor(public modalCtrl: ModalController) { }
 
     loadCategories() {
-        console.log('load categ');
         this.presentModal(CategoryFullPage, 'modal-menu');
         this.modalCtrl.dismiss();
     }

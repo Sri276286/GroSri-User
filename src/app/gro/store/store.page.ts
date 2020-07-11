@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { StoreItemsService } from 'src/app/common/services/store-items.service';
@@ -15,6 +15,7 @@ export class StorePage implements OnInit {
   public storeEntity;
   public isFavoriteStore: boolean = false;
   public isLoggedIn: boolean = false;
+  // public scrolled: boolean = false;
 
   private _subscriptions: Subscription[] = [];
   constructor(public _storeItemsService: StoreItemsService,
@@ -22,6 +23,10 @@ export class StorePage implements OnInit {
     private _storeService: StoreService,
     private _commonService: CommonService) {
   }
+
+  // @HostListener('document:scroll', []) onScroll() {
+  //   console.log('on scroll');
+  // }
 
   ngOnInit() {
     this.scrollViewWithMenu();
@@ -32,7 +37,6 @@ export class StorePage implements OnInit {
       this._subscriptions.push(
         this._storeItemsService.getItems(id)
           .subscribe((store: any) => {
-            console.log('store ', store);
             if (store.store) {
               this.storeEntity = store.store;
               this.isFavoriteStore = store.store.mark_favorite ? true : false;
@@ -40,7 +44,6 @@ export class StorePage implements OnInit {
             if (store.productsByCategory) {
               this.storeCatalog = store.productsByCategory;
               this.categories = this._storeItemsService.categories;
-              console.log('abbccc', this.categories);
             }
           })
       );
@@ -55,7 +58,6 @@ export class StorePage implements OnInit {
       const spanTags = document.querySelectorAll('#categ-span');
       let matchingEl;
       spanTags.forEach((tag: any) => {
-        console.log(tag.innerText);
         if (tag.innerText === category)
           matchingEl = tag;
       });

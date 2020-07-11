@@ -15,7 +15,6 @@ export class TrackOrderPage implements OnInit {
     constructor(public modalCtrl: ModalController) { }
 
     ngOnInit() {
-        console.log('otrdeee ', this.order);
         switch (this.order && this.order.orderStatus) {
             case 'PLACED':
                 this.color1 = 'success';

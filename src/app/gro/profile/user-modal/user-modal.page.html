@@ -1,17 +1,4 @@
-<ion-header>
-  <ion-toolbar color="success">
-    <ion-grid>
-      <ion-row>
-        <ion-icon
-          name="chevron-back-outline"
-          size="large"
-          (click)="modalCtrl.dismiss()"
-        ></ion-icon>
-        <span class="span-text">Update Profile</span>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-header>
+<gro-header [title]="'Update Profile'"></gro-header>
 <ion-content>
   <form
     [formGroup]="userProfile"

@@ -17,7 +17,6 @@ export class MenuButtonPage {
     }
 
     async presentPopover() {
-        console.log('ss ', this.categories);
         const popover = await this.popoverCtrl.create({
             component: MenuPopoverPage,
             componentProps: {

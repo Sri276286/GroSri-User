@@ -34,10 +34,7 @@
     <ion-list *ngFor="let product of storeCatalog | keyvalue">
       <ion-item>
         <ion-label
-          ><span
-            style="font-weight: 600; font-size: 20px;"
-            id="categ-span"
-            #categ
+          ><span style="font-weight: 600; font-size: 20px;" id="categ-span"
             >{{product.key}}</span
           >
         </ion-label>
@@ -72,16 +69,19 @@
             ></ion-icon>
           </ion-item>
           <ng-container *ngIf="!subprod.expand">
-            <product-list [products]="subprod.value"></product-list>
+            <product-list [products]="subprod.value" [fromStore]="true"></product-list>
           </ng-container>
         </ion-list>
       </ng-container>
       <ng-container *ngIf="product.value.length && !product.expand">
-        <product-list [products]="product.value"></product-list>
+        <product-list [products]="product.value" [fromStore]="true"></product-list>
       </ng-container>
     </ion-list>
     <gro-menu-button [categories]="categories"></gro-menu-button>
     <gro-cart-bar></gro-cart-bar>
   </ng-container>
-  <gro-error [type]="'emptyStore'" *ngIf="!storeCatalog && !categories.length"></gro-error>
+  <gro-error
+    [type]="'emptyStore'"
+    *ngIf="!storeCatalog && !categories.length"
+  ></gro-error>
 </ion-content>

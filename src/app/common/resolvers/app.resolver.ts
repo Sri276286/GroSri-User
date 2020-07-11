@@ -13,7 +13,6 @@ export class AppResolver implements Resolve<any> {
     constructor(private _errorService: ErrorService) { }
 
     resolve(): Observable<any> {
-        console.log('abc');
         return of([]).pipe(tap(() => {
             this._errorService.getErrorList();
         }));

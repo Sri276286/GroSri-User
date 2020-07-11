@@ -84,38 +84,4 @@ export class AppComponent {
     this._commonService.presentModal(AddressBookPage);
   }
 
-  // private routehandler() {
-  //   this._router.events
-  //     .pipe(filter((e) => e instanceof NavigationEnd))
-  //     .subscribe((event: NavigationEnd) => {
-  //       const isvalid = this.validateURL(event);
-  //       console.log('validate ', isvalid);
-  //       if (isvalid) {
-  //         this.showTabs();
-  //       } else {
-  //         this.hideTabs();
-  //       }
-  //     });
-  // }
-
-  // private hideTabs() {
-  //   const tabBar = document.getElementById('myTabBar');
-  //   if (tabBar.style.display !== 'none') tabBar.style.display = 'none';
-  // }
-  // private showTabs() {
-  //   const tabBar = document.getElementById('myTabBar');
-  //   if (tabBar.style.display !== 'flex') tabBar.style.display = 'flex';
-  // }
-
-  // private validateURL(event: NavigationEnd) {
-  //   console.log('url ', event.url);
-  //   if (event.url) {
-  //     const homeCheck = event.urlAfterRedirects.indexOf('/home') !== -1;
-  //     const profileCheck = event.url.indexOf('/profile') !== -1;
-  //     console.log('home check ', homeCheck);
-  //     return homeCheck || profileCheck;
-  //   } else {
-  //     return false;
-  //   }
-  // }
 }

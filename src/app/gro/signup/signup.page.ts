@@ -32,11 +32,8 @@ export class SignupPage {
      * @param isValid
      */
     onSubmit(isValid: boolean) {
-        console.log('is valid ', isValid);
-        console.log('form ', this.registerForm);
         if (isValid) {
             this.loginService.register(this.registerForm.value).subscribe(() => {
-                console.log('registered');
                 this._router.navigate(['/login']);
             });
         }

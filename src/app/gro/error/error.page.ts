@@ -27,18 +27,14 @@ export class ErrorPage implements OnInit {
                 case 'orderPlaced':
                 case 'pageNotFound':
                     this.errorEntity = this._errorService.getErrorByType(this.type);
-                    console.log('error ', this.errorEntity);
                     break;
                 case 'currentOrder':
                 case 'pastOrder':
                 case 'emptyStore':
                     this.errorEntity = this._errorService.getErrorByType(this.type);
-                    console.log('error ', this.errorEntity);
-
                     break;
                 default:
             }
-            console.log('error ', this.errorEntity);
         });
     }
 

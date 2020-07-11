@@ -15,9 +15,7 @@ export class CartBarPage implements OnInit {
   constructor(private _cartService: CartService) { }
 
   ngOnInit() {
-    console.log('cart bar loading...');
     this._cartService.cartEntity$.subscribe((cart) => {
-      console.log('cart ', cart);
       this.storeId = cart && ((cart.store && cart.store.id) || cart.storeId);
       this.cartTotal = cart && (cart.billTotal || cart.total);
       this.quantity = cart && cart.orderProducts && cart.orderProducts.length;

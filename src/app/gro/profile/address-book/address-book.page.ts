@@ -3,6 +3,7 @@ import { UserService } from 'src/app/common/services/user.service';
 import { ModalController } from '@ionic/angular';
 import { AddressPage } from './address/address.page';
 import { LocationModalPage } from '../../home/location/location.page';
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
     templateUrl: 'address-book.page.html',
@@ -13,10 +14,23 @@ export class AddressBookPage implements OnInit {
     userAddressData = [];
 
     constructor(private _userService: UserService,
-        public modalCtrl: ModalController) {
+        public modalCtrl: ModalController,
+        private _commonService: CommonService) {
     }
 
     ngOnInit() {
+        this.getAddresses();
+        this._commonService.addressSaved$.subscribe((isSaved) => {
+            if (isSaved) {
+                this.getAddresses();
+            }
+        });
+    }
+
+    /**
+     * Get list of addresses
+     */
+    getAddresses() {
         this._userService.getAddressList()
             .subscribe((res: any) => {
                 this.userAddressData = res;
@@ -24,6 +38,9 @@ export class AddressBookPage implements OnInit {
             });
     }
 
+    /**
+     * Add address
+     */
     addAddress() {
         this.presentModal(AddressPage, { isNew: true });
     }

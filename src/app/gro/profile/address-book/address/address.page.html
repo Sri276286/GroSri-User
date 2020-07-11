@@ -1,17 +1,4 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-grid>
-      <ion-row>
-        <ion-icon
-          name="chevron-back-outline"
-          size="large"
-          (click)="modalCtrl.dismiss()"
-        ></ion-icon>
-        <ion-label>{{isNew ? 'Add Address': 'Update Address'}}</ion-label>
-      </ion-row>
-    </ion-grid>
-  </ion-toolbar>
-</ion-header>
+<gro-header [title]="isNew ? 'Add Address': 'Update Address'"></gro-header>
 <ion-content>
   <form
     [formGroup]="userAddress"
@@ -147,18 +134,20 @@
           </ion-label>
         </ion-col>
         <ion-col size="8">
-          <ion-radio value="home" formControlName="type"></ion-radio>
-          <ion-label>&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
-
-          <ion-radio value="office" formControlName="type"></ion-radio>
-          <ion-label>&nbsp;&nbsp;Office</ion-label>
+          <ion-radio-group value="HOME" formControlName="type">
+            <ion-radio value="HOME" name="home"></ion-radio>
+            <ion-label>&nbsp;&nbsp;Home&nbsp;&nbsp;&nbsp;&nbsp;</ion-label>
+  
+            <ion-radio value="OFFICE" name="office"></ion-radio>
+            <ion-label>&nbsp;&nbsp;Office</ion-label>
+          </ion-radio-group>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
           <ion-checkbox
             color="secondary"
-            formControlName="primary_address"
+            formControlName="primaryAddress"
           ></ion-checkbox>
           <ion-label>
             Set this as my default delivery address

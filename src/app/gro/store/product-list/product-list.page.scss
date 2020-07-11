@@ -18,3 +18,29 @@
 ion-select {
   border: 1px solid;
 }
+
+.image-container {
+  position: relative;
+  text-align: center;
+}
+
+.text-over-image {
+  position: absolute;
+  top: 40%;
+  border: 1px solid lightgrey;
+  background-color: white;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 5px;
+}
+
+.offer-over-image {
+  position: absolute;
+  top: -20px;
+  left: -10px;
+  border-radius: 50%;
+  background-color: #ffc409;
+  font-weight: 400;
+  font-size: 16px;
+  padding: 10px;
+}

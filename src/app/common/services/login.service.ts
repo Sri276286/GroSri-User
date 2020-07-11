@@ -121,12 +121,11 @@ export class LoginService {
       const cart = JSON.parse(cartEntity);
       let items = cart && cart.orderProducts ? cart.orderProducts : [];
       if (items.length) {
-        console.log('items ', items);
         items = this._mapBulkItems(items);
         this._cartService.postBulkItems(items).subscribe(() => {
           localStorage.removeItem('cartEntity');
         }, () => {
-          console.log('Bulk update failed');
+          this._commonService.presentToast('Bulk update failed');
         });
       }
     }

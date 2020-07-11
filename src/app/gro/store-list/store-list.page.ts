@@ -27,7 +27,6 @@ export class StoreListPage implements OnInit {
         this._storeService.getStores(location).subscribe((result) => {
             this.stores = result && result.storeLst ? result.storeLst : [];
         }, () => {
-            console.log('aaaaa');
             this._homeService.errorsSubject$.next({
                 isStoreList: true
             });
@@ -35,7 +34,6 @@ export class StoreListPage implements OnInit {
     }
 
     handleBrokenImages(event) {
-        console.log('broken image ', event);
         // Register the onerror event on the image in case of a 404
         let img = event.srcElement.shadowRoot.children[0];
         img.src = this.defaultImage;

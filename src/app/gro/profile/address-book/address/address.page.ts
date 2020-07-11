@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { UserService } from 'src/app/common/services/user.service';
 import { ModalController } from '@ionic/angular';
 import { LoginService } from 'src/app/common/services/login.service';
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
     templateUrl: 'address.page.html'
@@ -17,7 +18,8 @@ export class AddressPage implements OnInit {
     constructor(private fb: FormBuilder, private _route: Router,
         private _userService: UserService,
         public modalCtrl: ModalController,
-        private _loginService: LoginService) {
+        private _loginService: LoginService,
+        private _commonService: CommonService) {
     }
 
     ngOnInit() {
@@ -32,8 +34,8 @@ export class AddressPage implements OnInit {
             area: ['', Validators.required],
             city: ['', Validators.required],
             pincode: ['', [Validators.required, Validators.minLength(6), Validators.maxLength(6)]],
-            type: ['home'],
-            primary_address: [false]
+            type: ['HOME'],
+            primaryAddress: [false]
         });
         if (this.address) {
             this.userAddress.patchValue(this.address);
@@ -53,12 +55,15 @@ export class AddressPage implements OnInit {
         const { addressId, ...addressWithoutId } = this.userAddress.value;
         if (isValid) {
             if (this.isNew) {
+                console.log('address without id ', addressWithoutId);
                 this._userService.addAddress(addressWithoutId).subscribe(() => {
-                    this._route.navigate(['/address']);
+                    this.modalCtrl.dismiss();
+                    this._commonService.addressSaved$.next(true);
                 });
             } else {
                 this._userService.updateAddress(this.userAddress.value).subscribe(() => {
-                    this._route.navigate(['/address']);
+                    this.modalCtrl.dismiss();
+                    this._commonService.addressSaved$.next(true);
                 });
             }
         }

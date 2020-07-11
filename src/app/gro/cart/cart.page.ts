@@ -18,7 +18,6 @@ export class CartPage implements OnInit {
   constructor(public _cartService: CartService,
     public _commonService: CommonService,
     private _activatedRoute: ActivatedRoute) {
-    console.log('aaaaa');
   }
 
   ngOnInit() {
@@ -31,11 +30,8 @@ export class CartPage implements OnInit {
       this.pathToGo = '/store/' + fromStore;
     }
     const fromPastOrder = this._activatedRoute.snapshot.paramMap.get('fromPastOrder');
-    console.log('frr ', fromPastOrder);
     this.isLoggedIn = this._commonService.isLogin();
-    console.log('is logged in ', this.isLoggedIn);
     if (this.isLoggedIn && !fromPastOrder) {
-      console.log('can load cart!!!');
       this.loadCart();
     } else {
       this.loadCartFromSaved();
@@ -55,7 +51,6 @@ export class CartPage implements OnInit {
   }
 
   initialize(res) {
-    console.log('abc ', res);
     this.cartTotal = res && res.billTotal || 0;
     this.items = res && res.orderProducts || [];
     this.storeId = res && res.store && res.store.id;

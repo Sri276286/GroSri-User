@@ -1,16 +1,4 @@
-<ion-header>
-  <ion-toolbar color="success">
-    <div style="display: flex;">
-      <ion-icon
-        name="close-outline"
-        size="large"
-        style="padding-top: 10px;"
-        (click)="modalCtrl.dismiss()"
-      ></ion-icon>
-      <ion-label class="ion-padding">Track Order</ion-label>
-    </div>
-  </ion-toolbar>
-</ion-header>
+<gro-header [title]="'Track Order'" [icon]="'close-sharp'"></gro-header>
 <ion-content>
   <ion-note style="font-size: 22px; padding:10px;"
     >Call <span style="color: #488aff;">9876543210</span> for support</ion-note

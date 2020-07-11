@@ -27,7 +27,6 @@ export class DeliveryPage implements OnInit {
     ngOnInit() {
         this._userService.getPrimaryAddress()
             .subscribe((address) => {
-                console.log('address ', address);
                 this.userAddress = address;
             });
     }
@@ -37,7 +36,6 @@ export class DeliveryPage implements OnInit {
     }
 
     placeOrder(form: NgForm) {
-        console.log('form ', form);
         const obj = {
             "orderAddress": this.userAddress,
             "orderStatus": "PLACED",

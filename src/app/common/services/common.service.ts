@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, Subject, of, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { ModalController, ToastController, LoadingController } from '@ionic/angular';
 
 @Injectable({
@@ -12,6 +12,7 @@ export class CommonService {
   setUserLocation$: BehaviorSubject<string> = new BehaviorSubject<string>('600116');
   orderPlaced$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   loginSuccess$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  addressSaved$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
 
   constructor(private modalCtrl: ModalController,
     private toastCtrl: ToastController,
@@ -61,7 +62,6 @@ export class CommonService {
     await loading.present();
 
     const { role, data } = await loading.onDidDismiss();
-    console.log('Loading dismissed!', data, role);
   }
 
   public dismissAllModals() {

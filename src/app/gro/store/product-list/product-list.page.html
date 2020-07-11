@@ -16,12 +16,31 @@
     <ion-grid>
       <ion-row>
         <ion-col size="3" class="ion-padding-top" *ngIf="item.productImgUrl">
-          <ion-img [src]="item.productImgUrl"></ion-img>
+          <div class="image-container">
+            <div class="offer-over-image" *ngIf="item.discount && !item.available_quantity">
+              <div>5%</div>
+              <div>off</div>
+            </div>
+            <ion-img
+              [src]="item.productImgUrl"
+              [ngStyle]="{'opacity': item.available_quantity ? 1: 0.5}"
+            ></ion-img>
+            <div class="text-over-image" *ngIf="!item.available_quantity">
+              OUT OF STOCK
+            </div>
+            <div
+              class="text-over-image"
+              style="background-color: #2dd36f; color: white;"
+              *ngIf="item.quantity && fromStore"
+            >
+              IN CART
+            </div>
+          </div>
         </ion-col>
         <ion-col [size]="item.productImgUrl ? 9 : 12">
           <div style="display: flex; justify-content: space-between;">
             <span class="span-title">{{item.productName}}</span>
-            <span class="span-title">{{item.brandName}}</span>
+            <span class="span-title" style="border:1px solid lightgrey;padding:3px;">{{item.brandName}}</span>
           </div>
           <ion-row>
             <ion-col>
@@ -39,15 +58,6 @@
               *ngFor="let val of item.storeInventoryProductUnit"
             >
               <span>{{val.weight}} {{val.unit}}</span>
-              <!-- <span>
-                MRP:
-              </span>
-              <span class="span-mrp">
-                Rs.{{item.mrp}}
-              </span>
-              <span class="span-content">
-                Rs.{{item.price}}
-              </span> -->
             </ion-select-option>
           </ion-select>
           <ion-row
@@ -58,7 +68,7 @@
             </ion-col>
           </ion-row>
           <ion-row>
-            <ion-col size="6">
+            <ion-col size="6" *ngIf="item.price">
               <span>
                 MRP:
               </span>
@@ -69,7 +79,7 @@
                 Rs.{{item.price}}
               </span>
             </ion-col>
-            <ion-col size="6">
+            <ion-col size="6" *ngIf="item.available_quantity">
               <ion-button
                 size="default"
                 *ngIf="!item.quantity"

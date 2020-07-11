@@ -29,7 +29,6 @@ export class LoginPage {
      * @param isvalid
      */
     submit(isvalid: boolean) {
-        console.log('forrr ', this.loginForm.value);
         if (isvalid) {
             this.loginService.login(this.loginForm.value).subscribe(() => {
                 this._commonService.loginSuccess$.next(true);

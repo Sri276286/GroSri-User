@@ -25,7 +25,6 @@ export class LocationModalPage implements OnInit {
         this.queryField.valueChanges
             .pipe(debounceTime(1000))
             .subscribe((result) => {
-                console.log('search res ', result);
                 if (result && result.length) {
                     this.showClear = true;
                 } else {

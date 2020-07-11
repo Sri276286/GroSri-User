@@ -48,16 +48,19 @@ export class UserService {
    * Map primary address to top list
    * @param addressList
    */
-  private _mapAddressList(addressList) {
+  private _mapAddressList(addressList: any[]) {
     // find primary address
     const primary = addressList.find(t => t.primaryAddress);
+    console.log('primary ', primary);
     if (primary) {
       const index = addressList.indexOf(primary);
-      // add to beginning
-      addressList.unshift(primary);
+      console.log('index ', index);
       // remove from list
       addressList.splice(index, 1);
+      // add to beginning
+      addressList.unshift(primary);
     }
+    console.log('addressList ', addressList);
     return addressList;
   }
 }

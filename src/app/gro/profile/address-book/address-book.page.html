@@ -7,7 +7,9 @@
           size="large"
           (click)="modalCtrl.dismiss()"
         ></ion-icon>
-        <ion-button color="light" fill="block" (click)="loadLocation()">Search by pincode</ion-button>
+        <ion-button color="light" fill="block" (click)="loadLocation()"
+          >Search by pincode</ion-button
+        >
       </ion-row>
     </ion-grid>
   </ion-toolbar>
@@ -29,20 +31,37 @@
           <ion-grid>
             <ion-row>
               <ion-col>
-                {{userAddress.primary_address ? 'Default Address' :
-                userAddress.type ? userAddress.type : 'Other'}}
+                <ion-label *ngIf="userAddress.primaryAddress"
+                  ><ion-icon name="checkmark-sharp" style="font-size: 24px;"></ion-icon> Default Address</ion-label
+                >
+                <ion-label *ngIf="!userAddress.primaryAddress"
+                  >{{userAddress.type ? userAddress.type : 'Other'}}</ion-label
+                >
               </ion-col>
               <ion-col class="ion-text-end">
-                <ion-icon name="create-outline" color="medium"></ion-icon>
-                <span> | </span>
-                <ion-icon name="trash-outline" color="danger"></ion-icon>
+                <ion-icon
+                  name="create-outline"
+                  color="medium"
+                  style="font-size: 24px;"
+                ></ion-icon>
+                <span style="font-size: 24px;"> | </span>
+                <ion-icon
+                  name="trash-outline"
+                  color="danger"
+                  style="font-size: 24px;"
+                ></ion-icon>
               </ion-col>
             </ion-row>
             <ion-row>
               <ion-col>
                 <ion-list>
                   <ion-label>{{ userAddress.name | titlecase }}</ion-label>
-                  <ion-label>{{ userAddress.flatNo }}</ion-label>
+                  <ion-label
+                    ><span>{{ userAddress.flatNo }}</span>
+                    <span *ngIf="userAddress.apartment"
+                      >,&nbsp;&nbsp;{{ userAddress.apartment }}</span
+                    ></ion-label
+                  >
                   <ion-label>{{ userAddress.street | titlecase }}</ion-label>
                   <ion-label>{{ userAddress.landmark | titlecase }}</ion-label>
                   <ion-label>{{ userAddress.area | titlecase }}</ion-label>

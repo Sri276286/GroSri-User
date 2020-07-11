@@ -19,7 +19,6 @@ export class CategoryService {
     }
 
     getStoresByCategory(id: string) {
-        console.log('id ', id);
         return new Observable((observer) => {
             this._commonService.getUserLocation().subscribe((location: string) => {
                 if (location) {

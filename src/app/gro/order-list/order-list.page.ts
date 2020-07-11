@@ -40,7 +40,6 @@ export class OrderListPage implements OnInit {
      */
     getCurrentOrders() {
         this._service.getCurrentOrders().subscribe((res: any) => {
-            console.log('rrr ', res);
             this.currentOrders = res;
         }, () => { });
     }
@@ -50,13 +49,11 @@ export class OrderListPage implements OnInit {
      */
     getPastOrders() {
         this._service.getPastOrders().subscribe((res: any) => {
-            console.log('rrr past ', res);
             this.pastOrders = res;
         }, () => { });
     }
 
     orderSegmentChange(value) {
-        console.log('value ', value);
         if (value.detail.value === 'past_orders') {
             this.showCurrentOrders = false;
         } else {
@@ -94,10 +91,6 @@ export class OrderListPage implements OnInit {
         this.canReview = true;
     }
 
-    goBack() {
-        this._router.navigate(['/user/home']);
-    }
-
     /**
      * Display a modal to track order
      */
@@ -114,7 +107,6 @@ export class OrderListPage implements OnInit {
                     text: 'No',
                     cssClass: 'secondary',
                     handler: (blah) => {
-                        console.log('Confirm Cancel: blah');
                     }
                 }, {
                     text: 'Yes',

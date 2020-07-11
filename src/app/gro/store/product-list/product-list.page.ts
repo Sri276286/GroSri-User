@@ -1,5 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
-import { ModalController } from '@ionic/angular';
+import { Component, Input } from '@angular/core';
 import { CartService } from 'src/app/common/services/cart.service';
 
 @Component({
@@ -7,8 +6,9 @@ import { CartService } from 'src/app/common/services/cart.service';
     templateUrl: 'product-list.page.html',
     styleUrls: ['./product-list.page.scss']
 })
-export class ProductListPage implements OnInit {
+export class ProductListPage {
     @Input('products') products;
+    @Input() fromStore?: boolean = false;
 
     weightAlertOptions: any = {
         header: 'Choose Weight',
@@ -16,10 +16,6 @@ export class ProductListPage implements OnInit {
       };
 
     constructor(private _cartService: CartService) { }
-
-    ngOnInit() {
-        console.log('producccc ', this.products);
-    }
 
     onWeightChange(val, item) {
         // map quantity for already selected weights

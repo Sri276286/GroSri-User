@@ -17,7 +17,6 @@ export class CategoryFullPage implements OnInit {
 
     getCategoryList() {
         this._categoryService.getCategories().subscribe((resp: any) => {
-            console.log('res ', resp);
             this.categories = resp;
         });
     }

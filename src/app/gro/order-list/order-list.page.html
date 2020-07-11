@@ -1,15 +1,4 @@
-<ion-header>
-  <ion-toolbar class="success">
-    <div style="display: flex;">
-      <ion-icon
-        name="chevron-back-outline"
-        size="large"
-        (click)="goBack()"
-      ></ion-icon>
-      <ion-label class="ion-padding">My Orders</ion-label>
-    </div>
-  </ion-toolbar>
-</ion-header>
+<gro-header [title]="'My Orders'" [path]="'/user/home'"></gro-header>
 <ion-content>
   <ion-segment
     value="current_orders"

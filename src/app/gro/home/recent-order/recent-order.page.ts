@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Input } from '@angular/core';
 import { OrderService } from 'src/app/common/services/order.service';
 import { CommonService } from 'src/app/common/services/common.service';
 import { OrderConstants } from 'src/app/common/constants/order.constants';
@@ -8,6 +8,8 @@ import { OrderConstants } from 'src/app/common/constants/order.constants';
     templateUrl: 'recent-order.page.html'
 })
 export class RecentOrderPage implements OnInit {
+
+    @Input() heading;
     recentOrder;
     placedStatus = OrderConstants.PLACED;
     acceptedStatus = OrderConstants.ACCEPTED;

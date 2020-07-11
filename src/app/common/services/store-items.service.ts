@@ -33,7 +33,6 @@ export class StoreItemsService {
               this.categories = [];
               this.mapProducts(result.productsByCategory);
               observer.next(result);
-            }, () => {
             });
           } else {
             observer.next(res);
@@ -52,9 +51,13 @@ export class StoreItemsService {
     this.productsList = [];
     for (let category in itemsRes) {
       this.categories = [...this.categories, category];
-      this.getItemsObjectOnCategory(category);
       for (let subcategory in itemsRes[category]) {
-        this.productsList = [...this.productsList, ...itemsRes[category][subcategory]];
+        if (subcategory === 'Main') {
+          itemsRes[category] = itemsRes[category][subcategory];
+          this.productsList = [...this.productsList, ...itemsRes[category]];
+        } else {
+          this.productsList = [...this.productsList, ...itemsRes[category][subcategory]];
+        }
       }
     }
   }
@@ -131,21 +134,8 @@ export class StoreItemsService {
    * Get products list based on category divided as sub categories
    * @param category
    */
-  getProductsWithCategory(category: string): Observable<any> {
+  public getProductsWithCategory(category: string): Observable<any> {
     return of(this.storeProductsList[category]);
   }
 
-  private getItemsObjectOnCategory(category) {
-    let subCats = [];
-    let itemsOnCategory = this.storeProductsList[category];
-    for (let subcategory in itemsOnCategory) {
-      subCats = [...subCats, subcategory];
-      this.getItemsObjectOnCategSubCategory(category, subcategory);
-    }
-    this.subCategoriesWithCategory[category] = subCats;
-  }
-
-  private getItemsObjectOnCategSubCategory(category, subcategory) {
-    return this.storeProductsList[category][subcategory];
-  }
 }

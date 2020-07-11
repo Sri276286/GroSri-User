@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { CategoryService } from 'src/app/common/services/category.service';
 import { CategoryStorePage } from './category-stores/category-store.page';
 import { ModalController } from '@ionic/angular';
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
     selector: 'gro-category',
@@ -16,7 +17,7 @@ export class CategoryPage implements OnInit {
     };
     categories = [];
     constructor(private _categoryService: CategoryService,
-        private modalCtrl: ModalController) { }
+        private _commonService: CommonService) { }
 
     ngOnInit() {
         this.getCategoryList();
@@ -24,20 +25,12 @@ export class CategoryPage implements OnInit {
 
     getCategoryList() {
         this._categoryService.getCategories().subscribe((resp: any) => {
-            console.log('res ', resp);
             this.categories = resp;
         });
     }
 
-    onCategoryClick(categoryId: string) {
-        this.presentModal(CategoryStorePage, { categoryId });
+    onCategoryClick(category: any) {
+        this._commonService.presentModal(CategoryStorePage, { category });
     }
 
-    async presentModal(component, properties) {
-        const modal = await this.modalCtrl.create({
-            component: component,
-            componentProps: properties
-        });
-        return await modal.present();
-    }
 }

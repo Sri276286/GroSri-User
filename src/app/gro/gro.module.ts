@@ -36,6 +36,8 @@ import { RecentOrderPage } from './home/recent-order/recent-order.page';
 import { TabsPage } from './tabs/tabs.page';
 import { PageNotFoundPage } from './page-not-found/page-not-found.page';
 import { TrackOrderPage } from './order-list/track-order/track-order.page';
+import { HeaderPage } from './header/header.page';
+import { DashboardHeadingDirective } from '../common/directives/dashboard-heading.directive';
 
 @NgModule({
     imports: [
@@ -49,6 +51,7 @@ import { TrackOrderPage } from './order-list/track-order/track-order.page';
         TabsPage,
         GroHomePage,
         HomeContentPage,
+        HeaderPage,
         LoginPage,
         SignupPage,
         CategoryPage,
@@ -78,7 +81,8 @@ import { TrackOrderPage } from './order-list/track-order/track-order.page';
         LinePage,
         TrackOrderPage,
         ErrorPage,
-        PageNotFoundPage
+        PageNotFoundPage,
+        DashboardHeadingDirective
     ]
 })
 export class GroModule {

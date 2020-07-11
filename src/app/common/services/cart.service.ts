@@ -38,7 +38,6 @@ export class CartService {
     if (isLoggedIn) {
       return this._http.get(`${ApiConfig.commonCartAndOrderURL}/IN_CART`)
         .pipe(map((res: any) => {
-          console.log('get cart items ', res);
           const cart = res && res.orders && res.orders.length && res.orders[0];
           this.storeCartDetails = cart;
           if (cart && cart.billTotal && cart.orderProducts) {
@@ -151,7 +150,6 @@ export class CartService {
     // check if already items presnt in cart (same or different store)
     let cartEntityFromMap = this.checkCartByStoreId(item.storeId);
     const cloneCartMap = _.cloneDeep(cartEntityFromMap);
-    console.log('clone ', cloneCartMap);
     if (cloneCartMap) {
       this.cartEntity.storeId = cloneCartMap.storeId;
       this.cartEntity.orderProducts = cloneCartMap.orderProducts;
@@ -177,25 +175,20 @@ export class CartService {
   private handleCartEntity(item) {
     let isItemInCart = this.cartEntity && this.cartEntity.orderProducts.find(t => t.storeInventoryProductUnitId === item.storeInventoryProductUnitId);
     let itemIndex = isItemInCart && this.cartEntity && this.cartEntity.orderProducts.indexOf(isItemInCart);
-    console.log('is item ', isItemInCart);
-    console.log('cart eee ', this.cartEntity);
     if (!isItemInCart) {
       this.cartEntity.orderProducts = [...this.cartEntity.orderProducts, item];
       this.cartEntity.total += item.price;
       this.cartQuantity++;
     } else {
       if (item && item.quantity) {
-        console.log('here item ', this.cartEntity.total, item.price);
         this.cartEntity.orderProducts[itemIndex] = item;
         this.cartEntity.total += item.price;
-        console.log('here ', this.cartEntity.total);
       } else {
         this.cartEntity.orderProducts.splice(itemIndex, 1);
         this.cartEntity.total -= item.price;
         this.cartQuantity--;
       }
     }
-    console.log('cart ', this.cartEntity);
     // Add store id
     this.cartEntity.storeId = item.storeId;
     let cloneCartEntity = _.cloneDeep(this.cartEntity);
@@ -224,7 +217,6 @@ export class CartService {
   }
 
   private manageCart(cartQuantity: number, cartEntity: any) {
-    console.log('cart entity ', cartEntity);
     this.cartEntity$.next(cartEntity);
     this.cartQuantity$.next(cartQuantity);
   }
@@ -238,7 +230,6 @@ export class CartService {
           text: 'No',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Yes',

@@ -1,11 +1,4 @@
-<ion-header>
-  <ion-toolbar class="success">
-    <div style="display: flex;">
-      <ion-back-button defaultHref="/orders"></ion-back-button>
-      <ion-label class="ion-padding">Order Summary</ion-label>
-    </div>
-  </ion-toolbar>
-</ion-header>
+<gro-header [title]="'Order Summary'" [path]="'/orders'"></gro-header>
 <ion-content>
   <ion-grid *ngIf="orderEntity">
     <ion-row

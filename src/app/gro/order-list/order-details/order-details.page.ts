@@ -37,9 +37,7 @@ export class OrderDetailsPage implements OnInit {
     this._route.paramMap.subscribe((paramMap) => {
       const id = paramMap.get('id');
       this._service.getOrderById(id).subscribe((res: any) => {
-        console.log('dd ', res);
         this.orderEntity = res.orders.length && res.orders[0];
-        console.log('order entity ', this.orderEntity);
         this.storeDetails = this.orderEntity && this.orderEntity.store;
         this.items = this.orderEntity.orderProducts;
       });
@@ -47,7 +45,6 @@ export class OrderDetailsPage implements OnInit {
   }
 
   orderSegmentChange(value) {
-    console.log('value ', value);
     if (value.detail.value === 'order_summary') {
       this.showSummary = true;
     } else {
@@ -61,9 +58,7 @@ export class OrderDetailsPage implements OnInit {
       total: this.orderEntity.billTotal,
       orderProducts: this.orderEntity.orderProducts
     };
-    console.log('cart eneee ', cartEntity);
     this._cartService.getCartItems().subscribe((res) => {
-      console.log('xxxsss ', res);
       if (res) {
         this.presentReplaceAlert(cartEntity);
       } else {
@@ -110,7 +105,6 @@ export class OrderDetailsPage implements OnInit {
           text: 'No',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Yes',
@@ -133,7 +127,6 @@ export class OrderDetailsPage implements OnInit {
           text: 'No',
           cssClass: 'secondary',
           handler: (blah) => {
-            console.log('Confirm Cancel: blah');
           }
         }, {
           text: 'Yes',

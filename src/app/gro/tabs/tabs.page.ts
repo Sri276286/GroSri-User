@@ -26,11 +26,8 @@ export class TabsPage implements OnInit {
     getCart() {
         // load cart when application is loaded
         this._cartService.getCartCount().subscribe((res) => {
-            console.log('ressss ', res);
             this.cartQuantity = res;
-            console.log('cartaa ', this.cartQuantity);
         }, (error) => {
-            console.log('error ', error);
             if (error.status === 500) {
                 localStorage.clear();
             }
@@ -42,7 +39,6 @@ export class TabsPage implements OnInit {
             .pipe(filter((e) => e instanceof NavigationEnd))
             .subscribe((event: NavigationEnd) => {
                 const isvalid = this.validateURL(event);
-                console.log('validate ', isvalid);
                 if (isvalid) {
                     this.showTabs();
                 } else {
@@ -61,10 +57,8 @@ export class TabsPage implements OnInit {
     }
 
     private validateURL(event: NavigationEnd) {
-        console.log('url ', event.url);
         if (event.url) {
             const cartCheck = event.url.indexOf('/cart') === -1;
-            console.log('home check ', cartCheck);
             return cartCheck;
         } else {
             return false;
