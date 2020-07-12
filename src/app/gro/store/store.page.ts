@@ -4,13 +4,13 @@ import { ActivatedRoute } from '@angular/router';
 import { StoreItemsService } from 'src/app/common/services/store-items.service';
 import { StoreService } from 'src/app/common/services/store.service';
 import { CommonService } from 'src/app/common/services/common.service';
+import { ProductSearchPage } from './product-search/product-search.component';
 
 @Component({
   templateUrl: 'store.page.html',
   styleUrls: ['./store.page.scss']
 })
 export class StorePage implements OnInit {
-  categories = [];
   storeCatalog;
   public storeEntity;
   public isFavoriteStore: boolean = false;
@@ -43,7 +43,7 @@ export class StorePage implements OnInit {
             }
             if (store.productsByCategory) {
               this.storeCatalog = store.productsByCategory;
-              this.categories = this._storeItemsService.categories;
+              console.log('store catalog ', this.storeCatalog);
             }
           })
       );
@@ -54,11 +54,11 @@ export class StorePage implements OnInit {
    * Scrolls based on menu selection
    */
   scrollViewWithMenu() {
-    this._storeService.categorySelected$.subscribe((category) => {
+    this._storeService.categorySelected$.subscribe((entity) => {
       const spanTags = document.querySelectorAll('#categ-span');
       let matchingEl;
       spanTags.forEach((tag: any) => {
-        if (tag.innerText === category)
+        if (tag.innerText === entity.name)
           matchingEl = tag;
       });
       if (matchingEl) {
@@ -76,6 +76,13 @@ export class StorePage implements OnInit {
     this._storeService.markFavorite(favorite).subscribe(() => {
       this.isFavoriteStore = !this.isFavoriteStore;
     });
+  }
+
+  /**
+   * Loads product search modal
+   */
+  productSearchModal() {
+    this._commonService.presentModal(ProductSearchPage);
   }
 
 }

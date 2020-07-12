@@ -11,13 +11,14 @@
           >
         </ion-col>
         <ion-col size="1" class="ion-padding-top" *ngIf="storeCatalog">
-          <ion-icon name="search" style="font-size: 24px;"></ion-icon>
+          <ion-icon name="search" style="font-size: 24px;"
+          (click)="productSearchModal()"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="ion-padding-bottom">
   <ion-grid>
     <ion-row>
       <span class="span-store-name">
@@ -31,12 +32,15 @@
     </ion-row>
   </ion-grid>
   <ng-container *ngIf="storeCatalog">
-    <ion-list *ngFor="let product of storeCatalog | keyvalue">
+    <ion-list *ngFor="let product of storeCatalog">
       <ion-item>
         <ion-label
-          ><span style="font-weight: 600; font-size: 20px;" id="categ-span"
-            >{{product.key}}</span
-          >
+          ><div style="font-weight: 600; font-size: 20px;" id="categ-span">
+            {{product.category}}
+          </div>
+          <div style="font-weight: 400; font-size: 18px;">
+            {{product.numberOfItems}} Items
+          </div>
         </ion-label>
         <ion-icon
           name="chevron-down-outline"
@@ -51,8 +55,8 @@
           *ngIf="product.expand"
         ></ion-icon>
       </ion-item>
-      <ng-container *ngIf="!product.value.length && !product.expand">
-        <ion-list *ngFor="let subprod of product.value | keyvalue">
+      <ng-container *ngIf="!product.items.length && !product.expand">
+        <ion-list *ngFor="let subprod of product.items | keyvalue">
           <ion-item>
             <ion-label>{{subprod.key}}</ion-label>
             <ion-icon
@@ -69,19 +73,25 @@
             ></ion-icon>
           </ion-item>
           <ng-container *ngIf="!subprod.expand">
-            <product-list [products]="subprod.value" [fromStore]="true"></product-list>
+            <product-list
+              [products]="subprod.value"
+              [fromStore]="true"
+            ></product-list>
           </ng-container>
         </ion-list>
       </ng-container>
-      <ng-container *ngIf="product.value.length && !product.expand">
-        <product-list [products]="product.value" [fromStore]="true"></product-list>
+      <ng-container *ngIf="product.items.length && !product.expand">
+        <product-list
+          [products]="product.items"
+          [fromStore]="true"
+        ></product-list>
       </ng-container>
     </ion-list>
-    <gro-menu-button [categories]="categories"></gro-menu-button>
+    <gro-menu-button [categories]="storeCatalog"></gro-menu-button>
     <gro-cart-bar></gro-cart-bar>
   </ng-container>
   <gro-error
     [type]="'emptyStore'"
-    *ngIf="!storeCatalog && !categories.length"
+    *ngIf="!storeCatalog"
   ></gro-error>
 </ion-content>

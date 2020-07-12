@@ -12,8 +12,8 @@ export class MenuPopoverPage {
         private _popCtrl: PopoverController) {
     }
 
-    onCategorySelect(name) {
-        this._storeService.categorySelected$.next(name);
+    onCategorySelect(name, selected: boolean = false) {
+        this._storeService.categorySelected$.next({name, selected});
         this._popCtrl.dismiss();
     }
 }

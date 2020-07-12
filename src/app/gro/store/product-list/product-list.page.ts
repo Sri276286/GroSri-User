@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { CartService } from 'src/app/common/services/cart.service';
+import { ModalController } from '@ionic/angular';
 
 @Component({
     selector: 'product-list',
@@ -9,13 +10,11 @@ import { CartService } from 'src/app/common/services/cart.service';
 export class ProductListPage {
     @Input('products') products;
     @Input() fromStore?: boolean = false;
+    @Input() fromSearch?: boolean = false;
+    @Input() fromCart?: boolean = false;
 
-    weightAlertOptions: any = {
-        header: 'Choose Weight',
-        translucent: true,
-      };
-
-    constructor(private _cartService: CartService) { }
+    constructor(private _cartService: CartService,
+        private _modalCtrl: ModalController) { }
 
     onWeightChange(val, item) {
         // map quantity for already selected weights
@@ -25,12 +24,16 @@ export class ProductListPage {
         item.price = weightEntity.price;
         item.storeInventoryProductUnitId = weightEntity.id;
         item.quantity = weightEntity.quantity;
+        item.productImgUrl = weightEntity.productImgUrl;
     }
 
     /**
      * Add item to the cart
      */
     addItem(item) {
+        if (this.fromSearch) {
+            this._modalCtrl.dismiss();
+        }
         this._cartService.addItems(item);
     }
 

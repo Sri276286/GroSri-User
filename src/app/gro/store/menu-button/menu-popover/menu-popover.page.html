@@ -1,7 +1,14 @@
 <ion-list>
-  <ion-item *ngFor="let category of categories">
-    <ion-label (click)="onCategorySelect(category)"
-      >{{category}}</ion-label
+  <ion-item
+    *ngFor="let category of categories;let i = index"
+    [ngStyle]="{'font-weight': category.selected ? 'bold' : 'normal'}"
+  >
+    <ion-label
+      (click)="onCategorySelect(category.category, true)"
+      >{{category.category | titlecase}}</ion-label
+    >
+    <ion-note slot="end" style="font-size: 18px;"
+      >{{category.numberOfItems}}</ion-note
     >
   </ion-item>
 </ion-list>

@@ -1,10 +1,12 @@
 <div class="display-cart-grid" *ngIf="cartTotal && quantity">
   <div>{{ cartQuantity }} | Rs.{{ cartTotal }}</div>
   <div [routerLink]="['/user', 'cart', {fromStore: storeId}]">
-    <ion-label>View Cart</ion-label>
-    <ion-icon name="basket-outline" size="large"></ion-icon>
-    <ion-badge color="success"
-      ><span class="cart-badge">{{quantity}}</span></ion-badge
-    >
+    <!-- <ion-label>View Cart</ion-label> -->
+    <ion-label style="position: relative;">
+      <ion-icon name="cart-outline" size="large"></ion-icon>
+      <ion-badge color="success" style="position: absolute;left:20px;"
+        ><span class="cart-badge">{{quantity}}</span></ion-badge
+      >
+    </ion-label>
   </div>
 </div>

@@ -1,10 +1,13 @@
 <gro-header [title]="'Cart Summary'" [path]="pathToGo"></gro-header>
-<ion-content>
+<ion-content class="ion-padding-bottom">
   <div class="ion-text-center" *ngIf="items.length">
     <ion-button color="danger" (click)="emptyCart()">Empty Cart</ion-button>
   </div>
-  <product-list [products]="items"></product-list>
+  <product-list [products]="items" [fromCart]="true"></product-list>
   <gro-error [type]="'orderPlaced'" *ngIf="isOrdered"></gro-error>
-  <gro-error [type]="'emptyCart'" *ngIf="!items.length && !isOrdered"></gro-error>
+  <gro-error
+    [type]="'emptyCart'"
+    *ngIf="!items.length && !isOrdered"
+  ></gro-error>
   <gro-cart-checkout></gro-cart-checkout>
 </ion-content>

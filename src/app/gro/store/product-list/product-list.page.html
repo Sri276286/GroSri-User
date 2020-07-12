@@ -17,7 +17,10 @@
       <ion-row>
         <ion-col size="3" class="ion-padding-top" *ngIf="item.productImgUrl">
           <div class="image-container">
-            <div class="offer-over-image" *ngIf="item.discount && !item.available_quantity">
+            <div
+              class="offer-over-image"
+              *ngIf="item.discount && !item.available_quantity"
+            >
               <div>5%</div>
               <div>off</div>
             </div>
@@ -40,7 +43,11 @@
         <ion-col [size]="item.productImgUrl ? 9 : 12">
           <div style="display: flex; justify-content: space-between;">
             <span class="span-title">{{item.productName}}</span>
-            <span class="span-title" style="border:1px solid lightgrey;padding:3px;">{{item.brandName}}</span>
+            <span
+              class="span-title"
+              style="border: 1px solid lightgrey; padding: 3px;"
+              >{{item.brandName}}</span
+            >
           </div>
           <ion-row>
             <ion-col>
@@ -48,10 +55,11 @@
             </ion-col>
           </ion-row>
           <ion-select
-            [interfaceOptions]="weightAlertOptions"
+            [interfaceOptions]="{header: 'Select weights for ' + item.productName}"
             [ngModel]="item.weight"
             (ngModelChange)="onWeightChange($event, item)"
-            *ngIf="item.storeInventoryProductUnit && item.storeInventoryProductUnit.length > 1"
+            *ngIf="item.storeInventoryProductUnit && item.storeInventoryProductUnit.length > 1
+            && !fromCart"
           >
             <ion-select-option
               [value]="val.weight"
@@ -60,6 +68,13 @@
               <span>{{val.weight}} {{val.unit}}</span>
             </ion-select-option>
           </ion-select>
+          <ion-row
+            *ngIf="fromCart || (item.storeInventoryProductUnit && item.storeInventoryProductUnit.length === 1)"
+          >
+            <ion-col>
+              <span>{{item.weight}} {{item.unit}}</span>
+            </ion-col>
+          </ion-row>
           <ion-row
             *ngIf="!item.storeInventoryProductUnit || (item.storeInventoryProductUnit && item.storeInventoryProductUnit.length === 1)"
           >
@@ -105,6 +120,11 @@
                   ></ion-col
                 >
               </ion-row>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <span class="product-feature-type">New</span>
             </ion-col>
           </ion-row>
         </ion-col>

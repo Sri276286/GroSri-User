@@ -5,7 +5,8 @@ import { filter } from 'rxjs/operators';
 import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
-    templateUrl: 'tabs.page.html'
+    templateUrl: 'tabs.page.html',
+    styleUrls: ['tabs.page.scss']
 })
 export class TabsPage implements OnInit {
     public cartQuantity: number = 0;

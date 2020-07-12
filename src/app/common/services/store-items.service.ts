@@ -10,9 +10,6 @@ import { ApiConfig } from '../config/api.config';
 })
 export class StoreItemsService {
 
-  categories = [];
-  subCategoriesWithCategory = {};
-  storeProductsList;
   private productsList = [];
   // private storeProductsURL: string = 'assets/mocks/menu.json';
   private storeProductsURL: string = 'assets/mocks/menu.json';
@@ -29,10 +26,10 @@ export class StoreItemsService {
           if (res && res.productsByCategory) {
             // map products with cart for quantity
             this.mapWithCart(res).subscribe((result: any) => {
-              this.storeProductsList = result && result.productsByCategory;
-              this.categories = [];
-              this.mapProducts(result.productsByCategory);
-              observer.next(result);
+              this.mapProducts(result && result.productsByCategory).subscribe((products) => {
+                result.productsByCategory = products;
+                observer.next(result);
+              });
             });
           } else {
             observer.next(res);
@@ -47,19 +44,46 @@ export class StoreItemsService {
   // }
   //   }
 
+  /**
+   * Transform menu with category name, number of items and all items present
+   * @param itemsRes
+   */
   private mapProducts(itemsRes: any) {
-    this.productsList = [];
-    for (let category in itemsRes) {
-      this.categories = [...this.categories, category];
-      for (let subcategory in itemsRes[category]) {
-        if (subcategory === 'Main') {
-          itemsRes[category] = itemsRes[category][subcategory];
-          this.productsList = [...this.productsList, ...itemsRes[category]];
-        } else {
-          this.productsList = [...this.productsList, ...itemsRes[category][subcategory]];
+    return new Observable((observer) => {
+      this.productsList = [];
+      // new array of items
+      let itemsList = [];
+      for (let category in itemsRes) {
+        // object formed
+        let item = {
+          category: '',
+          items: null,
+          numberOfItems: 0
+        };
+        item.category = category;
+        // for handling sub categories
+        let itemsObj = {};
+        let itemsNumber = 0;
+        for (let subcategory in itemsRes[category]) {
+          // push items under category if no sub category present ie., Main is dummy sub category
+          if (subcategory === 'Main') {
+            itemsRes[category] = itemsRes[category][subcategory];
+            this.productsList = [...this.productsList, ...itemsRes[category]];
+            itemsObj = itemsRes[category];
+            itemsNumber = itemsRes[category].length;
+          } else {
+            this.productsList = [...this.productsList, ...itemsRes[category][subcategory]];
+            itemsObj[subcategory] = itemsRes[category][subcategory];
+            itemsNumber += itemsRes[category][subcategory].length;
+          }
         }
+        item.items = itemsObj;
+        item.numberOfItems = itemsNumber;
+        itemsList = [...itemsList, item];
       }
-    }
+      // Set newly formed list
+      observer.next(itemsList);
+    });
   }
 
   public searchStore(searchInput: string): Observable<any> {
@@ -128,14 +152,6 @@ export class StoreItemsService {
         }
       });
     }
-  }
-
-  /**
-   * Get products list based on category divided as sub categories
-   * @param category
-   */
-  public getProductsWithCategory(category: string): Observable<any> {
-    return of(this.storeProductsList[category]);
   }
 
 }

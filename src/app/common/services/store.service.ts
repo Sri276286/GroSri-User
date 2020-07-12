@@ -11,7 +11,7 @@ import { BehaviorSubject } from 'rxjs';
 export class StoreService {
 
   storeListUrl: string = 'assets/mocks/stores.json';
-  categorySelected$: BehaviorSubject<string> = new BehaviorSubject<string>('');
+  categorySelected$: BehaviorSubject<any> = new BehaviorSubject<string>(null);
 
   constructor(private _http: HttpClient,
     private _commonService: CommonService) {
