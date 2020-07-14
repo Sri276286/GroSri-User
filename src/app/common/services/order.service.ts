@@ -71,7 +71,10 @@ export class OrderService {
   }
 
   private mapOrdersWithStatus(orders: any) {
+    console.log('orders ', orders);
     return orders.map((order) => {
+      // map data in display format
+      order.estimatedDate = order.estimatedDate ? this._commonService.getDisplayDate(order.estimatedDate) : '';
       switch (order.orderStatus) {
         case 'PLACED':
           order.statusMessage = 'Placed';
