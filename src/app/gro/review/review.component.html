@@ -1,0 +1,62 @@
+<ion-header title="Review" class=".success"></ion-header>
+<gro-header title="Review"></gro-header>
+  <ion-grid class=".ion-align-items-center" style="vertical-align: center;">
+    <ion-row>
+      <ion-col>
+      <label style="text-decoration-style:solid;">Product Name:</label></ion-col>
+      <ion-col>{{productName}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col>
+      <label style="font:bold">Store:</label></ion-col>
+      <ion-col>{{storeName | uppercase}}</ion-col>
+    </ion-row>
+     
+    <ion-row></ion-row>
+    <ion-row></ion-row>
+    <ion-row>
+
+      <span class=" danger">{{reviewError}}</span>
+    </ion-row>
+    
+  <ion-row >
+
+         
+      
+      <ion-col *ngFor="let num of [1, 2 ,3] index as i "> 
+
+        <ion-icon *ngIf=" i > ratingIndex" name ="star-outline" size="large" (click) = "updateRatingIndex(i)"></ion-icon>
+        <ion-icon *ngIf=" i==ratingIndex || i < ratingIndex" name ="star" size="large" style="color: green;" (click) = "updateRatingIndex(i)"></ion-icon>
+    
+
+      </ion-col>
+     <ion-row>
+       <div *ngIf="ratingIndex>0" > 
+        <ion-icon name="happy" style="color: green;"></ion-icon>
+        <label>{{textIndex}}</label>
+       </div>
+      <div *ngIf="ratingIndex==0">
+
+        <ion-icon name="sad" *ngIf="ratingIndex==0" style="color: red;">{{textIndex}}</ion-icon>
+        <label>{{textIndex}}</label>
+      </div>
+      
+     </ion-row>
+   
+  </ion-row>
+ 
+  <ion-row>
+    <ion-input [(ngModel)]="comments" type="text" placeholder="Enter Comments(Optional)" max="250" style="width: 100%; height: 50px; outline-style: black;"></ion-input>
+
+  </ion-row>
+  
+  <ion-row>
+
+    <ion-button (click)="submit()">Submit</ion-button>
+  </ion-row>
+</ion-grid>
+
+
+
+

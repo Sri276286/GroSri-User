@@ -15,7 +15,10 @@ export class CategoryStorePage implements OnInit {
     }
 
     ngOnInit() {
+        console.log("category"+this.category);
+
         this._categoryService.getStoresByCategory(this.category.id).subscribe((storeList: any) => {
+            console.log(storeList);
             this.categoryStores = storeList;
         });
     }

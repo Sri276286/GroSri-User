@@ -1,6 +1,8 @@
 import { Component, Input } from '@angular/core';
 import { CartService } from 'src/app/common/services/cart.service';
 import { ModalController } from '@ionic/angular';
+import { ReviewComponent } from '../../review/review.component';
+import { CommonService } from '../../../common/services/common.service';
 
 @Component({
     selector: 'product-list',
@@ -14,7 +16,8 @@ export class ProductListPage {
     @Input() fromCart?: boolean = false;
 
     constructor(private _cartService: CartService,
-        private _modalCtrl: ModalController) { }
+        private _modalCtrl: ModalController,
+        private _commonService: CommonService) { }
 
     onWeightChange(val, item) {
         // map quantity for already selected weights
@@ -35,6 +38,14 @@ export class ProductListPage {
             this._modalCtrl.dismiss();
         }
         this._cartService.addItems(item);
+    }
+/**
+ * To update Review to a product
+ * @param item 
+ */
+    addReview(item){
+        console.log("Itemmmm"+item);
+        this._commonService.presentModal(ReviewComponent,item);
     }
 
     /**
