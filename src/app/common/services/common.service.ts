@@ -96,4 +96,38 @@ export class CommonService {
   getOrderDetailsFromId(id: string) {
     return this.ordersPlaced.find((t) => t.orderId === id);
   }
+
+  public getDisplayDate(date): string {
+    let d = new Date(date);
+    let days = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
+    return days[d.getDay()] + ", " + this.formatDate(d);
+  }
+
+  private formatDate(d) {
+    let months = [
+      "Jan",
+      "Feb",
+      "Mar",
+      "Apr",
+      "May",
+      "Jun",
+      "Jul",
+      "Aug",
+      "Sep",
+      "Oct",
+      "Nov",
+      "Dec",
+    ];
+    return d.getDate() + "-" + months[d.getMonth()] + "-" + d.getFullYear();
+  }
+  private formatAMPM(d) {
+    var hours = d.getHours();
+    var minutes = d.getMinutes();
+    var ampm = hours >= 12 ? "PM" : "AM";
+    hours = hours % 12;
+    hours = hours ? hours : 12; // the hour '0' should be '12'
+    minutes = minutes < 10 ? "0" + minutes : minutes;
+    var strTime = hours + ":" + minutes + " " + ampm;
+    return strTime;
+  }
 }
