@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener, ViewChild, ElementRef } from '@angular/core';
+import { Component, OnInit, HostListener } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { ActivatedRoute } from '@angular/router';
 import { StoreItemsService } from 'src/app/common/services/store-items.service';
@@ -15,8 +15,7 @@ export class StorePage implements OnInit {
   public storeEntity;
   public isFavoriteStore: boolean = false;
   public isLoggedIn: boolean = false;
-  @ViewChild('scrollContent') el: ElementRef;
-  public scrolled: boolean = false;
+  // public scrolled: boolean = false;
 
   private _subscriptions: Subscription[] = [];
   constructor(public _storeItemsService: StoreItemsService,
@@ -66,20 +65,6 @@ export class StorePage implements OnInit {
         matchingEl.scrollIntoView();
       }
     });
-  }
-
-  /**
-   * Handle scroll
-   * @param event
-   */
-  onScroll(event: Event) {
-    if (event && event.srcElement) {
-      if (this.el.nativeElement.scrollTop > 20) {
-        this.scrolled = true;
-      } else {
-        this.scrolled = false;
-      }
-    }
   }
 
   makeFavorite() {

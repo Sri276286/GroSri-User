@@ -145,6 +145,15 @@
             </ion-button>
           </ion-col>
         </ion-row>
+        <ion-row
+        *ngIf="order.orderStatus === cancelledStatus"
+      >
+        <ion-col class="ion-text-center">
+          <ion-button color="success" (click)="rateOrderModal(order)">
+            Rate Order
+          </ion-button>
+        </ion-col>
+      </ion-row>
       </ion-card-content>
     </ion-card>
   </ion-grid>
