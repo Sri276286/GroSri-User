@@ -1,25 +1,24 @@
 export class ApiConfig1 {
-  static loginURL: string = "/api/login"; // POST
-  static signupURL: string = "/api/signup"; // POST
-  static storeListURL: string = "/api/store"; // GET
-  static storeListByCategoryURL: string = "/api/category"; // GET
-  static storeProductsURL: string = "/api/items-list"; // GET
-  static userDetailsURL: string = "/api/user"; // GET, POST
-  static cartURL: string = "/api/cart"; // GET, POST
-  static orderURL: string = "/api/order"; // GET, POST
-  static ordersListURL: string = "/api/orders"; // GET
-  static favoriteStoreURL: string = "/api/store/favorite"; // POST, GET
+  static loginURL: string = '/api/login'; // POST
+  static signupURL: string = '/api/signup'; // POST
+  static storeListURL: string = '/api/store'; // GET
+  static storeListByCategoryURL: string = '/api/category'; // GET
+  static storeProductsURL: string = '/api/items-list'; // GET
+  static userDetailsURL: string = '/api/user'; // GET, POST
+  static cartURL: string = '/api/cart'; // GET, POST
+  static orderURL: string = '/api/order'; // GET, POST
+  static ordersListURL: string = '/api/orders'; // GET
+  static favoriteStoreURL: string = '/api/store/favorite'; // POST, GET
 }
 
 export class ApiConfig {
-  static apiHostUrl: string =
-    "http://aruceryapiphase1-env.eba-xvk4wrjm.us-east-2.elasticbeanstalk.com";
+  static apiHostUrl: string = 'http://aruceryapiphase1-env.eba-xvk4wrjm.us-east-2.elasticbeanstalk.com';
   static loginURL: string = `${ApiConfig.apiHostUrl}/auth/login`; // POST
   static signupURL: string = `${ApiConfig.apiHostUrl}/auth/signup`; // POST
   static logoutURL: string = `${ApiConfig.apiHostUrl}/auth/logout`; // GET
   static tokenURL: string = `${ApiConfig.apiHostUrl}/auth/sso/login`; // GET
   // List stores by pincode and category
-  static storeListURL: string = `${ApiConfig.apiHostUrl}/stores/findStoresByPincodeandCategories/`; // GET
+  static storeListURL: string = `${ApiConfig.apiHostUrl}/stores/findStoresByPincodeandCategories`; // GET
   // static storeListURL: string = `/api/store`; // GET
   static storeProductsURL: string = `${ApiConfig.apiHostUrl}/stores/findProductsByStoreId`; // GET
   // static storeProductsURL: string = `/api/items-list`; // GET
