@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { AlertController } from '@ionic/angular';
 import { CommonService } from 'src/app/common/services/common.service';
 import { TrackOrderPage } from './track-order/track-order.page';
+import { OrderReviewPage } from './review/review.component';
 
 @Component({
     templateUrl: 'order-list.page.html',
@@ -96,6 +97,10 @@ export class OrderListPage implements OnInit {
      */
     trackOrderModal(order) {
         this._commonService.presentModal(TrackOrderPage, { order });
+    }
+
+    rateOrderModal(order) {
+        this._commonService.presentModal(OrderReviewPage, { order });
     }
 
     async presentAlert(order) {

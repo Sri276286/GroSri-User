@@ -39,6 +39,7 @@ import { TrackOrderPage } from "./order-list/track-order/track-order.page";
 import { HeaderPage } from "./header/header.page";
 import { DashboardHeadingDirective } from "../common/directives/dashboard-heading.directive";
 import { ReferAStore } from "./refer/refer-a-store/refer-a-store.page";
+import { OrderReviewPage } from './order-list/review/review.component';
 
 @NgModule({
   imports: [
@@ -85,6 +86,7 @@ import { ReferAStore } from "./refer/refer-a-store/refer-a-store.page";
     PageNotFoundPage,
     DashboardHeadingDirective,
     ReferAStore,
+    OrderReviewPage
   ],
 })
 export class GroModule {}
