@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 import { CartService } from 'src/app/common/services/cart.service';
 import { ModalController } from '@ionic/angular';
 import { ReviewComponent } from '../../review/review.component';
+import { ProductreviewComponent } from '../../productreview/productreview.component';
 import { CommonService } from '../../../common/services/common.service';
 
 @Component({
@@ -45,7 +46,8 @@ export class ProductListPage {
  */
     addReview(item){
         console.log("Itemmmm"+item);
-        this._commonService.presentModal(ReviewComponent,item);
+       // this._commonService.presentModal(ReviewComponent,item);
+       this._commonService.presentModal(ProductreviewComponent,item)
     }
 
     /**

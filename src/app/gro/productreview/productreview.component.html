@@ -1,0 +1,73 @@
+<gro-header title="Product Review"></gro-header>
+<ion-item-divider>
+
+    <div style="padding-left: 5%;">
+   <span [ngStyle]="{ color: 'green',
+   font: 'bold'
+   }" style="font-size: 25px;font-weight: bolder;" > {{overallJson.averageRating}}    <ion-icon name="star" style="color: green;font-size: 10px;" size="xs" ></ion-icon>
+   </span>
+
+<br>
+
+   <ion-label style="font-size: 10px; color: grey;"> {{overallJson.noOfReviewed}} Ratings && </ion-label>
+
+  </div>
+  </ion-item-divider>
+  <ion-item-divider>
+   
+<ion-grid>
+  <ion-row *ngFor= "let rating of overallJson.groupByrating" responsive-sm > 
+    <ion-col>
+      <span style="color: black;font-size: 12px;">
+      {{rating.rating}}  
+      <ion-icon name="star" style="font-size: 10px;" size="xs" ></ion-icon> 
+    </span>
+    </ion-col>  
+    <ion-col pull="5" style="padding-top: 4%;" >
+      <ion-progress-bar style="font-size:large;  " value='{{rating.persons/overallJson.noOfReviewed}}'></ion-progress-bar> 
+    </ion-col>
+
+</ion-row>
+</ion-grid>
+  </ion-item-divider>
+  <ion-item-divider>
+
+    <ion-grid>
+      <ion-row>
+        <ion-col style="text-align:left;color: grey;font-size: 10px;font-weight: bold;  ">Product Reviews</ion-col>
+        <ion-col style="text-align:right; color: grey;font-size: 10px;  ">2 Reviews</ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col style="text-align:right  "> <select name="sortBy" id="#" style="width: 75px;height: 19px;color: grey;border-color: grey;">
+          <option selected="selected" value="" style="font-size: small;color: grey;">helpful</option>
+          <option value="1">Asc</option>
+          <option value="2">Dsc</option>
+          </select>  
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </ion-item-divider>
+ 
+    <ion-row   *ngFor="let review of overallJson.reviews">
+      <ion-item-divider >
+      {{review.review}}
+      </ion-item-divider>
+    </ion-row>
+
+  <ion-item-divider>
+
+  </ion-item-divider>
+  <ion-item-divider>
+
+  </ion-item-divider>
+  
+  <ion-item-divider>
+
+  </ion-item-divider>
+  
+  <ion-item-divider>
+
+  </ion-item-divider>
+  
+  
+
