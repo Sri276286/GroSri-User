@@ -18,7 +18,8 @@ export class ApiConfig {
   static logoutURL: string = `${ApiConfig.apiHostUrl}/auth/logout`; // GET
   static tokenURL: string = `${ApiConfig.apiHostUrl}/auth/sso/login`; // GET
   // List stores by pincode and category
-  static storeListURL: string = `${ApiConfig.apiHostUrl}/stores/findStoresByPincodeandCategories`; // GET
+  static storeListURL: string = `${ApiConfig.apiHostUrl}/stores/findStoresByPincode`; // GET
+  static storesByCategoryURL: string = `${ApiConfig.apiHostUrl}/stores/findStoresByPincodeandCategories`; // GET
   // static storeListURL: string = `/api/store`; // GET
   static storeProductsURL: string = `${ApiConfig.apiHostUrl}/stores/findProductsByStoreId`; // GET
   // static storeProductsURL: string = `/api/items-list`; // GET

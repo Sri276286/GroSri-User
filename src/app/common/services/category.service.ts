@@ -24,7 +24,7 @@ export class CategoryService {
                 if (location) {
                     let params = new HttpParams();
                     params = params.append('category', id);
-                    this._http.get(`${ApiConfig.storeListURL}/${location}`, { params: params })
+                    this._http.get(`${ApiConfig.storesByCategoryURL}/${location}`, { params: params })
                         .subscribe((res: any) => {
                             observer.next(res && res.storeLst);
                         });

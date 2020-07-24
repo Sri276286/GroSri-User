@@ -10,7 +10,8 @@ import { HomeService } from 'src/app/common/services/home.service';
 })
 export class StoreListPage implements OnInit {
     @Input('heading') heading;
-    stores = [];
+    @Input() stores?: any = [];
+    @Input() fromCategory?: boolean = false;
     defaultImage = '/assets/images/default.jpg';
     constructor(private _storeService: StoreService,
         private _commonService: CommonService,
@@ -18,9 +19,11 @@ export class StoreListPage implements OnInit {
     }
 
     ngOnInit() {
-        this._commonService.getUserLocation().subscribe((location) => {
-            this.getStores(location);
-        });
+        if (!this.stores.length && !this.fromCategory) {
+            this._commonService.getUserLocation().subscribe((location) => {
+                this.getStores(location);
+            });
+        }
     }
 
     getStores(location) {

@@ -4,7 +4,8 @@ import { ModalController } from '@ionic/angular';
 import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
-    templateUrl: 'category-store.page.html'
+    templateUrl: 'category-store.page.html',
+    styleUrls: ['category-store.page.scss']
 })
 export class CategoryStorePage implements OnInit {
     categoryStores = [];

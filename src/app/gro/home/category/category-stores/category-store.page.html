@@ -1,7 +1,20 @@
 <gro-header [title]="category.name"></gro-header>
 <ion-content>
-  <gro-store-list
-    (click)="dismiss()"
-    [heading]="'Stores that offer '+ category.name"
-  ></gro-store-list>
+  <ng-container *ngIf="categoryStores.length; else noCategories">
+    <gro-store-list
+      [stores]="categoryStores"
+      [fromCategory]="true"
+      (click)="dismiss()"
+      [heading]="'Stores that offer '+ category.name"
+    ></gro-store-list>
+  </ng-container>
+  <ng-template #noCategories>
+    <div class="noContentDiv">
+      <span class="noContentLabel"
+        >There are no stores available in your area that offer
+        {{category.name}}</span
+      >
+      <ion-button (click)="dismiss()">Home</ion-button>
+    </div>
+  </ng-template>
 </ion-content>
