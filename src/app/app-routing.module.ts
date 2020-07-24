@@ -11,6 +11,7 @@ import { OrderDetailsPage } from './gro/order-list/order-details/order-details.p
 import { AuthGuard } from './common/guards/auth.guard';
 import { TabsPage } from './gro/tabs/tabs.page';
 import { PageNotFoundPage } from './gro/page-not-found/page-not-found.page';
+
 // import { AppResolver } from './common/resolvers/app.resolver';
 
 const routes: Routes = [

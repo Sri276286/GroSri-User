@@ -39,6 +39,8 @@ import { TrackOrderPage } from './order-list/track-order/track-order.page';
 import { HeaderPage } from './header/header.page';
 import { DashboardHeadingDirective } from '../common/directives/dashboard-heading.directive';
 import { ReviewComponent } from './review/review.component';
+import { ProductreviewComponent } from './productreview/productreview.component';
+
 
 @NgModule({
     imports: [
@@ -84,7 +86,8 @@ import { ReviewComponent } from './review/review.component';
         ErrorPage,
         PageNotFoundPage,
         DashboardHeadingDirective,
-        ReviewComponent
+        ReviewComponent,
+        ProductreviewComponent
     ]
 })
 export class GroModule {
