@@ -1,8 +1,8 @@
 <gro-header [title]="'Cart Summary'" [path]="pathToGo"></gro-header>
 <ion-content class="ion-padding-bottom">
-  <div class="ion-text-center" *ngIf="items.length">
+  <!-- <div class="ion-text-center" *ngIf="items.length">
     <ion-button color="danger" (click)="emptyCart()">Empty Cart</ion-button>
-  </div>
+  </div> -->
   <product-list [products]="items" [fromCart]="true"></product-list>
   <gro-error [type]="'orderPlaced'" *ngIf="isOrdered"></gro-error>
   <gro-error

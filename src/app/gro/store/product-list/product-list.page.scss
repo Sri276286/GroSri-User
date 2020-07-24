@@ -6,6 +6,11 @@
   @extend .span-general;
   text-decoration: line-through;
 }
+.span-price {
+  font-weight: 600;
+  font-size: 20px;
+  padding-right: 5px;
+}
 .span-title {
   font-weight: 500;
   font-size: 18px;
@@ -16,7 +21,7 @@
 }
 
 ion-select {
-  border: 1px solid;
+  border: 1px solid grey;
 }
 
 .product-feature-type {
@@ -35,6 +40,7 @@ ion-select {
 .text-over-image {
   position: absolute;
   top: 40%;
+  left:15%;
   border: 1px solid lightgrey;
   background-color: white;
   font-weight: 400;

@@ -1,32 +1,24 @@
 <gro-header [title]="'Order Summary'" [path]="'/orders'"></gro-header>
 <ion-content>
   <ion-grid *ngIf="orderEntity">
-    <ion-row
-      *ngIf="orderEntity.orderStatus === deliveredStatus
+    <ion-row *ngIf="orderEntity.orderStatus === deliveredStatus
       || orderEntity.orderStatus === storeCancelledStatus
-      || orderEntity.orderStatus === cancelledStatus"
-    >
-      <ion-col class="ion-text-center"
-        ><ion-button color="medium" (click)="reorder()">Repeat Order</ion-button></ion-col
-      >
+      || orderEntity.orderStatus === cancelledStatus">
+      <ion-col class="ion-text-center">
+        <ion-button color="medium" (click)="reorder()">Repeat Order</ion-button>
+      </ion-col>
     </ion-row>
-    <ion-row
-      *ngIf="orderEntity.orderStatus !== deliveredStatus
+    <ion-row *ngIf="orderEntity.orderStatus !== deliveredStatus
     && orderEntity.orderStatus !== storeCancelledStatus
-    && orderEntity.orderStatus !== cancelledStatus"
-    >
-      <ion-col class="ion-text-center"
-        ><ion-button color="success" (click)="trackOrderModal(orderEntity)">Track</ion-button></ion-col
-      >
-      <ion-col class="ion-text-center"
-        ><ion-button color="danger" (click)="cancelOrderAlert(orderEntity)">Cancel</ion-button></ion-col
-      >
+    && orderEntity.orderStatus !== cancelledStatus">
+      <ion-col class="ion-text-center">
+        <ion-button color="success" (click)="trackOrderModal(orderEntity)">Track</ion-button>
+      </ion-col>
+      <ion-col class="ion-text-center">
+        <ion-button color="danger" (click)="cancelOrderAlert(orderEntity)">Cancel</ion-button>
+      </ion-col>
     </ion-row>
-    <ion-segment
-      value="order_summary"
-      color="success"
-      (ionChange)="orderSegmentChange($event)"
-    >
+    <ion-segment value="order_summary" color="success" (ionChange)="orderSegmentChange($event)">
       <ion-segment-button value="order_summary">Summary</ion-segment-button>
       <ion-segment-button value="order_items">Items</ion-segment-button>
     </ion-segment>
@@ -53,9 +45,7 @@
       <ion-row>
         <ion-col *ngIf="orderEntity" class="ion-text-center ion-padding-top">
           <ion-label>Bill Total: </ion-label>
-          <span *ngIf="orderEntity" class="span-total"
-            >Rs.{{orderEntity.billTotal}}</span
-          >
+          <span *ngIf="orderEntity" class="span-total">&#x20B9;{{orderEntity.billTotal}}</span>
         </ion-col>
       </ion-row>
     </ion-grid>
@@ -86,7 +76,7 @@
               </ion-col>
               <ion-col size="6">
                 <span class="span-content">
-                  Rs.{{item.price}}
+                  &#x20B9;{{item.price}}
                 </span>
               </ion-col>
             </ion-row>

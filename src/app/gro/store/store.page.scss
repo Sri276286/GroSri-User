@@ -7,4 +7,6 @@
   /**  It is important to have these two properties for scroll to work **/
   overflow: auto;
   height: 100%;
+  // to give extra space at bottom of store
+  padding-bottom: 100px;
 }

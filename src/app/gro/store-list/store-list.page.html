@@ -1,6 +1,8 @@
-<span dashboardHeading *ngIf="stores.length">
-  {{heading}}
-</span>
+<div *ngIf="stores.length" style="margin-top: 10px;">
+  <span dashboardHeading>
+    {{heading}}
+  </span>
+</div>
 <ion-grid>
   <ion-row
     [routerLink]="['/store', store.id]"

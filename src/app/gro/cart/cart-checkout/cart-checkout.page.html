@@ -4,7 +4,7 @@
       <ion-col size="6">
         <div style="display: flex; flex-direction: column;">
           <span class="span-quantity">{{cartQuantity}}</span>
-          <span class="span-price">Rs.{{cartTotal}}</span>
+          <span class="span-price">&#x20B9;{{cartTotal}}</span>
         </div>
       </ion-col>
       <ion-col size="6">
@@ -22,11 +22,13 @@
   <ion-grid class="display-cart-grid">
     <ion-row>
       <ion-col size="6">
-      <div style="font-weight: 500; font-size: 20px; padding-top: 5px;">One Step away</div>
+        <div style="font-weight: 500; font-size: 20px; padding-top: 5px;">
+          One Step away
+        </div>
       </ion-col>
       <ion-col size="6">
         <div class="ion-text-end">
-          <ion-button color="success" [routerLink]="['/login']">
+          <ion-button color="success" [routerLink]="['/login', {fromCart: true}]">
             Login
           </ion-button>
         </div>
@@ -34,4 +36,3 @@
     </ion-row>
   </ion-grid>
 </ng-container>
-
