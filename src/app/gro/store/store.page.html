@@ -6,94 +6,92 @@
           <ion-back-button defaultHref="/user/home"></ion-back-button>
         </ion-col>
         <ion-col size="9" class="ion-padding-top">
-          <span class="span-store-name" *ngIf="scrolled"
+          <span class="span-store-name"
             >{{storeEntity && storeEntity.storeName | titlecase}}</span
           >
         </ion-col>
         <ion-col size="1" class="ion-padding-top" *ngIf="storeCatalog">
-          <ion-icon
-            name="search"
-            style="font-size: 24px;"
-            (click)="productSearchModal()"
-          ></ion-icon>
+          <ion-icon name="search" style="font-size: 24px;"
+          (click)="productSearchModal()"></ion-icon>
         </ion-col>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-header>
 <ion-content class="ion-padding-bottom">
-  <div #scrollContent (scroll)="onScroll($event)" class="scroll-content">
-    <ion-grid>
-      <ion-row>
-        <span class="span-store-name">
-          {{storeEntity && storeEntity.storeName | titlecase}}
-        </span>
-      </ion-row>
-      <ion-row>
-        <span>
-          {{storeEntity && storeEntity.area}}
-        </span>
-      </ion-row>
-    </ion-grid>
-    <ng-container *ngIf="storeCatalog">
-      <ion-list *ngFor="let product of storeCatalog">
-        <ion-item>
-          <ion-label
-            ><div style="font-weight: 600; font-size: 20px;" id="categ-span">
-              {{product.category}}
-            </div>
-            <div style="font-weight: 400; font-size: 18px;">
-              {{product.numberOfItems}} Items
-            </div>
-          </ion-label>
-          <ion-icon
-            name="chevron-down-outline"
-            size="small"
-            (click)="product.expand = true"
-            *ngIf="!product.expand"
-          ></ion-icon>
-          <ion-icon
-            name="chevron-up-outline"
-            size="small"
-            (click)="product.expand = false"
-            *ngIf="product.expand"
-          ></ion-icon>
-        </ion-item>
-        <ng-container *ngIf="!product.items.length && !product.expand">
-          <ion-list *ngFor="let subprod of product.items | keyvalue">
-            <ion-item>
-              <ion-label>{{subprod.key}}</ion-label>
-              <ion-icon
-                name="chevron-down-outline"
-                size="small"
-                (click)="subprod.expand = true"
-                *ngIf="!subprod.expand"
-              ></ion-icon>
-              <ion-icon
-                name="chevron-up-outline"
-                size="small"
-                (click)="subprod.expand = false"
-                *ngIf="subprod.expand"
-              ></ion-icon>
-            </ion-item>
-            <ng-container *ngIf="!subprod.expand">
-              <product-list
-                [products]="subprod.value"
-                [fromStore]="true"
-              ></product-list>
-            </ng-container>
-          </ion-list>
-        </ng-container>
-        <ng-container *ngIf="product.items.length && !product.expand">
-          <product-list
-            [products]="product.items"
-            [fromStore]="true"
-          ></product-list>
-        </ng-container>
-      </ion-list>
-      <gro-menu-button [categories]="storeCatalog"></gro-menu-button>
-      <gro-cart-bar></gro-cart-bar>
-    </ng-container>
-    <gro-error [type]="'emptyStore'" *ngIf="!storeCatalog"></gro-error>
-  </div>
+  <ion-grid>
+    <ion-row>
+      <span class="span-store-name">
+        {{storeEntity && storeEntity.storeName | titlecase}}
+      </span>
+    </ion-row>
+    <ion-row>
+      <span>
+        {{storeEntity && storeEntity.area}}
+      </span>
+    </ion-row>
+  </ion-grid>
+  <ng-container *ngIf="storeCatalog">
+    <ion-list *ngFor="let product of storeCatalog">
+      <ion-item>
+        <ion-label
+          ><div style="font-weight: 600; font-size: 20px;" id="categ-span">
+            {{product.category}}
+          </div>
+          <div style="font-weight: 400; font-size: 18px;">
+            {{product.numberOfItems}} Items
+          </div>
+        </ion-label>
+        <ion-icon
+          name="chevron-down-outline"
+          size="small"
+          (click)="product.expand = true"
+          *ngIf="!product.expand"
+        ></ion-icon>
+        <ion-icon
+          name="chevron-up-outline"
+          size="small"
+          (click)="product.expand = false"
+          *ngIf="product.expand"
+        ></ion-icon>
+      </ion-item>
+      <ng-container *ngIf="!product.items.length && !product.expand">
+        <ion-list *ngFor="let subprod of product.items | keyvalue">
+          <ion-item>
+            <ion-label>{{subprod.key}}</ion-label>
+            <ion-icon
+              name="chevron-down-outline"
+              size="small"
+              (click)="subprod.expand = true"
+              *ngIf="!subprod.expand"
+            ></ion-icon>
+            <ion-icon
+              name="chevron-up-outline"
+              size="small"
+              (click)="subprod.expand = false"
+              *ngIf="subprod.expand"
+            ></ion-icon>
+          </ion-item>
+          <ng-container *ngIf="!subprod.expand">
+            <product-list
+              [products]="subprod.value"
+              [fromStore]="true"
+            ></product-list>
+          </ng-container>
+        </ion-list>
+      </ng-container>
+      <ng-container *ngIf="product.items.length && !product.expand">
+        <product-list
+          [products]="product.items"
+          [fromStore]="true"
+        ></product-list>
+      </ng-container>
+    </ion-list>
+    <gro-menu-button [categories]="storeCatalog"></gro-menu-button>
+    <gro-cart-bar></gro-cart-bar>
+  </ng-container>
+  <gro-error
+    [type]="'emptyStore'"
+    *ngIf="!storeCatalog"
+  ></gro-error>
 </ion-content>

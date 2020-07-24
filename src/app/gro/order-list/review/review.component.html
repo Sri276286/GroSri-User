@@ -1,0 +1,86 @@
+<gro-header title="Review"></gro-header>
+<ion-content>
+  <ion-grid *ngIf="order">
+    <ion-row>
+      <ion-col *ngIf="order.store">
+        <div class="span-title">
+          {{ order.store.storeName | titlecase }}
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center ion-padding-top">
+        <ion-label>Total no. of items: </ion-label>
+        <span class="span-quantity">
+          {{ order.totalNumOfProducts }}
+        </span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col class="ion-text-center ion-padding-top">
+        <ion-label>Bill Total: </ion-label>
+        <span class="span-total">Rs.{{ order.billTotal }}</span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <div *ngIf="ratingIndex > 1" class="rating-expression">
+        <div>
+          <ion-icon
+            name="happy"
+            style="color: green; font-size: 48px; vertical-align: middle;"
+          ></ion-icon>
+          <label
+            style="padding: 10px 20px; font-size: 24px; vertical-align: middle;"
+            >{{ textIndex }}</label
+          >
+        </div>
+      </div>
+      <div *ngIf="ratingIndex === 1" class="rating-expression">
+        <ion-icon
+          name="sad"
+          style="color: red; font-size: 48px; vertical-align: middle;"
+          >{{ textIndex }}</ion-icon
+        >
+        <label
+          style="padding: 10px 20px; font-size: 24px; vertical-align: middle;"
+          >{{ textIndex }}</label
+        >
+      </div>
+    </ion-row>
+    <ion-row>
+      <ion-col *ngFor="let num of [].constructor(3); let i = index">
+        <ion-icon
+          style="font-size: 64px;"
+          *ngIf="i + 1 > ratingIndex"
+          name="star-outline"
+          (click)="updateRatingIndex(i + 1)"
+        ></ion-icon>
+        <ion-icon
+          *ngIf="i + 1 === ratingIndex || i + 1 < ratingIndex"
+          name="star"
+          style="color: green; font-size: 64px;"
+          (click)="updateRatingIndex(i + 1)"
+        ></ion-icon>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="ratingIndex > 0">
+      <ion-col>
+        <ion-textarea
+          [(ngModel)]="comments"
+          placeholder="Tell us your experience with the order"
+          maxlength="250"
+          rows="4"
+        ></ion-textarea>
+      </ion-col>
+    </ion-row>
+
+    <ion-row *ngIf="comments.length">
+      <ion-col class="ion-text-center">
+        <ion-button (click)="submit()">Submit</ion-button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

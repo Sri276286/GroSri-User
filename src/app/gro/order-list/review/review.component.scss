@@ -1,0 +1,49 @@
+.toast-container {
+  background: blue($color: #000000);
+}
+
+ion-textarea {
+  border: 1px solid lightgrey;
+}
+
+.rating-stars {
+  padding-top: 30%;
+}
+
+.rating-expression {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 300px;
+  div {
+    width: 200px;
+    height: 50px;
+  }
+}
+
+.span-content {
+  font-weight: 600;
+  font-size: 18px;
+}
+
+.span-title {
+  font-weight: 500;
+  font-size: 18px;
+}
+
+.span-total {
+  @extend .span-content;
+  padding-left: 5px;
+}
+
+.span-normal {
+  font-weight: 400;
+  font-size: 16px;
+}
+
+.span-quantity {
+  @extend .span-normal;
+  padding: 2px 5px;
+  background-color: rgb(159, 159, 161);
+  color: white;
+}
