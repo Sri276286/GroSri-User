@@ -26,10 +26,6 @@ export class StorePage implements OnInit {
     private _commonService: CommonService) {
   }
 
-  // @HostListener('document:scroll', []) onScroll() {
-  //   console.log('on scroll');
-  // }
-
   ngOnInit() {
     this.scrollViewWithMenu();
     this._commonService.presentLoading('Store is loading. Please wait...');
@@ -46,7 +42,6 @@ export class StorePage implements OnInit {
             if (store.productsByCategory) {
               this.isStoreEmpty = false;
               this.storeCatalog = store.productsByCategory;
-              console.log('store catalog ', this.storeCatalog);
             } else {
               this.isStoreEmpty = true;
             }

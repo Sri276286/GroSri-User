@@ -1,13 +1,15 @@
 {
-  "name": "Srikanth K",
-  "phone_number": "7299933974",
-  "flatNo": "6",
-  "apartment": "",
-  "street": "Selva Ganapathy Avenue",
-  "landmark": "",
-  "area": "Perungudi",
+  "addressId": 2,
   "city": "Chennai",
-  "pincode": "600096",
-  "type": "home",
-  "primary_address": true
-}
+  "country": null,
+  "geolocation": null,
+  "flatNo" : "New no 23, Old no 8",
+  "landmark": "Hasthinapuram Bus Terminus.",
+  "nickName": "Alexander Immanuel D",
+  "pincode": "600064",
+  "phoneNumber":"9940479677",
+  "primaryAddress": true,
+  "state": null,
+  "type": "HOME"
+  }
+  

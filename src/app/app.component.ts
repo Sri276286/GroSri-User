@@ -33,7 +33,7 @@ export class AppComponent {
   ) {
     this._commonService.loginSuccess$.subscribe(() => {
       this.isLoggedIn = this._commonService.isLogin();
-    })
+    });
     this.initializeApp();
   }
 

@@ -1,11 +1,41 @@
 <gro-header [title]="'Delivery Choice'"></gro-header>
 <ion-content>
-  <form
-    #deliveryForm="ngForm"
-    (submit)="deliveryForm.valid && placeOrder(deliveryForm)"
-    novalidate
-  >
+  <form #deliveryForm="ngForm" (submit)="deliveryForm.valid && placeOrder(deliveryForm)" novalidate>
     <ion-card>
+      <ion-card-content>
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div style="font-weight: 600; font-size: 20px;">
+                Delivery Option
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div style="width: 100px; height: 100px;">
+                <label>
+                  <input type="radio" name="delivery_option" value="self_pickup" [(ngModel)]="deliveryOption" />
+                  <img [src]="'https://www.mageplaza.com/assets/img/extensions/store-pickup.png'" />
+                </label>
+              </div>
+              <div>Pickup from store</div>
+            </ion-col>
+            <ion-col>
+              <div style="width: 100px; height: 100px;">
+                <label>
+                  <input type="radio" name="delivery_option" value="home_delivery" [(ngModel)]="deliveryOption" />
+                  <img
+                    [src]="'https://spiderimg.amarujala.com/assets/images/2020/03/27/750x506/home-delivery_1585296150.jpeg'" />
+                </label>
+              </div>
+              <div>Home Delivery</div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-card-content>
+    </ion-card>
+    <ion-card *ngIf="deliveryOption === 'home_delivery'">
       <ion-card-content>
         <ion-grid class="ion-no-padding">
           <ion-row>
@@ -24,7 +54,7 @@
                 <div class="span-content">
                   {{ userAddress.name | titlecase }}
                 </div>
-                <div class="span-content">
+                <div class="span-content" *ngIf="userAddress.flatNo || userAddress.street">
                   {{ userAddress.flatNo }}, {{ userAddress.street | titlecase }}
                 </div>
                 <div class="span-content">
@@ -37,7 +67,8 @@
                   {{ userAddress.city | titlecase }}-{{ userAddress.pincode }}
                 </div>
                 <div class="span-content">
-                  Ph: {{ userAddress.phone_number }}
+                  <!-- Ph: {{ userAddress.phone_number }} -->
+                  Ph : 9940479677
                 </div>
               </ion-list>
             </ion-col>
@@ -45,53 +76,7 @@
         </ion-grid>
       </ion-card-content>
     </ion-card>
-    <ion-card>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row>
-            <ion-col>
-              <div style="font-weight: 600; font-size: 20px;">
-                Delivery Option
-              </div>
-            </ion-col>
-          </ion-row>
-          <ion-row>
-            <ion-col>
-              <div style="width: 100px; height: 100px;">
-                <label>
-                  <input
-                    type="radio"
-                    name="delivery_option"
-                    value="self_pickup"
-                    [(ngModel)]="deliveryOption"
-                  />
-                  <img
-                    [src]="'https://www.mageplaza.com/assets/img/extensions/store-pickup.png'"
-                  />
-                </label>
-              </div>
-              <div>Pickup from store</div>
-            </ion-col>
-            <ion-col>
-              <div style="width: 100px; height: 100px;">
-                <label>
-                  <input
-                    type="radio"
-                    name="delivery_option"
-                    value="home_delivery"
-                    [(ngModel)]="deliveryOption"
-                  />
-                  <img
-                    [src]="'https://spiderimg.amarujala.com/assets/images/2020/03/27/750x506/home-delivery_1585296150.jpeg'"
-                  />
-                </label>
-              </div>
-              <div>Home Delivery</div>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
+
     <ion-grid>
       <ion-row>
         <ion-col>Price: <span style="font-weight: 600;">&#x20B9;{{cartTotal}}</span></ion-col>

@@ -66,6 +66,7 @@ import { OrderReviewPage } from './order-list/review/review.component';
     ProductListPage,
     ProductSearchPage,
     CartPage,
+    DeliveryPage,
     CartBarPage,
     CartCheckoutPage,
     ProfilePage,

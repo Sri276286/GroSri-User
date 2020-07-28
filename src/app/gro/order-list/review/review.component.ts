@@ -9,7 +9,7 @@ import { ModalController } from '@ionic/angular';
   styleUrls: ['./review.component.scss'],
 })
 
-export class OrderReviewPage implements OnInit {
+export class OrderReviewPage {
   @Input('order') order;
   ratingIndex = 0;
   textIndex = '';
@@ -19,9 +19,6 @@ export class OrderReviewPage implements OnInit {
     private _commonService: CommonService,
     private modalCtrl: ModalController) { }
 
-  ngOnInit() {
-    console.log('order ', this.order);
-  }
 
   updateRatingIndex(index: number) {
     this.ratingIndex = index;

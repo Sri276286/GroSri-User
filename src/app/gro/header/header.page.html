@@ -1,8 +1,9 @@
 <ion-header>
-  <ion-toolbar color="success">
+  <ion-toolbar  color="success">
     <ion-grid>
-      <ion-row>
-        <ion-icon
+      <ion-row  >
+        <ion-icon 
+        *ngIf="!hasCloseButton"
           [name]="icon"
           size="large"
           (click)="navigateTo()"
@@ -10,5 +11,8 @@
         <ion-label class="header-title">{{title}}</ion-label>
       </ion-row>
     </ion-grid>
+    <ion-buttons *ngIf="hasCloseButton" slot="primary" (click)="onCloseClick()">
+      <ion-icon  name="close" slot="icon-only"></ion-icon>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>

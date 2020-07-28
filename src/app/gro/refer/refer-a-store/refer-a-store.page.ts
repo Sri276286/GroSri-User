@@ -4,6 +4,7 @@ import { Router } from "@angular/router";
 import { LoginService } from "src/app/common/services/login.service";
 import { ValidationConstants } from "src/app/common/constants/validation.constants";
 import { ToastController } from "@ionic/angular";
+import { CommonService } from 'src/app/common/services/common.service';
 
 @Component({
   selector: "gro-refer-store",
@@ -16,12 +17,11 @@ export class ReferAStore {
     private fb: FormBuilder,
     private loginService: LoginService,
     private _router: Router,
-    private toastController: ToastController
+    private _commonService : CommonService
   ) {
     this.registerForm = this.fb.group({
-      name: ["", [Validators.required, Validators.minLength(6)]],
       email: ["", [Validators.email]],
-      pincode: [""],
+      pincode: ["",[Validators.required]],
       mobileNumber: [
         "",
         [
@@ -29,6 +29,11 @@ export class ReferAStore {
           Validators.pattern(ValidationConstants.phoneNumber),
         ],
       ],
+      storeName: ["", [Validators.required, Validators.minLength(6)]],
+      ownerName: [""],
+      area: ["",[Validators.required]],
+      city: ["",[Validators.required]],
+      storeCategory: [""]
       //   password: [
       //     "",
       //     [Validators.required, Validators.pattern(ValidationConstants.password)],
@@ -43,7 +48,6 @@ export class ReferAStore {
    */
   onSubmit(isValid: boolean) {
     if (isValid) {
-      console.log(this.registerForm.value);
       this._router.navigate(["/"]);
       //   this.loginService.register(this.registerForm.value).subscribe(() => {
       //     this._router.navigate(["/login"]);
@@ -53,25 +57,20 @@ export class ReferAStore {
   onClear() {
     this.registerForm.reset();
   }
-
-  async presentToast(message: string) {
-    const toast = await this.toastController.create({
-      message: message,
-      duration: 2000,
-      position: "top",
-    });
-    toast.present();
-  }
   validate($event) {
     switch ($event.target.name) {
       case "email":
         if (this.registerForm.get("email").errors?.email)
-          this.presentToast("Please provide a valid email address.");
+          this._commonService.presentToast("Please provide a valid email address.");
         break;
       case "mobilenumber":
         if (this.registerForm.get("mobileNumber").errors?.pattern)
-          this.presentToast("Phone number must be a valid 10 digit number.");
+          this._commonService.presentToast("Phone number must be a valid 10 digit number.");
         break;
     }
+  }
+
+  onCloseStorePage(){
+    this._router.navigate(["/"]);
   }
 }

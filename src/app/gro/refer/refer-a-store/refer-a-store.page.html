@@ -1,3 +1,4 @@
+<gro-header [title]="'Refer A Store'" [hasCloseButton]="true" (onClosePage)="onCloseStorePage()"></gro-header>
 <ion-grid>
   <ion-row class="ion-justify-content-center">
     <ion-col class="ion-align-self-center" size-md="6" size-lg="5" size-xs="12">
@@ -6,57 +7,22 @@
         [formGroup]="registerForm"
         (ngSubmit)="registerForm.valid && onSubmit(registerForm.valid)"
       >
-        <!-- <div
-          class="ion-padding"
-          *ngIf="registerForm.get('mobileNumber').errors?.pattern"
-        >
-          <span style="color: red;"
-            >Phone number must be a valid 10 digit number.</span
-          >
-        </div> -->
-        <!-- <div
-          class="ion-padding"
-          *ngIf="registerForm.get('email').errors?.email"
-        >
-          <span style="color: red;">Please provide a valid email address.</span>
-        </div> -->
-        <!-- <div
-          class="ion-padding"
-          *ngIf="registerForm.get('password').errors?.pattern"
-        >
-          <span style="color: red;"
-            >Password must contain a digit, an uppercase, a lowercase,a special
-            character and between 6-15 characters.</span
-          >
-        </div>
-        <div
-          class="ion-padding"
-          *ngIf="registerForm.get('confirm_password').touched && registerForm.get('confirm_password').errors"
-        >
-          <span style="color: red;"
-            >Password and Confirm password must match.</span
-          >
-        </div> -->
-        <div>
-          <div class="ion-text-end">
-            <ion-icon
-              name="close-outline"
-              size="large"
-              [routerLink]="['/']"
-            ></ion-icon>
-          </div>
-          <div class="ion-text-center">
-            <ion-icon name="sync-outline" class="register-main-icon"></ion-icon>
-            <h1>Refer a store</h1>
-          </div>
-        </div>
         <div class="ion-padding">
+          <ion-item>
+            <ion-icon name="business" slot="start"></ion-icon>
+            <ion-input
+              type="text"
+              placeholder="Store Name"
+              formControlName="storeName"
+              name="name"
+            ></ion-input>
+          </ion-item>
           <ion-item>
             <ion-icon name="person-circle" slot="start"></ion-icon>
             <ion-input
               type="text"
-              placeholder="Store Name"
-              formControlName="name"
+              placeholder="Owner /AdminName"
+              formControlName="ownerName"
               name="name"
             ></ion-input>
           </ion-item>
@@ -67,6 +33,30 @@
               placeholder="* Enter 10 digit Mobile No."
               formControlName="mobileNumber"
               name="mobilenumber"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="locate" slot="start"></ion-icon>
+            <ion-input
+              type="text"
+              placeholder="Area"
+              formControlName="area"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="navigate" slot="start"></ion-icon>
+            <ion-input
+              type="text"
+              placeholder="City"
+              formControlName="city"
+            ></ion-input>
+          </ion-item>
+          <ion-item>
+            <ion-icon name="apps" slot="start"></ion-icon>
+            <ion-input
+              type="text"
+              placeholder="Category Ex.Grocery"
+              formControlName="storeCategory"
             ></ion-input>
           </ion-item>
           <ion-item>

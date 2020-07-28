@@ -1,5 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, BehaviorSubject } from "rxjs";
+import { UserAddress } from '../../common/models/user-address.model';
 import {
   ModalController,
   ToastController,
@@ -19,6 +20,8 @@ export class CommonService {
   orderPlaced$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   loginSuccess$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   addressSaved$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  fromDeliveryPage$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  addressSelected$:BehaviorSubject<UserAddress> = new BehaviorSubject<UserAddress>(null);
 
   constructor(
     private modalCtrl: ModalController,

@@ -2,6 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { ApiConfig } from '../config/api.config';
+import { UserAddress } from '../models/user-address.model';
+
+
 
 @Injectable({
   providedIn: 'root'
@@ -48,19 +51,16 @@ export class UserService {
    * Map primary address to top list
    * @param addressList
    */
-  private _mapAddressList(addressList: any[]) {
+  private _mapAddressList(addressList: UserAddress[]) {
     // find primary address
     const primary = addressList.find(t => t.primaryAddress);
-    console.log('primary ', primary);
     if (primary) {
       const index = addressList.indexOf(primary);
-      console.log('index ', index);
       // remove from list
       addressList.splice(index, 1);
       // add to beginning
       addressList.unshift(primary);
     }
-    console.log('addressList ', addressList);
     return addressList;
   }
 }

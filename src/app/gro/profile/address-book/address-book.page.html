@@ -2,79 +2,68 @@
   <ion-toolbar>
     <ion-grid>
       <ion-row>
-        <ion-icon
-          name="chevron-back-outline"
-          size="large"
-          (click)="modalCtrl.dismiss()"
-        ></ion-icon>
-        <ion-button color="light" fill="block" (click)="loadLocation()"
-          >Search by pincode</ion-button
-        >
+        <ion-icon name="chevron-back-outline" size="large" (click)="modalCtrl.dismiss()"></ion-icon>
+        <ion-button color="light" fill="block" (click)="loadLocation()">Search by pincode</ion-button>
       </ion-row>
     </ion-grid>
   </ion-toolbar>
 </ion-header>
 <ion-content>
-  <ion-grid class="ion-padding">
+  <ion-grid class="ion-padding" *ngIf="isLogin">
     <ion-row><span class="span-content">Address Book</span></ion-row>
     <ion-row>
       <ion-col>
-        <ion-item (click)="addAddress()"
-          ><ion-icon name="add-outline" color="success"></ion-icon
-          ><span class="span-text">Add Address</span></ion-item
-        >
+        <ion-item (click)="addAddress()">
+          <ion-icon name="add-outline" color="success"></ion-icon><span class="span-text">Add Address</span>
+        </ion-item>
       </ion-col>
     </ion-row>
     <ion-row>
       <ion-col>
-        <ion-item *ngFor="let userAddress of userAddressData">
+        <ion-item class="ion-activatable ripple-parent" *ngFor="let userAddress of userAddressData">
           <ion-grid>
             <ion-row>
               <ion-col>
-                <ion-label *ngIf="userAddress.primaryAddress"
-                  ><ion-icon name="checkmark-sharp" style="font-size: 24px;"></ion-icon> Default Address</ion-label
-                >
-                <ion-label *ngIf="!userAddress.primaryAddress"
-                  >{{userAddress.type ? userAddress.type : 'Other'}}</ion-label
-                >
+                <ion-label *ngIf="userAddress.primaryAddress">
+                  <ion-icon name="checkmark-sharp" style="font-size: 24px;"></ion-icon> Default Address
+                </ion-label>
+                <ion-label *ngIf="!userAddress.primaryAddress">{{userAddress.type ? userAddress.type : 'Other'}}
+                </ion-label>
               </ion-col>
               <ion-col class="ion-text-end">
-                <ion-icon
-                  name="create-outline"
-                  color="medium"
-                  style="font-size: 24px;"
-                ></ion-icon>
+                <ion-icon name="create-outline" color="medium" style="font-size: 24px;"></ion-icon>
                 <span style="font-size: 24px;"> | </span>
-                <ion-icon
-                  name="trash-outline"
-                  color="danger"
-                  style="font-size: 24px;"
-                ></ion-icon>
+                <ion-icon name="trash-outline" color="danger" style="font-size: 24px;"></ion-icon>
               </ion-col>
             </ion-row>
-            <ion-row>
+            <ion-row (click)="selectAddress(userAddress)">
               <ion-col>
                 <ion-list>
                   <ion-label>{{ userAddress.name | titlecase }}</ion-label>
-                  <ion-label
-                    ><span>{{ userAddress.flatNo }}</span>
-                    <span *ngIf="userAddress.apartment"
-                      >,&nbsp;&nbsp;{{ userAddress.apartment }}</span
-                    ></ion-label
-                  >
+                  <ion-label><span>{{ userAddress.flatNo }}</span>
+                    <span *ngIf="userAddress.apartment">,&nbsp;&nbsp;{{ userAddress.apartment }}</span></ion-label>
                   <ion-label>{{ userAddress.street | titlecase }}</ion-label>
                   <ion-label>{{ userAddress.landmark | titlecase }}</ion-label>
                   <ion-label>{{ userAddress.area | titlecase }}</ion-label>
-                  <ion-label
-                    >{{ userAddress.city | titlecase }}-{{ userAddress.pincode
-                    }}</ion-label
-                  >
-                  <ion-label>Ph: {{ userAddress.phone_number }}</ion-label>
+                  <ion-label>{{ userAddress.city | titlecase }}-{{ userAddress.pincode
+                    }}</ion-label>
+                  <ion-label>Ph: {{ userAddress.number }}</ion-label>
                 </ion-list>
               </ion-col>
+              <ion-ripple-effect></ion-ripple-effect>
             </ion-row>
           </ion-grid>
         </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="!isLogin">
+    <ion-row>
+      <ion-col>
+        <ion-button color="success" [routerLink]="['/login']">Login</ion-button>
+      </ion-col>
+      <ion-col>
+        <ion-button color="warning" [routerLink]="['/register']">Register</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>

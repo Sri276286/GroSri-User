@@ -1,24 +1,22 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, Output } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { EventEmitter } from '@angular/core';
 
 @Component({
     selector: 'gro-header',
     templateUrl: 'header.page.html',
     styleUrls: ['header.page.scss']
 })
-export class HeaderPage implements OnInit {
+export class HeaderPage {
     @Input() title;
     @Input() icon?: string = 'chevron-back-sharp';
     @Input() path?: string;
+    @Input() hasCloseButton?: boolean = false;
+    @Output() onClosePage = new EventEmitter();
 
     constructor(private _modalCtrl: ModalController,
         private _router: Router) { }
-
-    ngOnInit() {
-        console.log('icons ', this.icon);
-        console.log('path ', this.path);
-    }
 
     /**
      * Either navigate to a route or close modal
@@ -29,5 +27,9 @@ export class HeaderPage implements OnInit {
         } else {
             this._modalCtrl.dismiss();
         }
+    }
+
+    onCloseClick() {
+        this.onClosePage.emit();
     }
 }
