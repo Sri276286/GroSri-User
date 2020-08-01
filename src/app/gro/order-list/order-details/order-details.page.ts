@@ -67,8 +67,13 @@ export class OrderDetailsPage implements OnInit {
     });
   }
 
+  /**
+   * Handle cart for re-order
+   * @param cartEntity
+   */
   private _handleCart(cartEntity) {
     this._cartService.postBulkItems(cartEntity.orderProducts).subscribe();
+    this._commonService.repeatOrder$.next(true);
     this._cartService.cartEntity$.next(cartEntity);
     this._cartService.cartQuantity$.next(cartEntity.orderProducts.length);
     this._cartService.cartEntityMap.set(this.orderEntity.store.id, cartEntity);

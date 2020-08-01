@@ -22,6 +22,9 @@ export class TabsPage implements OnInit {
         this._commonService.orderPlaced$.subscribe(() => {
             this.getCart();
         });
+        this._commonService.repeatOrder$.subscribe(() => {
+            this.getCart();
+        });
     }
 
     getCart() {

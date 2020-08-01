@@ -1,6 +1,5 @@
 import { Component, OnInit, Input } from "@angular/core";
 import { FormBuilder, FormGroup, Validators } from "@angular/forms";
-import { Router } from "@angular/router";
 import { UserService } from "src/app/common/services/user.service";
 import { ModalController } from "@ionic/angular";
 import { LoginService } from "src/app/common/services/login.service";
@@ -23,7 +22,6 @@ export class AddressPage implements OnInit {
   cartTotal: number;
   constructor(
     private fb: FormBuilder,
-    private _router: Router,
     private _userService: UserService,
     public modalCtrl: ModalController,
     private _loginService: LoginService,
@@ -35,7 +33,7 @@ export class AddressPage implements OnInit {
     this.userAddress = this.fb.group({
       addressId: [""],
       name: ["", Validators.required],
-      number: [
+      phoneNumber: [
         "",
         [
           Validators.required,
@@ -43,7 +41,7 @@ export class AddressPage implements OnInit {
           Validators.maxLength(10),
         ],
       ],
-      flatNo: ["", Validators.required],
+      homeNo: ["", Validators.required],
       apartment: [""],
       street: ["", Validators.required],
       landmark: [""],
@@ -63,7 +61,7 @@ export class AddressPage implements OnInit {
     this._loginService.getUser().subscribe((user: any) => {
       this.user = user;
       this.userAddress.get('name').setValue(this.user.name);
-      this.userAddress.get('number').setValue(this.user.mobileNumber);
+      this.userAddress.get('phoneNumber').setValue(this.user.mobileNumber);
     });
   }
 
@@ -73,6 +71,7 @@ export class AddressPage implements OnInit {
   }
 
   onSubmit(isValid) {
+    console.log('isvalid ', isValid);
     const { addressId, ...addressWithoutId } = this.userAddress.value;
     const addressIdObject: UserAddress = addressWithoutId;
     addressIdObject.name = this.userAddress.value.name;
@@ -99,6 +98,7 @@ export class AddressPage implements OnInit {
 
         });
       } else {
+        console.log('aaaa ', this.userAddress.value);
         this._userService
           .updateAddress(this.userAddress.value)
           .subscribe(() => {

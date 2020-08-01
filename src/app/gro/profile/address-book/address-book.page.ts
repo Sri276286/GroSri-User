@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { UserService } from 'src/app/common/services/user.service';
-import { ModalController } from '@ionic/angular';
+import { ModalController, AlertController } from '@ionic/angular';
 import { AddressPage } from './address/address.page';
 import { LocationModalPage } from '../../home/location/location.page';
 import { CommonService } from 'src/app/common/services/common.service';
 import { UserAddress } from '../../../common/models/user-address.model';
-import { take } from 'rxjs/operators';
 
 @Component({
     templateUrl: 'address-book.page.html',
@@ -13,25 +12,26 @@ import { take } from 'rxjs/operators';
 })
 export class AddressBookPage implements OnInit {
     is_default_address = 'default';
-    userAddressData : UserAddress[] = [];
-    isFromDeliverPage : boolean = false;
+    userAddressData: UserAddress[] = [];
+    isFromDeliverPage: boolean = false;
     isLogin: boolean = false;
 
     constructor(private _userService: UserService,
         public modalCtrl: ModalController,
-        private _commonService: CommonService) {
+        private _commonService: CommonService,
+        private _alertCtrl: AlertController) {
     }
 
     ngOnInit() {
         this._commonService.loginSuccess$.subscribe(() => {
             this.isLogin = this._commonService.isLogin();
-          });
+        });
         this.getAddresses();
         this._commonService.addressSaved$.subscribe((isSaved) => {
             if (isSaved) {
                 this.getAddresses();
             }
-        });         
+        });
     }
 
     /**
@@ -49,24 +49,62 @@ export class AddressBookPage implements OnInit {
      * Add address
      */
     addAddress() {
-        this.presentModal(AddressPage, { isNew: true });
+        this._commonService.presentModal(AddressPage, { isNew: true });
+    }
+
+    /**
+     * Edit an address
+     */
+    editAddress(address: UserAddress) {
+        this._commonService.presentModal(AddressPage, { address });
+    }
+
+    removeAddress(address: UserAddress) {
+        if (address.primaryAddress) {
+            this._commonService.presentToast('Please set another address as default address before deleting this.');
+        } else {
+            this.presentAlert(address);
+        }
     }
 
     loadLocation() {
-        this.presentModal(LocationModalPage);
-    }
-
-    async presentModal(component, properties?: any) {
-        const modal = await this.modalCtrl.create({
-            component: component,
-            componentProps: properties
-        });
-        return await modal.present();
+        this._commonService.presentModal(LocationModalPage);
     }
 
     //select address from address book and publish it as event for the delivery page to subscribe and get it
-    selectAddress(userAddress : UserAddress){
+    selectAddress(userAddress: UserAddress) {
         this._commonService.addressSelected$.next(userAddress);
         this.modalCtrl.dismiss();
-      }
+    }
+
+    async presentAlert(address: UserAddress) {
+        const alert = await this._alertCtrl.create({
+            header: `Delete`,
+            message: `Do you want to delete this address?`,
+            buttons: [
+                {
+                    text: 'No',
+                    cssClass: 'secondary',
+                    handler: (blah) => {
+                    }
+                }, {
+                    text: 'Yes',
+                    handler: () => {
+                        this.delete(address.addressId);
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
+    }
+
+    /**
+     * API call to delete address
+     */
+    delete(id) {
+        this._userService.deleteAddress(id).subscribe(() => {
+            this.getAddresses();
+        });
+    }
 }

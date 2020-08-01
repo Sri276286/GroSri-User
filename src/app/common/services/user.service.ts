@@ -48,6 +48,14 @@ export class UserService {
   }
 
   /**
+   * Delete address
+   * @param address
+   */
+  deleteAddress(id) {
+    return this._http.delete(`${ApiConfig.userAddressDeleteURL}/${id}`);
+  }
+
+  /**
    * Map primary address to top list
    * @param addressList
    */

@@ -1,13 +1,14 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { CartService } from 'src/app/common/services/cart.service';
 import { CommonService } from 'src/app/common/services/common.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   templateUrl: './cart.page.html',
   styleUrls: ['./cart.page.scss']
 })
-export class CartPage implements OnInit {
+export class CartPage implements OnInit, OnDestroy {
 
   items = [];
   cartTotal = 0;
@@ -21,12 +22,19 @@ export class CartPage implements OnInit {
   }
 
   ngOnInit() {
+    this.isOrdered = false;
     this._commonService.orderPlaced$.subscribe((ordered) => {
+      console.log('ordeeee ', ordered);
       this.isOrdered = ordered;
       this.loadCartFromSaved();
+      // once order placed, on dismiss of cart go to thome
+      if (ordered) {
+        this.pathToGo = '/user/home';
+      }
     });
     const fromStore = this._activatedRoute.snapshot.paramMap.get('fromStore');
-    if (fromStore && !this.isOrdered) {
+    console.log('isss ordered ', this.isOrdered);
+    if (fromStore) {
       this.pathToGo = '/store/' + fromStore;
     }
     const fromPastOrder = this._activatedRoute.snapshot.paramMap.get('fromPastOrder');
@@ -38,12 +46,18 @@ export class CartPage implements OnInit {
     }
   }
 
+  /**
+   * Load cart from API
+   */
   loadCart() {
     this._cartService.getCartItems().subscribe((res: any) => {
       this.initialize(res);
     });
   }
 
+  /**
+   * Load cart from local storage
+   */
   loadCartFromSaved() {
     this._cartService.cartEntity$.subscribe((res) => {
       this.initialize(res);
@@ -73,6 +87,11 @@ export class CartPage implements OnInit {
     } else {
       this._cartService.resetCart();
     }
+  }
+
+  ngOnDestroy() {
+    console.log('in destroy');
+    this.isOrdered = false;
   }
 
 }

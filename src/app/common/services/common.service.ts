@@ -17,17 +17,18 @@ export class CommonService {
   setUserLocation$: BehaviorSubject<string> = new BehaviorSubject<string>(
     "600116"
   );
+  repeatOrder$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   orderPlaced$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   loginSuccess$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   addressSaved$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  fromDeliveryPage$:BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
-  addressSelected$:BehaviorSubject<UserAddress> = new BehaviorSubject<UserAddress>(null);
+  fromDeliveryPage$: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
+  addressSelected$: BehaviorSubject<UserAddress> = new BehaviorSubject<UserAddress>(null);
 
   constructor(
     private modalCtrl: ModalController,
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController
-  ) {}
+  ) { }
 
   handleUserStorage(property: string, value: any) {
     const profile = JSON.parse(localStorage.getItem("currentUser"));
@@ -80,7 +81,7 @@ export class CommonService {
         .then((res) => {
           this.dismissAllModals();
         })
-        .catch((error) => {});
+        .catch((error) => { });
     });
   }
 
